@@ -1,0 +1,702 @@
+ {% extends 'admin/master.html' %}
+ {% block title %}  Edit voter {% endblock title %}
+ {% load static %}
+{% block content %}
+<body>
+<section id="main-content" style=" margin-right:110px;">
+      <section class="wrapper">
+        <div class="row">
+          <div class="col-lg-12">
+            <h3 class="page-header"><i class="icon_pencil-edit"></i>Edit Project</h3>
+            <ol class="breadcrumb">
+              <li><i class="fa fa-home"></i>Home</li>
+              <li><i class="icon_document_alt"></i>Project</li>
+              <li><i class="icon_pencil-edit"></i>Edit project</li>
+            </ol>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <section class="panel">
+              <header class="panel-heading">
+                Project
+              </header>
+              <div class="panel-body">
+                <form class="form-horizontal" action="editprojectdetails" method="POST" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <div class="form-group" style="display: none;">
+                    <label class="col-sm-2 control-label"><b>PROJECT CATEGORY</b></label>
+                    <div class="col-sm-10">
+                        <select name="project_category"  class="form-control round-input" required style="width:80%;" value="{{project_category}}" disabled>
+                            <option selected value="{{ eproject.project_category }}">{{ project_category }}</option>
+                            <option value="Common">Common</option>
+                            <option value="Not Common">Not Common</option>
+                        </select>                        
+                    </div>                    
+                </div>                
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <label><b>PROJECT ID</b></label>
+                        <input placeholder="Enter ID" type="text" class="form-control round-input" name="project_id" readonly value="{{project_id}}" 
+                               style="width:50%;">
+                    </div>
+                    <div class="col-sm-6">
+                        <label><b>PROJECT NAME</b></label>
+                        <input placeholder="Enter Name" type="text" name="project_name" required class="form-control round-input" value="{{project_name}}"
+                               oninput="this.setCustomValidity('')"
+                               oninvalid="this.setCustomValidity('Enter  Name')" style="width:50%;">
+                    </div>
+                </div>                                                             
+                  <!-- Project Concept & Presentation -->
+                  <div class="form-group">
+                    <button style="margin-left: 20px;" id="concept" class="collapsible toc-item"><h4><b>PROJECT CONCEPT & PRESENTATION</b></h4></button>
+                    <div class="content">
+                      <button type="button" class="collapsible" style="margin-left: 20px;"><h5><b>SKETCHES</b></h5></button>
+                      <div class="content">
+                        <h4 style="margin-left: 20px;"><b>PROJECT CONCEPT & PRESENTATION/ Sketches</b></h4>
+                        <table style="margin-left: 20px; margin-right: 20px;">
+                            <tr>
+                                <th ><b>SITE PLAN</b></th>
+                                <th><b>2D SKETCH</b></th>
+                                <th><b>HAND SKETCH</b></th>
+                                <th><b>3D SKETCH</b></th>
+                            </tr>
+                            <tr>
+                                    <td>
+                                        <h5><b id="ssite_plan_label"></b></h5>
+                                        <input type="file" name="ssite_plan" class="form-control round-input">
+                                    </td>
+                                    <td>
+                                        <h5><b id="sketch_2d_label"></b></h5>
+                                        <input type="file" name="sketch_2d" class="form-control round-input">
+                                    </td>
+                                    <td>
+                                        <h5><b id="hand_sketch_label"></b></h5>
+                                        <input type="file" name="hand_sketch" class="form-control round-input">
+                                    </td>
+                                    <td>
+                                        <h5><b id="sketch_3d_label"></b></h5>
+                                        <input type="file" name="sketch_3d" class="form-control round-input">
+                                    </td>                                    
+                            </tr>
+                        </table>
+                    </div>
+                      <!-- Add more fields for Mood Board -->
+                      <button style="margin-left: 20px;" type="button" class="collapsible"><h5><b>MOOD BOARD</b></h5></button>
+                      <div class="content">
+                        <h4 style="margin-left: 20px;"><b>PROJECT CONCEPT & PRESENTATION/ Mood Board</b></h4>
+                        <table style="margin-left: 20px; margin-right: 20px;">
+                            <tr>
+                                <th><b>CEILING DESIGN INSPIRATION</b></th>
+                                <th><b>WALL DESIGN INSPIRATION</b></th>
+                                <th><b>FLOORING INSPIRATION</b></th>
+                                <th><b>LIGHTING INSPIRATION</b></th>
+                                <th><b>EXTERIOR INSPIRATION</b></th>
+                                <th><b>GARDEN</b></th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5><b id="ceiling_design_inspiration_label"></b></h5>
+                                    <input type="file" name="ceiling_design_inspiration" class="form-control round-input" value="{{ceiling_design_inspiration}}">
+                                </td>
+                                <td>
+                                    <h5><b id="wall_design_inspiration_label"></b></h5>
+                                    <input type="file" name="wall_design_inspiration" class="form-control round-input" value="{{wall_design_inspiration}}">
+                                </td>
+                                <td>
+                                    <h5><b id="flooring_inspiration_label"></b></h5>
+                                    <input type="file" name="flooring_inspiration" class="form-control round-input" value="{{flooring_inspiration}}">
+                                </td>
+                                <td>
+                                    <h5><b id="lighting_inspiration_label"></b></h5>
+                                    <input type="file" name="lighting_inspiration" class="form-control round-input" value="{{lighting_inspiration}}">
+                                </td>
+                                <td>
+                                    <h5><b id="exterior_inspiration_label"></b></h5>
+                                    <input type="file" name="exterior_inspiration" class="form-control round-input" value="{{exterior_inspiration}}">
+                                </td>
+                                <td>
+                                    <h5><b id="garden_label"></b></h5>
+                                    <input type="file" name="garden" class="form-control round-input" value="{{garden}}">
+                                </td>                                
+                            </tr>
+                        </table>
+                    </div>
+                      <!-- Scope of Work -->
+                      <button style="margin-left: 20px;" type="button" class="collapsible"><h5><b>SCOPE of WORK</b></h5></button>
+                      <div class="content">
+                        <h4 style="margin-left: 20px;"><b>PROJECT CONCEPT & PRESENTATION/ Scope Of Work</b></h4>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"><b>Describe The Scope Of Work</b></label>
+                            <div class="col-sm-10">
+                                <textarea name="scope_of_work" class="form-control round-input" style="width:80%;">{{scope_of_work}}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    </div>                    
+                      <br><br>
+                      <button style="margin-left: 20px;" id="design" class="collapsible toc-item"><h4><b>PROJECT DESIGN</b></h4></button>
+                      <div class="content">
+                      <button style="margin-left: 20px;" type="button" class="collapsible"><h5><b>ARCHITECTURE</b></h5></button>
+                      <div class="content">
+                        <h4 style="margin-left: 20px;"><b>PROJECT DESIGN/ Architecture</b></h4>
+                          <table style="margin-left: 20px; margin-right: 20px;">
+                              <tr>
+                                  <th><b>SITE PLAN</b></th>
+                                  <th><b>MASTER PLAN</b></th>
+                                  <th><b>2D FLOOR PLAN</b></th>
+                                  <th><b>ELEVATIONS</b></th>
+                                  <th><b>SECTION</b></th>
+                                  <th><b>DETAIL DRAWING</b></th>
+                                  <th><b>3D ILLUSTRATIONS</b></th>
+                                  <!-- Add more headers for Hand Sketch, and 3D Sketch -->
+                              </tr>
+                              <tr>
+                                <td>
+                                    <h5><b id="site_plan_label"></b></h5>
+                                    <input type="file" name="site_plan" class="form-control round-input" value="{{site_plan}}">
+                                </td>
+                                <td>
+                                    <h5><b id="master_plan_label"></b></h5>
+                                    <input type="file" name="master_plan" class="form-control round-input" value="{{master_plan}}">
+                                </td>
+                                <td>
+                                    <h5><b id="floor_plan_2d_label"></b></h5>
+                                    <input type="file" name="2d_floor_plan" class="form-control round-input" value="{{2d_floor_plan}}">
+                                </td>
+                                <td>
+                                    <h5><b id="elevations_label"></b></h5>
+                                    <input type="file" name="elevations" class="form-control round-input" value="{{elevations}}">
+                                </td>
+                                <td>
+                                    <h5><b id="section_label"></b></h5>
+                                    <input type="file" name="section" class="form-control round-input" value="{{section}}">
+                                </td>
+                                <td>
+                                    <h5><b id="detail_drawing_label"></b></h5>
+                                    <input type="file" name="detail_drawing" class="form-control round-input" value="{{detail_drawing}}">
+                                </td>
+                                <td>
+                                    <h5><b id="illustrations_3d_label"></b></h5>
+                                    <input type="file" name="3d_illustrations" class="form-control round-input" value="{{3d_illustrations}}">
+                                </td>                                
+                            </tr>                            
+                          </table>
+                      </div>
+                      <button style="margin-left: 20px;" type="button" class="collapsible"><h5><b>CIVIL WORKS</b></h5></button>
+                      <div class="content">
+                        <h4 style="margin-left: 20px;"><b>PROJECT DESIGN/ Civil Works</b></h4>
+                          <table style="margin-left: 20px; margin-right: 20px;">
+                              <tr>
+                                  <th><b>EARTHWORKS SURVEY</b></th>
+                                  <th><b>GEO-TECH</b></th>
+                                  <th><b>ROADS</b></th>
+                                  <th><b>HYDROLIC SYSTEM</b></th>
+                                  <th><b>STRUCTURE</b></th>
+                                  <th><b>DETAILING</b></th>
+                                  <!-- Add more headers for Hand Sketch, and 3D Sketch -->
+                              </tr>
+                              <tr>
+                                <td>
+                                    <h5><b id="earthworks_survey_label"></b></h5>
+                                    <input type="file" name="earthworks_survey" class="form-control round-input" value="{{earthworks_survey}}">
+                                </td>
+                                <td>
+                                    <h5><b id="geo_tech_label"></b></h5>
+                                    <input type="file" name="geo-tech" class="form-control round-input" value="{{geo_tech}}">
+                                </td>
+                                <td>
+                                    <h5><b id="roads_label"></b></h5>
+                                    <input type="file" name="roads" class="form-control round-input" value="{{roads}}">
+                                </td>
+                                <td>
+                                    <h5><b id="hydolic_system_label"></b></h5>
+                                    <input type="file" name="hydolic_system" class="form-control round-input" value="{{hydolic_system}}">
+                                </td>
+                                <td>
+                                    <h5><b id="structure_label"></b></h5>
+                                    <input type="file" name="structure" class="form-control round-input" value="{{structure}}">
+                                </td>
+                                <td>
+                                    <h5><b id="detailing_label"></b></h5>
+                                    <input type="file" name="detailing" class="form-control round-input" value="{{detailing}}">
+                                </td>                                
+                            </tr>                            
+                          </table>
+                      </div>
+                      <button style="margin-left: 20px;" type="button" class="collapsible"><h5><b>MEP</b></h5></button>
+                      <div class="content">
+                          <table style="margin-left: 20px; margin-right: 20px;">
+                            <h4 style="margin-left: 20px;"><b>PROJECT DESIGN/ MEP</b></h4>
+                              <tr>
+                                  <th><b>WATER SYSTEM</b></th>
+                                  <th><b>ELECTRIC</b></th>
+                                  <th><b>ELV SYSTEM</b></th>
+                                  <th><b>HVAC</b></th>
+                                  <th><b>ELEVATION SYSTEM</b></th>
+                                  <th><b>SYSTEM SAFETY</b></th>
+                                  <!-- Add more headers for Hand Sketch, and 3D Sketch -->
+                              </tr>
+                              <tr>
+                                <td>
+                                    <h5><b id="water_system_label"></b></h5>
+                                    <input type="file" name="water_system" class="form-control round-input">
+                                </td>
+                                <td>
+                                    <h5><b id="electric_label"></b></h5>
+                                    <input type="file" name="electric" class="form-control round-input">
+                                </td>
+                                <td>
+                                    <h5><b id="elv_system_label"></b></h5>
+                                    <input type="file" name="elv_system" class="form-control round-input">
+                                </td>
+                                <td>
+                                    <h5><b id="hvac_label"></b></h5>
+                                    <input type="file" name="hvac" class="form-control round-input">
+                                </td>
+                                <td>
+                                    <h5><b id="elevation_system_label"></b></h5>
+                                    <input type="file" name="elevation_system" class="form-control round-input">
+                                </td>
+                                <td>
+                                    <h5><b id="system_safety_label"></b></h5>
+                                    <input type="file" name="system_safety" class="form-control round-input">
+                                </td>                                
+                                  <!-- Add more fields for Hand Sketch, and 3D Sketch -->
+                              </tr>
+                          </table>
+                      </div>
+                      <button style="margin-left: 20px;" type="button" class="collapsible"><h5><b>INTERIOR DESIGN</b></h5></button>
+                      <div class="content">
+                        <h4 style="margin-left: 20px;"><b>PROJECT DESIGN/ Interior Design</b></h4>
+                          <table style="margin-left: 20px; margin-right: 20px;">
+                              <tr>
+                                <td>
+                                    <h5><b id="interior_design_label"></b></h5>
+                                    <input type="file" name="interior_design" class="form-control round-input">
+                                </td> 
+                              </tr>
+                          </table>
+                      </div>
+                      <button style="margin-left: 20px;" type="button" class="collapsible"><h5><b>SOFT & HARD SCAPING</b></h5></button>
+                      <div class="content">
+                        <h4 style="margin-left: 20px;"><b>PROJECT DESIGN/ Soft & Hard Scaping</b></h4>
+                          <table style="margin-left: 20px; margin-right: 20px;">
+                              <tr>
+                                <td>
+                                    <h5><b id="soft_hard_scaping_label"></b></h5>
+                                    <input type="file" name="soft_hard_scaping" class="form-control round-input">
+                                </td>
+                              </tr>
+                          </table>
+                      </div>
+                      </div>
+                      <br><br>
+                      <button style="margin-left: 20px;" id="billing" class="collapsible toc-item"><h4><b>PROJECT BILLING</b></h4></button>
+                      <div class="content">
+                      <button style="margin-left: 20px;" type="button" class="collapsible"><h5><b>PROJECT QUOTATION</b></h5></button>
+                      <div class="content">
+                        <h4 style="margin-left: 20px;"><b>PROJECT BILLING/ Project Quotation</b></h4>
+                          <table style="margin-left: 20px; margin-right: 20px;">
+                              <tr>
+                                  <th><b>BILL OF QUANTITIES</b></th>
+                                  <th><b>QUOTATION SUMMARY</b></th>
+                                  <th><b>CLIENT REVIEW</b></th>
+                                  <th><b>FINAL</b></th>
+                                  <!-- Add more headers for Hand Sketch, and 3D Sketch -->
+                              </tr>
+                              <tr>
+                                <td>
+                                    <h5><b id="bill_of_quantities_label"></b></h5>
+                                    <input type="file" name="bill_of_quantities" class="form-control round-input">
+                                </td>
+                                <td>
+                                    <h5><b id="quotation_summary_label"></b></h5>
+                                    <input type="file" name="quotation_summary" class="form-control round-input">
+                                </td>
+                                <td>
+                                    <h5><b id="client_review_label"></b></h5>
+                                    <input type="file" name="client_review" class="form-control round-input">
+                                </td>
+                                <td>
+                                    <h5><b id="final_label"></b></h5>
+                                    <input type="file" name="final" class="form-control round-input">
+                                </td>                                
+                                  <!-- Add more fields for Hand Sketch, and 3D Sketch -->
+                              </tr>
+                          </table>
+                      </div>
+                      <button style="margin-left: 20px;" type="button" class="collapsible"><h5><b>PROJECT CONTRACT</b></h5></button>
+                      <div class="content">
+                        <h4 style="margin-left: 20px;"><b>PROJECT BILLING/ Project Contract</b></h4>
+                          <table style="margin-left: 20px; margin-right: 20px;">
+                              <tr>
+                                  <th><b>CONTRACT</b></th>
+                                  <th><b>NOTARY</b></th>
+                                  <th><b>PROJECT PAYMENT PLAN</b></th>
+                                  <th><b>PROJECT INVOICES</b></th>
+                                  <th><b>ADDITIONALS</b></th>
+                              </tr>
+                              <tr>
+                                <td>
+                                    <h5><b id="contract_label"></b></h5>
+                                    <input type="file" name="contract" class="form-control round-input">
+                                </td>
+                                <td>
+                                    <h5><b id="notary_label"></b></h5>
+                                    <input type="file" name="notary" class="form-control round-input">
+                                </td>
+                                <td>
+                                    <h5><b id="project_payment_plan_label"></b></h5>
+                                    <input type="file" name="project_payment_plan" class="form-control round-input">
+                                </td>
+                                <td>
+                                    <h5><b id="project_invoices_label"></b></h5>
+                                    <input type="file" name="project_invoices" class="form-control round-input">
+                                </td>
+                                <td>
+                                    <h5><b id="additionals_label"></b></h5>
+                                    <input type="file" name="additionals" class="form-control round-input">
+                                </td>                                
+                              </tr>
+                          </table>
+                      </div>
+                      </div>
+                      <br><br>
+                      <button style="margin-left: 20px;" id="hub" class="collapsible toc-item"><h4><b>PROCUREMENT HUB</b></h4></button>
+                      <div class="content">
+                      <button style="margin-left: 20px;" type="button" class="collapsible"><h5><b>PURCHASES</b></h5></button>
+                      <div class="content">
+                        <h4 style="margin-left: 20px;"><b>PROCUREMENT HUB/ Purchases</b></h4>
+                          <table style="margin-left: 20px; margin-right: 20px;">
+                              <tr>
+                                  <th><b>PURCHASE ORDER</b></th>
+                                  <th><b>INVOICE</b></th>
+                                  <th><b>RECEIPT</b></th>
+                                  <th><b>PURCHASE SUMMARY</b></th>
+                                  <!-- Add more headers for Hand Sketch, and 3D Sketch -->
+                              </tr>
+                              <tr>
+                                <td>
+                                    <h5><b id="purchase_order_label"></b></h5>
+                                    <input type="file" name="purchase_order" class="form-control round-input">
+                                </td>
+                                <td>
+                                    <h5><b id="invoice_label"></b></h5>
+                                    <input type="file" name="invoice" class="form-control round-input">
+                                </td>
+                                <td>
+                                    <h5><b id="receipt_label"></b></h5>
+                                    <input type="file" name="receipt" class="form-control round-input">
+                                </td>
+                                <td>
+                                    <h5><b id="purchase_summary_label"></b></h5>
+                                    <input type="file" name="purchase_summary" class="form-control round-input">
+                                </td>                                
+                                  <!-- Add more fields for Hand Sketch, and 3D Sketch -->
+                              </tr>
+                          </table>
+                      </div>
+                      <button style="margin-left: 20px;" type="button" class="collapsible"><h5><b>SUPPLIERS</b></h5></button>
+                      <div class="content">
+                        <h4 style="margin-left: 20px;"><b>PROCUREMENT HUB/ Suppliers</b></h4>
+                          <table style="margin-left: 20px; margin-right: 20px;">
+                              <tr>
+                                  <th><b>SUPPLIER SELECTION</b></th>
+                                  <th><b>SUPPLIER CLASSIFICATION</b></th>
+                                  <th><b></b>PARTNERSHIPs & ALLIANCES</th>
+                                  <th><b>OTHER</b></th>
+                                  <th><b>CONTACT INFORMATION</b></th>
+                                  <!-- Add more headers for Hand Sketch, and 3D Sketch -->
+                              </tr>
+                              <tr>
+                                <td>
+                                    <h5><b id="supplier_selection_label"></b></h5>
+                                    <input type="file" name="supplier_selection" class="form-control round-input">
+                                </td>
+                                <td>
+                                    <h5><b id="supplier_classification_label"></b></h5>
+                                    <input type="file" name="supplier_classification" class="form-control round-input">
+                                </td>
+                                <td>
+                                    <h5><b id="partnerships_and_alliances_label"></b></h5>
+                                    <input type="file" name="partnerships_and_alliances" class="form-control round-input">
+                                </td>
+                                <td>
+                                    <h5><b id="other_label"></b></h5>
+                                    <input type="file" name="other" class="form-control round-input">
+                                </td>
+                                <td>
+                                    <h5><b id="contact_information_label"></b></h5>
+                                    <input type="file" name="contact information" class="form-control round-input">
+                                </td>
+                              </tr>
+                          </table>
+                      </div>
+                      <button style="margin-left: 20px;" type="button" class="collapsible"><h5><b>PROJECT INVENTORY</b></h5></button>
+                      <div class="content">
+                        <h4 style="margin-left: 20px;"><b>PROCUREMENT HUB/ Project Inventory</b></h4>
+                          <table style="margin-left: 20px; margin-right: 20px;">
+                              <tr>
+                                  <th><b>CONSTRUCTION MATERIAL</b></th>
+                                  <th><b>EQUIPMENT</b></th>
+                                  <th><b>TOOLS</b></th>
+                                  <th><b>OTHER MATERIAL</b></th>
+                              </tr>
+                              <tr>
+                                  <td><textarea name="construction_material" class="form-control round-input">{{construction_material}}</textarea></td>
+                                  <td><textarea name="equipment" class="form-control round-input">{{equipment}}</textarea></td>
+                                  <td><textarea name="tools" class="form-control round-input">{{tools}}</textarea></td>
+                                  <td><textarea name="other_material" class="form-control round-input">{{other_material}}</textarea></td>
+                              </tr>
+                          </table>
+                      </div>
+                      <button style="margin-left: 20px;" type="button" class="collapsible"><h5><b>MARKET PRICE LIST</b></h5></button>
+                      <div class="content">
+                        <h4 style="margin-left: 20px;"><b>PROCUREMENT HUB/ Market Price List</b></h4>
+                          <table style="margin-left: 20px; margin-right: 20px;">
+                              <tr>
+                                  <th><b>RAW MATERIAL</b></th>
+                                  <th><b>CONSTRUCTION MATERIAL</b></th>
+                                  <th><b>INTERIOR FINISHES</b></th>
+                                  <th><b>EXTERIOR FINISHES</b></th>
+                                  <th><b>LANDSCAPING MATERIAL</b></th>
+                                  <th><b>PRICE COMPARISON</b></th>
+                              </tr>
+                              <tr>
+                                  <td><textarea name="raw_material" class="form-control round-input">{{raw_material}}</textarea></td>
+                                  <td><textarea name="construction_material" class="form-control round-input">{{construction_material}}</textarea></td>
+                                  <td>
+                                    <h5><b id="interior_finishes_label"></b></h5>
+                                    <input type="file" name="interior_finishes" class="form-control round-input">
+                                </td>
+                                <td>
+                                    <h5><b id="exterior_finishes_label"></b></h5>
+                                    <input type="file" name="exterior_finishes" class="form-control round-input">
+                                </td>                                
+                                  <td><textarea name="landscaping_material" class="form-control round-input">{{landscaping_material}}</textarea></td>
+                                  <td><textarea name="price_comparison" class="form-control round-input">{{price_comparison}}</textarea></td>
+                              </tr>
+                          </table>
+                      </div>
+                      </div>
+                      <br><br>
+                      <button style="margin-left: 20px;" id="budget"  class="collapsible toc-item"><h4><b>PROJECT BUDGET</b></h4></button>
+                      <div class="content">
+                      <button style="margin-left: 20px;" type="button" class="collapsible"><h5><b>PROJECT CASHFLOW</b></h5></button>
+                      <div class="content">
+                        <h4 style="margin-left: 20px;"><b>PROJECT BUDGET/ Project Cashflow</b></h4>
+                          <table style="margin-left: 20px; margin-right: 20px;">
+                              <tr>
+                                  <th><b>DAILY CASHFLOW</b></th>
+                                  <th><b>WEEKLY CASHFLOW</b></th>
+                                  <th><b>MONTHLY CASHFLOW</b></th>
+                                  <th><b>ANNUAL CASHFLOW</b></th>
+                                  <th><b>INDIRECT COSTS</b></th>
+                                  <th><b>CASHFLOW REPORT</b></th>
+                                  <!-- Add more headers for Hand Sketch, and 3D Sketch -->
+                              </tr>
+                              <tr>
+                                <td>
+                                    <h5><b id="daily_cashflow_label"></b></h5>
+                                    <input type="file" name="daily_cashflow" class="form-control round-input">
+                                </td>
+                                <td>
+                                    <h5><b id="weekly_cashflow_label"></b></h5>
+                                    <input type="file" name="weekly_cashflow" class="form-control round-input">
+                                </td>
+                                <td>
+                                    <h5><b id="monthly_cashflow_label"></b></h5>
+                                    <input type="file" name="monthly_cashflow" class="form-control round-input">
+                                </td>
+                                <td>
+                                    <h5><b id="annual_cashflow_label"></b></h5>
+                                    <input type="file" name="annual_cashflow" class="form-control round-input">
+                                </td>
+                                <td>
+                                    <h5><b id="indirect_costs_label"></b></h5>
+                                    <input type="file" name="indirect_costs" class="form-control round-input">
+                                </td>
+                                <td>
+                                    <h5><b id="cashflow_report_label"></b></h5>
+                                    <input type="file" name="cashflow_report" class="form-control round-input">
+                                </td>                                
+                                  <!-- Add more fields for Hand Sketch, and 3D Sketch -->
+                              </tr>
+                          </table>
+                      </div>
+                      <button style="margin-left: 20px;" type="button" class="collapsible"><h5><b>PROJECT INVENTORY</b></h5></button>
+                      <div class="content">
+                        <h4 style="margin-left: 20px;"><b>PROJECT BUDGET/ Project Inventory</b></h4>
+                          <table style="margin-left: 20px; margin-right: 20px;">
+                              <tr>
+                                  <th><b>PURCHASE ORDER</b></th>
+                                  <th><b>INVOICE</b></th>
+                                  <th><b>RECEIPT</b></th>
+                                  <th><b>SUPPLIER</b></th>
+                                  <th><b>ACCOUNT PAYABLE</b></th>
+                                  <!-- Add more headers for Hand Sketch, and 3D Sketch -->
+                              </tr>
+                              <tr>
+                                <td>
+                                    <h5><b id="ppurchase_order_label"></b></h5>
+                                    <input type="file" name="ppurchase_order" class="form-control round-input">
+                                </td>
+                                <td>
+                                    <h5><b id="iinvoice_label"></b></h5>
+                                    <input type="file" name="iinvoice" class="form-control round-input">
+                                </td>
+                                <td>
+                                    <h5><b id="rreceipt_label"></b></h5>
+                                    <input type="file" name="rreceipt" class="form-control round-input">
+                                </td>
+                                <td>
+                                    <h5><b id="supplier_label"></b></h5>
+                                    <input type="file" name="supplier" class="form-control round-input">
+                                </td>
+                                <td>
+                                    <h5><b id="account_payable_label"></b></h5>
+                                    <input type="file" name="account_payable" class="form-control round-input">
+                                </td>                                
+                                  <!-- Add more fields for Hand Sketch, and 3D Sketch -->
+                              </tr>
+                          </table>
+                      </div>
+                      </div>
+                      <br><br><br>
+                      <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <button id="updateProject" class="btn btn-primary" type="submit">Update Project</button>
+                            <button class="btn btn-default" type="reset">Reset</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            {% for message in messages %}
+                                <h3 style="color: green;"> {{message}} </h3>
+                            {% endfor %}
+                        </div>
+                    </div>
+                  </div>
+           </form>
+           <script>
+            var coll = document.getElementsByClassName("collapsible");
+            var tocItems = document.getElementsByClassName("toc-item");
+            var tocList = document.getElementById("toc_list");
+        
+            for (var i = 0; i < coll.length; i++) {
+                var content = coll[i].nextElementSibling;
+                content.style.display = "none";
+        
+                // Add click event listener
+                coll[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var content = this.nextElementSibling;
+                    if (content.style.display === "block") {
+                        content.style.display = "none";
+                    } else {
+                        content.style.display = "block";
+                    }
+                });
+            }
+        
+            for (var i = 0; i < tocItems.length; i++) {
+                // Add item to table of contents
+                var li = document.createElement("li");
+                var a = document.createElement("a");
+                a.textContent = tocItems[i].textContent;
+                a.href = "#" + tocItems[i].id;
+                li.appendChild(a);
+                tocList.appendChild(li);
+            }
+            document.querySelectorAll('button').forEach(button => {
+                // Exclude the "Submit Project" button
+                if (button.id !== 'updateProject') {
+                    button.addEventListener('click', function(event) {
+                        event.preventDefault();
+                    });
+                }
+            });
+        </script>
+        <script>
+                var files = {
+                    ssite_plan: "{{ssite_plan}}",
+                    sketch_2d: "{{sketch_2d}}",
+                    hand_sketch: "{{hand_sketch}}",
+                    sketch_3d: "{{sketch_3d}}",
+                    ceiling_design_inspiration: "{{ceiling_design_inspiration}}",
+                    wall_design_inspiration: "{{wall_design_inspiration}}",
+                    flooring_inspiration: "{{flooring_inspiration}}",
+                    lighting_inspiration: "{{lighting_inspiration}}",
+                    exterior_inspiration: "{{exterior_inspiration}}",
+                    garden: "{{garden}}",
+                    site_plan: "{{site_plan}}",
+                    master_plan: "{{master_plan}}",
+                    floor_plan_2d: "{{floor_plan_2d}}",
+                    elevations: "{{elevations}}",
+                    section: "{{section}}",
+                    detail_drawing: "{{detail_drawing}}",
+                    illustrations_3d: "{{illustrations_3d}}",
+                    earthworks_survey: "{{earthworks_survey}}",
+                    geo_tech: "{{geo_tech}}",
+                    roads: "{{roads}}",
+                    hydolic_system: "{{hydolic_system}}",
+                    structure: "{{structure}}",
+                    detailing: "{{detailing}}",
+                    water_system: "{{water_system}}",
+                    electric: "{{electric}}",
+                    elv_system: "{{elv_system}}",
+                    hvac: "{{hvac}}",
+                    elevation_system: "{{elevation_system}}",
+                    system_safety: "{{system_safety}}",
+                    interior_design: "{{interior_design}}",
+                    soft_hard_scaping: "{{soft_hard_scaping}}",
+                    bill_of_quantities: "{{bill_of_quantities}}",
+                    quotation_summary: "{{quotation_summary}}",
+                    client_review: "{{client_review}}",
+                    final: "{{final}}",
+                    contract: "{{contract}}",
+                    notary: "{{notary}}",
+                    project_payment_plan: "{{project_payment_plan}}",
+                    additionals: "{{additionals}}",
+                    purchase_order: "{{purchase_order}}",
+                    invoice: "{{invoice}}",
+                    receipt: "{{receipt}}",
+                    purchase_summary: "{{purchase_summary}}",
+                    supplier_selection: "{{supplier_selection}}",
+                    supplier_classification: "{{supplier_classification}}",
+                    partnerships_and_alliances: "{{partnerships_and_alliances}}",
+                    other: "{{other}}",
+                    contact_information: "{{contact_information}}",
+                    interior_finishes: "{{interior_finishes}}",
+                    exterior_finishes: "{{exterior_finishes}}",
+                    daily_cashflow: "{{daily_cashflow}}",
+                    weekly_cashflow: "{{weekly_cashflow}}",
+                    monthly_cashflow: "{{monthly_cashflow}}",
+                    annual_cashflow: "{{annual_cashflow}}",
+                    indirect_costs: "{{indirect_costs}}",
+                    cashflow_report: "{{cashflow_report}}",
+                    ppurchase_order: "{{ppurchase_order}}",
+                    iinvoice: "{{iinvoice}}",
+                    rreceipt: "{{rreceipt}}",
+                    supplier: "{{supplier}}",
+                    account_payable: "{{account_payable}}"         
+                };                            
+            
+                for (var key in files) {
+                    var fileName = files[key] ? files[key] : "No File";
+                    var labelElement = document.getElementById(key + "_label");
+                    if (labelElement) {  // Check if the label element exists
+                        labelElement.innerHTML = "Previous File: " + fileName;
+                    }
+                }
+            </script>              
+              </div>
+            </section>
+            </div>
+          </div>
+      </section>
+      </section>
+</body>
+
+{% endblock content %}

@@ -1,0 +1,447 @@
+{% extends 'admin/master.html' %}
+{% block title %}  home {% endblock title %}
+{% load static %}
+{% block content %}
+<body>
+   <!--main content start-->
+   <section id="main-content" style=" margin-right:110px;">
+     <section class="wrapper">
+       <div class="row">
+         <div class="col-lg-12">
+           <h3 class="page-header"><i class="fa fa-file-text-o"></i>Add Affiliate</h3>
+           <ol class="breadcrumb">
+             <li><i class="fa fa-home"></i>Home</li>
+             <li><i class="icon_document_alt"></i>Affiliate</li>
+             <li><i class="fa fa-file-text-o"></i>Add Affiliate</li>
+           </ol>
+         </div>
+       </div>
+       <div class="row">
+         <div class="col-lg-12">
+           <section class="panel">
+             <header class="panel-heading">
+               New Affiliate
+             </header>
+             <div class="panel-body">
+
+               <form class="form-horizontal" method="post" enctype="multipart/form-data" action="add_affiliate">
+                 {% csrf_token %}
+                 <div class="form-group">
+                    <label class="col-sm-2 control-label"><b>AFFILIATE CATEGORY</b></label>
+                    <div class="col-sm-10">
+                        <select id="affiliate_category" name="affiliate_category" class="form-control round-input" required style="width:80%;">
+                            <option selected value="">Affiliate Category</option>
+                            <option value="SAKINA GLOBALHOUSE">SAKINA GLOBALHOUSE</option>
+                            <option value="WITR PRODUCTIONS">WITR PRODUCTIONS</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><b>SUB CATEGORY</b></label>
+                    <div class="col-sm-10">
+                        <select id="sub_category" name="sub_category" class="form-control round-input" required style="width:80%;">
+                            <!-- Sub categories will be added here based on the selected affiliate category -->
+                        </select>
+                    </div>
+                </div>
+                <script>
+                    document.getElementById('affiliate_category').addEventListener('change', function() {
+                        var subCategory = document.getElementById('sub_category');
+                        while(subCategory.options.length > 0) {                
+                            subCategory.remove(0);
+                        } 
+                        var categories = [];
+                        if(this.value == 'SAKINA GLOBALHOUSE') {
+                            categories = ['Brand 1', 'Brand 2', 'Brand 3', 'Brand 4', 'Brand 5', 'Brand 6', 'Brand 7', 'Brand 8', 'Brand 9', 'Brand 10', 'Brand 11', 'Brand 12', 'Brand 13'];
+                        } else if(this.value == 'WITR PRODUCTIONS') {
+                            categories = ['Project 1', 'Project 2'];
+                        }
+                        for(var i=0; i<categories.length; i++) {
+                            var opt = document.createElement('option');
+                            opt.value = categories[i];
+                            opt.innerHTML = categories[i];
+                            subCategory.appendChild(opt);
+                        }
+                    });
+                </script>                
+                 <div class="form-group">
+                   <label class="col-sm-2 control-label"><b>BRAND ID</b></label>
+                   <div class="col-sm-10">
+                     <input type="text" class="form-control round-input" name="brand_id" required maxlength="10" pattern="^[A-Z0-9]{10}$"
+                       onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');
+                       if(this.checkValidity()) form.pwd2.pattern = RegExp.escape(this.value);"
+                       title="Only A-Z and 0-9 allowed minimum 10 characters" style="width:80%;">
+                   </div>
+                 </div>
+               <div class="form-group">
+                   <label class="col-sm-2 control-label"><b>BRAND NAME</b></label>
+                   <div class="col-sm-10">
+                     <input type="text" required  name="brand_name" class="form-control round-input"  oninput="this.setCustomValidity('')"
+                           oninvalid="this.setCustomValidity('Enter Project Name')" style="width:80%;">
+                   </div>
+                 </div>
+                 <div class="form-group">
+                    <h2><b>BRAND 1</b></h2>
+                     <button type="button" class="collapsible"><h3><b>OFFICE INTERIOR ARCHICTECTURE</b></h3></button>
+                     <div class="content">
+                        <table>
+                            <tr>
+                                <th><b>CEILING DESIGN</b></th>
+                                <td><input type="file" name="ceiling_design" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>WALL DESIGN</b></th>
+                                <td><input type="file" name="wall_design" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>FLOORING</b></th>
+                                <td><input type="file" name="flooring" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>FIXTURE & FITTINGS</b></th>
+                                <td><input type="file" name="fixture_and_fittings" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>BATHROOM</b></th>
+                                <td><input type="file" name="bathrooom" class="form-control round-input"></td>
+                            </tr>
+                            <!-- Add more fields for Hand Sketch, and 3D Sketch -->
+                        </table>                                                                       
+                     </div>
+                     <br>
+                     <h2><b>BRAND 2</b></h2>
+                     <button type="button" class="collapsible"><h3><b>OFFICE FURNITURE</b></h3></button>
+                     <div class="content">
+                        <table>
+                            <tr>
+                                <th><b>EXECUTIVE_OFFICE</b></th>
+                                <td><input type="file" name="executive_office" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>SPECIAL DESIGNS</b></th>
+                                <td><input type="file" name="special_designs" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>SINGLE OFFICE</b></th>
+                                <td><input type="file" name="single_office" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>CUSTOM OFFICE</b></th>
+                                <td><input type="file" name="custom_office" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>RECEPTION</b></th>
+                                <td><input type="file" name="reception" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>BREAK ROOM</b></th>
+                                <td><input type="file" name="break_room" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>WORKSTATION</b></th>
+                                <td><input type="file" name="workstation" class="form-control round-input"></td>
+                            </tr>
+                            <!-- Add more fields for Hand Sketch, and 3D Sketch -->
+                        </table>
+                     </div>
+                     <br>
+                     <button type="button" class="collapsible"><h3><b>ACCESSORIES</b></h3></button>
+                     <div class="content">
+                        <table>
+                            <tr>
+                                <th><b>LIGHTING</b></th>
+                                <td><input type="file" name="lighting" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>SMALL TABLES</b></th>
+                                <td><input type="file" name="small_tables" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>DECOR</b></th>
+                                <td><input type="file" name="decor" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>DRAPERY</b></th>
+                                <td><input type="file" name="drapery" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>ART</b></th>
+                                <td><input type="file" name="art" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>CARPTET</b></th>
+                                <td><input type="file" name="carpet" class="form-control round-input"></td>
+                            </tr>
+                            <!-- Add more fields for Hand Sketch, and 3D Sketch -->
+                        </table>
+                     </div>
+                     <br>
+                     <h2><b>BRAND 3</b></h2>
+                     <button type="button" class="collapsible"><h3><b>HOME FURNITURE</b></h3></button>
+                     <div class="content">
+                         <table>
+                            <tr>
+                                <th><b>LIVING ROOM</b></th>
+                                <td><input type="file" name="living_room" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>DINING ROOM</b></th>
+                                <td><input type="file" name="dining_room" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>MASTER BEDROOM</b></th>
+                                <td><input type="file" name="master_bedroom" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>GUEST ROOM</b></th>
+                                <td><input type="file" name="guest_room" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>GIRLS BEDROOM</b></th>
+                                <td><input type="file" name="girls_bedroom" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>BOYS BEDROOM</b></th>
+                                <td><input type="file" name="boys_bedroom" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>BABY ROOM</b></th>
+                                <td><input type="file" name="baby_room" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>HOME OFFICE</b></th>
+                                <td><input type="file" name="home_office" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>BALCONY</b></th>
+                                <td><input type="file" name="balcony" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>OUTDOOR</b></th>
+                                <td><input type="file" name="outdoor" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>TV ROOM</b></th>
+                                <td><input type="file" name="tv_room" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>FOYER</b></th>
+                                <td><input type="file" name="foyer" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>HALLWAY</b></th>
+                                <td><input type="file" name="hallway" class="form-control round-input"></td>
+                            </tr>
+                            <!-- Add more fields for Hand Sketch, and 3D Sketch -->
+                        </table>
+                     </div>
+                     <br>
+                     <button type="button" class="collapsible"><h3><b>ACCESSORIES</b></h3></button>
+                     <div class="content">
+                         <table>
+                            <tr>
+                                <th><b>LIGHTING</b></th>
+                                <td><input type="file" name="lighting2" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>SMALL TABLES</b></th>
+                                <td><input type="file" name="small_tables2" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>DECOR</b></th>
+                                <td><input type="file" name="decor2" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>DRAPERY</b></th>
+                                <td><input type="file" name="drapery2" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>ART</b></th>
+                                <td><input type="file" name="art2" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>CARPTET</b></th>
+                                <td><input type="file" name="carpet2" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>BEDDING</b></th>
+                                <td><input type="file" name="bedding" class="form-control round-input"></td>
+                            </tr>
+                         </table>
+                     </div>
+                     <br>
+                     <h2><b>BRAND 4</b></h2>
+                     <button type="button" class="collapsible"><h3><b>KITCHEN PRODUCTS</b></h3></button>
+                     <div class="content">
+                         <table>
+                            <tr>
+                                <th><b>STOVE & OVEN ITEMS</b></th>
+                                <td><input type="file" name="stove_and_oven_items" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>KITCHEN ELECTRONICS</b></th>
+                                <td><input type="file" name="kitchen_electronics" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>COOKING ESSENTIALS</b></th>
+                                <td><input type="file" name="cooking_essentials" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>SERVING ESSENTIALS</b></th>
+                                <td><input type="file" name="serving_essentials" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>STORAGE</b></th>
+                                <td><input type="file" name="storage" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>ACCESSORIES</b></th>
+                                <td><input type="file" name="accessories" class="form-control round-input"></td>
+                            </tr>
+                         </table>
+                     </div>
+                     <br>
+                     <button type="button" class="collapsible"><h3><b>DINNERWARE</b></h3></button>
+                     <div class="content">
+                         <table>
+                            <tr>
+                                <th><b>BREAKFAST</b></th>
+                                <td><input type="file" name="breakfast" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>DINNER</b></th>
+                                <td><input type="file" name="dinner" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>DESSERT</b></th>
+                                <td><input type="file" name="dessert" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>CUTLERY</b></th>
+                                <td><input type="file" name="cutlery" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>BEVERAGE</b></th>
+                                <td><input type="file" name="beverage" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>TABLE ACCESSORIES</b></th>
+                                <td><input type="file" name="table_accessories" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>TABLE SERVING WARE</b></th>
+                                <td><input type="file" name="table_serving_ware" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>TEA & COFFEE</b></th>
+                                <td><input type="file" name="tea_coffee" class="form-control round-input"></td>
+                            </tr>
+                         </table>
+                     </div>
+                     <br>
+                     <button type="button" class="collapsible"><h3><b>BEDDING</b></h3></button>
+                     <div class="content">
+                         <table>
+                            <tr>
+                                <th><b>BEDSHEET</b></th>
+                                <td><input type="file" name="bedsheet" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>MATTRESS</b></th>
+                                <td><input type="file" name="mattress" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>PILLOWS</b></th>
+                                <td><input type="file" name="pillows" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>ACCESSORIES</b></th>
+                                <td><input type="file" name="accessories2" class="form-control round-input"></td>
+                            </tr>
+                         </table>
+                     </div>
+                     <br>
+                     <button type="button" class="collapsible"><h3><b>CURTAINS</b></h3></button>
+                     <div class="content">
+                         <table>
+                            <tr>
+                                <th><b>DRAPERY</b></th>
+                                <td><input type="file" name="drapery3" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>SHEER</b></th>
+                                <td><input type="file" name="sheer" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>ACCESSORIES</b></th>
+                                <td><input type="file" name="accessories3" class="form-control round-input"></td>
+                            </tr>
+                         </table>
+                     </div>
+                     <br>
+                     <button type="button" class="collapsible"><h3><b>CARPET</b></h3></button>
+                     <div class="content">
+                        <table>
+                           <tr>
+                               <td><input type="file" name="carpet4" class="form-control round-input"></td>
+                           </tr>
+                        </table>
+                    </div>
+                     <br>
+                     <button type="button" class="collapsible"><h3><b>DECOR</b></h3></button>
+                     <div class="content">
+                        <table>
+                           <tr>
+                               <td><input type="file" name="decor4" class="form-control round-input"></td>
+                           </tr>
+                        </table>
+                    </div>
+                     <br><br><br>
+                     <div class="form-group">
+                       <div class="col-lg-offset-2 col-lg-10">
+                           <button class="btn btn-primary" type="submit">Submit Affiliate</button>
+                           <button class="btn btn-default" type="reset">Reset</button>
+                       </div>
+                   </div>
+                   <div class="form-group">
+                       <div class="col-lg-offset-2 col-lg-10">
+                           {% for message in messages %}
+                               <h3 style="color: green;"> {{message}} </h3>
+                           {% endfor %}
+                       </div>
+                   </div>
+                 </div>
+                 <!-- Rest of the form -->
+             </form>
+             
+             <script>
+               var coll = document.getElementsByClassName("collapsible");
+               var i;
+               
+               for (i = 0; i < coll.length; i++) {
+                 var content = coll[i].nextElementSibling;
+                 // Set the display property to "none" initially
+                 content.style.display = "none";
+               
+                 coll[i].addEventListener("click", function() {
+                   this.classList.toggle("active");
+                   var content = this.nextElementSibling;
+                   if (content.style.display === "block") {
+                     content.style.display = "none";
+                   } else {
+                     content.style.display = "block";
+                   }
+                 });
+               }                
+             </script>              
+              
+             </div>
+           </section>
+           </div>
+         </div>
+     </section>
+     </section>
+</body>
+
+{% endblock content %}
