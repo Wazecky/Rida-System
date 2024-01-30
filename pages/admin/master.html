@@ -48,14 +48,39 @@
       </div>
       
         <!--logo start-->
+        <div style="display: flex; flex-direction: row;">    
         <a href="/EC_Admin/adminhome" class="logo">
-            <span style="color: white">RIDA DASHBOARD</span>
+            <span style="color: white">RIDA</span>
         </a>
+        </div>
       <!--logo end-->
       <!--<div class="top-nav notification-row">-->
         <!-- notificatoin dropdown start-->
-        <ul class="nav pull-right top-menu">
-          <li id="alert_notificatoin_bar" class="dropdown">
+        <div style="display: flex; justify-content: space-between;">
+          <ul style="display: flex; clear: both; padding-left: 0;">
+            <li class="active">
+                <a href="{% url 'adminhome' %}">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li class="active">
+                <a href="/EC_Admin/adminprofile">
+                    <span>Profile</span>
+                </a>
+            </li>
+            <li class="active">
+                <a href=" ">
+                    <span>Library</span>
+                </a>
+            </li>
+            <li class="active">
+                <a href=" ">
+                    <span>Tools</span>
+                </a>
+            </li>
+        </ul>  
+        <ul class="nav top-menu" style="display: flex; justify-content: flex-end;">
+          <li id="alert_notificatoin_bar" class="dropdown" style="margin-left: auto;">  
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
 
                             <i class="icon-bell-l"></i>
@@ -69,7 +94,7 @@
           </li>
           <!-- alert notification end-->
           <!-- user login dropdown start-->
-          <li class="dropdown">
+          <li class="dropdown" style="margin-left: auto;">
               <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="profile-ava">
                                 <img alt="Image not found" height="33" width="33" src="{{image.url}}">
@@ -102,30 +127,7 @@
             color: white; /* This will change the color of the link text */
         }
     </style>
-    
-    <ul style="display: flex; clear: both; padding-left: 0;">
-        <li class="active">
-            <a href="{% url 'adminhome' %}">
-                <span>Home</span>
-            </a>
-        </li>
-        <li class="active">
-            <a href="/EC_Admin/adminprofile">
-                <span>Profile</span>
-            </a>
-        </li>
-        <li class="active">
-            <a href=" ">
-                <span>Library</span>
-            </a>
-        </li>
-        <li class="active">
-            <a href=" ">
-                <span>Tools</span>
-            </a>
-        </li>
-    </ul>
-    
+  </div> 
   </header>
     <!--header end-->
 
@@ -136,6 +138,9 @@
         <!-- sidebar menu start-->
         <ul class="sidebar-menu">
           <style>
+            #sidebar {
+              background-color: teal;
+          }
             .active {
                 border-right: 1px solid white;
                 color: white;
@@ -144,47 +149,32 @@
                 border-right: none;
             }
         </style>
-             
           <br>
           <li class="sub-menu">
             <a href="javascript:;" class="">
                           <i class="icon_document_alt"></i>
                           <span>FINANCE</span>
-                          <span class="menu-arrow arrow_carrot-right"></span>
+                          <!--  <span class="menu-arrow arrow_carrot-right"></span>-->
                       </a>
           </li>            
           <li class="sub-menu">
-            <a href="javascript:;" class="">
-                          <i class="icon_document_alt"></i>
-                          <span>REAL ESTATE</span>
-                          <span class="menu-arrow arrow_carrot-right"></span>
-                      </a>
+            <a href="javascript:;" class="" onclick="document.getElementById('ProjectCustomFilter').submit();">
+                <i class="icon_document_alt"></i>
+                <span>REAL ESTATE</span>
+              <!--  <span class="menu-arrow arrow_carrot-right"></span>-->
+            </a>
             <ul class="sub">
-              <div class="panel-body">
-                <form class="form-horizontal" method="post" action="/EC_Admin/addproject">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <ul>
-                            <li><input class="" type="submit" value="Add Project"></li>
-                        </ul>
-                    </div>
-                </form>
                 <form class="form-horizontal" method="post" action="view_project" id="ProjectCustomFilter">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <ul>
-                            <li><input class="" name="view_project" type="submit" value="View Projects"></li>
-                        </ul>
-                    </div>
+                    {% csrf_token %}                       
+                    <li style="color: white; display: none;"><a class="" name="view_project">Dashboard</a></li>                         
                 </form>
-            </div>                                    
             </ul>
-          </li>
+        </li>        
           <li class="sub-menu">
             <a href="javascript:;" class="">
                           <i class="icon_document_alt"></i>
                           <span>INNOVATION</span>
-                          <span class="menu-arrow arrow_carrot-right"></span>
+                          <!--  <span class="menu-arrow arrow_carrot-right"></span>-->
                       </a>
           </li>
 
@@ -192,7 +182,7 @@
             <a href="javascript:;" class="">
                           <i class="icon_document_alt"></i>
                           <span>DEVELOPMENT</span>
-                          <span class="menu-arrow arrow_carrot-right"></span>
+                          <!--  <span class="menu-arrow arrow_carrot-right"></span>-->
                       </a>
           </li>
 
@@ -203,25 +193,208 @@
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
             <ul class="sub">
-              <li><a class="" href="/EC_Admin/not_ready">Add Affiliate</a></li>
-              <li><a class="" href="/EC_Admin/not_ready">Edit/Delete</a></li>
-              <li><a class="" href="/EC_Admin/not_ready">View Affiliate</a></li>
+              <li><a class="" >Add Affiliate</a></li>
+              <li><a class="" >Edit/Delete</a></li>
+              <li><a class="" >View Affiliate</a></li>
             </ul>
+          </li>
         </ul>
-<div id="toc">
-  <ul id="toc_list">
-  </ul>
-</div>
 </div>
     </aside>
 
-    {% block content %}
+   {% block content %}
     <!-- This is where the content of your child pages will be injected -->
-    {% endblock %}
+   {% endblock %}
 
-        </section>
+  </section>
     <!--main content end-->
-    
+
+    <div id="sidebar2" class="nav2-collapse ">
+      <style>
+        body {
+          display: flex;
+          justify-content: space-between;
+      }
+      #sidebar2 {
+          width: 13%;
+          height: 100vh;
+          position: fixed;
+          right: 0;
+          top: 0;
+          background-color: #800000; /* Change this to your desired color */
+          overflow: auto;
+      }
+      #main-content {
+          width: 67%;
+          margin-right: 8%;
+      }
+      .active {
+          border-right: 1px solid white;
+          color: white;
+      }
+      .active:last-child {
+          border-right: none;
+      }
+      /* Add this for collapsible menus */
+      .sub-menu > ul {
+          display: none;
+          padding-left: 0; /* Add this line */
+      }
+      .sub-menu.active > ul {
+          display: block;
+      }
+      .sub1, .sub2 {
+          padding-left: 0; /* Add this line */
+      }
+      .arrow_carrot-right {
+        transition: transform 0.3s ease;
+      }
+
+      .arrow_carrot-down {
+        transform: rotate(90deg);
+      }
+      .sub2 {
+        background-color: white;
+        color: black;
+        padding: 20px;
+        border: 1px solid black;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+    }
+
+    .sub2:hover {
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }    
+      </style>          
+      <!-- sidebar menu start-->
+      <ul class="sidebar-menu">
+          <br>
+          <li class="sub-menu1">
+            <a href="javascript:;" class="">
+                          <i class="icon_document_alt"></i>
+                          <span>ADMINISTRATOR</span>
+                          <span class="menu-arrow arrow_carrot-right"></span>
+                      </a>
+            <ul class="sub1">
+              <li>
+                <a href="javascript:;" class="">
+                <span>GENERAL</span>
+                <span class="menu-arrow arrow_carrot-right"></span>
+              </a>
+                <ul class="sub2">
+                    <li><a class="" >COMPANY PROFILE</a></li>
+                    <li><a class="" >COMPANY POLICIES</a></li>
+                    <li><a class="" >AGENDAS</a></li>
+                    <li><a class="" >CALENDER</a></li>
+                    <li><a class="" >MEMOS</a></li>
+                </ul>
+            </li>
+              <li>            
+                <a href="javascript:;" class="">
+                <span>HUMAN RESOURCES</span>
+                <span class="menu-arrow arrow_carrot-right"></span>
+            </a>
+            <ul class="sub2">
+              <li><a class="" >MANAGEMENT</a></li>
+              <li><a class="" >EMPLOYEES</a></li>
+              <li><a class="" >BOARD</a></li>
+              <li><a class="" >CONSULTANT</a></li>
+              <li><a class="" >CONTRACTORS</a></li>
+          </ul>
+          </li>
+              <li>                
+                <a href="javascript:;" class="">
+                <span>MARKETING</span>
+                <span class="menu-arrow arrow_carrot-right"></span>
+            </a>
+            <ul class="sub2">
+            <li><a class="" >PLANNING</a></li>
+            <li><a class="" >SALES</a></li>
+            <li><a class="" >ADVERTISING</a></li>
+            <li><a class="" >INNOVATIONS</a></li>
+            <li><a class="" >STRATEGY</a></li>
+            <li><a class="" >SOCIAL MEDIA</a></li>
+            </ul>
+          </li>
+            </ul>
+          </li>
+          <li class="sub-menu1">
+            <a href="javascript:;" class="">
+                          <i class="icon_document_alt"></i>
+                          <span>FINANCE</span>
+                          <span class="menu-arrow arrow_carrot-right"></span>
+                      </a>
+            <ul class="sub1">
+              <li>
+                <a href="javascript:;" class="">
+                <span>ACCOUNTING</span>
+                <span class="menu-arrow arrow_carrot-right"></span>
+              </a>
+                <ul class="sub2">
+                    <li><a class="" >CASHFLOW</a></li>
+                    <li><a class="" >SALES</a></li>
+                    <li><a class="" >PURCHASES</a></li>
+                    <li><a class="" >FINANCIAL</a></li>
+                    <li><a class="" >PERSONNEL</a></li>
+                </ul>
+            </li>
+              <li>            
+                <a href="javascript:;" class="">
+                <span>FINANCIAL MANAGEMENT</span>
+                <span class="menu-arrow arrow_carrot-right"></span>
+            </a>
+            <ul class="sub2">
+              <li><a class="" >ACCOUNTS</a></li>
+              <li><a class="" >LIQUIDITY</a></li>
+              <li><a class="" >DEBTS & RISKS</a></li>
+              <li><a class="" >ASSETS & SAVINGS</a></li>
+              <li><a class="" >INVESTMENTS</a></li>
+          </ul>
+          </li>
+              <li>                
+                <a href="javascript:;" class="">
+                <span>OTHER</span>
+                <span class="menu-arrow arrow_carrot-right"></span>
+            </a>
+            <ul class="sub2">
+            <li><a class="" >INVENTORY</a></li>
+            <li><a class="" >BANK</a></li>
+            <li><a class="" >AUDIT</a></li>
+            </ul>
+          </li>
+            </ul>
+          </li>
+          <li class="sub-menu1">
+            <a href="javascript:;" class="">
+                          <i class="icon_document_alt"></i>
+                          <span>REPORTS</span>
+                          <span class="menu-arrow arrow_carrot-right"></span>
+                      </a>
+            <ul class="sub1">
+              <li><a class="" >  </a></li>
+              <li><a class="" >  </a></li>
+              <li><a class="" >  </a></li>
+            </ul>
+          </li>
+      </ul>
+  </div>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      // Hide submenus when page loads
+      $('.sub1, .sub2').hide();
+
+      $('.sub-menu1 > a').click(function() {
+          $(this).next('.sub1').slideToggle();
+          $(this).children('.arrow_carrot-right').toggleClass('arrow_carrot-down');
+      });
+      $('.sub1 > li > a').click(function() {
+          $(this).next('.sub2').slideToggle();
+          $(this).children('.arrow_carrot-right').toggleClass('arrow_carrot-down');
+      });
+    });  
+  </script>    
   <!-- container section start -->
 
   <!-- javascripts -->

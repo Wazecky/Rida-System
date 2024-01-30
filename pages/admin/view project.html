@@ -1,490 +1,514 @@
- {% extends 'admin/master.html' %}
- {% block title %}  home {% endblock title %}
- {% load static %}
- {% block content %}
+{% extends 'admin/master.html' %}
+{% block title %}  home {% endblock title %}
+{% load static %}
+{% block content %}
 <body>
-  <!-- container section start -->
-   <section id="main-content" style=" margin-right:110px;">
-      <section class="wrapper">
-        <div class="row">
-          <div class="col-lg-12">
-            <h3 class="page-header"><i class="fa fa-file-text-o"></i>View Project</h3>
-            <ol class="breadcrumb">
-              <li><i class="fa fa-home"></i>Home</li>
-              <li><i class="icon_document_alt"></i>Project</li>
-              <li><i class="fa fa-file-text-o"></i>View Projects</li>
-            </ol>
-          </div>
-        </div> 
-                <div class="row">
-          <div class="col-lg-12">
-            <section class="panel">
-              <header class="panel-heading">
-                  List of Projects
-              </header>
-              <div class="table-responsive">
-                <style>
-                    .details {
-                        display: none;
+  <section id="main-content" style=" margin-right:110px;">
+     <section class="wrapper">
+       <div class="row">
+    
+         <div class="col-lg-12">
+           <h3 class="page-header"><i class="fa fa-file-text-o"></i>RIDA DASHBOARD</h3>
+         </div>    
+       </div> 
+               <div class="row">
+         <div class="col-lg-12">
+           <section class="panel">
+             <header class="panel-heading">
+                 List of Projects 2024
+             </header>            
+             <div class="table-responsive">
+               <style>
+                   .details {
+                       display: none;
+                   }
+                   .grid-container {
+                       display: grid;
+                       grid-template-columns: repeat(4, 1fr);
+                       gap: 10px;
+                       justify-content: stretch;
+                       align-items: stretch;
+                   }
+                   .grid-container::after {
+                       content: "";
+                       grid-column: span 4;
+                       width: 100%;
+                   }
+                   
+                   .grid-container > :nth-child(4n)::after {
+                       border-bottom: none;
+                   }                                                      
+               </style>
+        <script>
+            function toggleDetails(id, button) {
+                var projectButtons = document.getElementsByClassName('project-btn');
+                var element = document.getElementById(id);
+                if (element.style.display === "none") {
+                    for (var i = 0; i < projectButtons.length; i++) {
+                        projectButtons[i].style.display = "none";
                     }
-                    .grid-container {
-                        display: grid;
-                        grid-template-columns: repeat(3, 1fr);
-                        gap: 10px;
-                        justify-content: center;
-                        align-items: center
+                    button.style.display = "block";
+                    element.style.display = "table-row";
+                    button.style.backgroundColor = "aqua";
+                } else {
+                    element.style.display = "none";
+                    button.style.backgroundColor = "olive";
+                    for (var i = 0; i < projectButtons.length; i++) {
+                        projectButtons[i].style.display = "block";
                     }
-                    .grid-container::after {
-                        content: "";
-                        grid-column: span 3;
-                        border-bottom: 1px solid black;
-                        width: 100%;
+                }
+                window.scrollTo(0,document.body.scrollHeight);
+            }
+        
+            function toggleReport(id, button) {
+                var element = document.getElementById('report' + id);
+                if (element.style.display === "none") {
+                    element.style.display = "block";
+                    button.style.backgroundColor = "aqua";
+                } else {
+                    element.style.display = "none";
+                    button.style.backgroundColor = "olive";
+                }
+            }
+            function searchFunction() {
+                var input, filter, container, buttons, button, i, txtValue;
+                input = document.getElementById("searchInput");
+                filter = input.value.toUpperCase();
+                container = document.getElementsByClassName("grid-container")[0];
+                buttons = container.getElementsByClassName("project-btn");
+            
+                for (i = 0; i < buttons.length; i++) {
+                    button = buttons[i];
+                    txtValue = button.id; // change this line
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        buttons[i].style.display = "";
+                    } else {
+                        buttons[i].style.display = "none";
                     }
-                    
-                    .grid-container > :nth-child(6n)::after {
-                        border-bottom: none;
-                    }                                                         
-                </style>
+                }
+            }                                  
+        </script>
+        <div style="display: flex; justify-content: flex-end;">
+            <ul>
+                <li style="margin-top: 10px;">
+                    <input type="text" id="searchInput" onkeyup="searchFunction()" placeholder="Search projects..." style="padding: 5px; border-radius: 5px; border: 2px solid maroon;">
+                </li>
+            </ul>            
+            <form method="post" action="/EC_Admin/addproject">
+                {% csrf_token %}
+                <ul>
+                    <li style="margin-right: 80px; margin-top: 10px;"><input type="submit" value="Create New Project" style="background-color:maroon; border: none; color: white; padding: 7px 16px; text-align: center; text-decoration: none; display: inline-block; font-size: 14px; margin-left: auto; border-radius: 12px;"></li>
+                </ul>
+            </form>
+        </div>                    
+            <style>
+                input[type=submit]:hover {
+                    background-color: #45a049;
+                }
+                table {
+                    border-collapse: collapse;
+                    width: 100%;
+                    border: 3px solid #555;
+                }
                 
-                <script>
-                    function toggleDetails(id, button) {
-                        var element = document.getElementById(id);
-                        if (element.style.display === "none") {
-                            element.style.display = "table-row";
-                            button.style.backgroundColor = "aqua";
-                        } else {
-                            element.style.display = "none";
-                            button.style.backgroundColor = "olive";
-                        }
-                        window.scrollTo(0,document.body.scrollHeight);
-                    }  
-                                      
-                </script>
-                <div class="grid-container">
-                    {% if not projects %}
-                        <!-- Don't render anything -->
-                    {% else %}
-                        {% for project in projects %}
-                            <button style="margin-left: 90px; background-color: olive; width: 200px; height: 80px; color: white;" class="btn btn-default" type="button" onclick="toggleDetails('{{ project.project_id }}', this)"> {{ project.project_name }} </button>
-                        {% endfor %}
-                    {% endif %}
-                </div>
-                                       
-                <table class="table">
-                        {% for project in projects %}
-                        <tr id="{{ project.project_id }}" class="details">
-                            <td colspan="3">
-                                
+                /* Style the table headers */
+                th {
+                    background-color: #76d7c4;
+                    color: white;
+                    text-align: center;
+                    padding: 12px;
+                    border: 2px solid #555;
+                }
+                
+                /* Style the table cells */
+                td {
+                    border: 2px solid #555;
+                    padding: 8px;
+                    color: #222;
+                }
+                
+                /* Add a different background color to every other row */
+                tr:nth-child(even) {
+                    background-color: #e6e6e6;
+                }
+                            
+            </style>
+                                  
+            <div class="grid-container">
+                {% if not projects %}
+                {% else %}
+                    {% for project in projects %}
+                    <button id="button{{ project.project_id }}-{{ project.project_name }}" class="btn btn-default project-btn" style="background-color: olive; width: 200px; height: 100px;" type="button" onclick="toggleDetails('{{ project.project_id }}', this)"> 
+                        <span style="font-size: larger; color: white;">{{ project.project_name }}</span> <br><br> 
+                        <span style="color: black; font-size: small;">({{ project.start_date }} - {{ project.end_date }})</span>
+                    </button>
+                    {% endfor %}
+                {% endif %}
+            </div>
+                                                                        
+               <table class="table">
+                       {% for project in projects %}
+                       <tr id="{{ project.project_id }}" class="details">
+                           <td colspan="3">
                                 <style>
-                                    table, th, td {
-                                      border: 1px solid black;
+                                    .form-horizontal {
+                                        display: inline-block;
                                     }
-                                    </style>
-                                    <table>
-                                        <tr>
-                                            <div style="text-align: right;">
-                                                <style>
-                                                    .form-horizontal {
-                                                        display: inline-block;
-                                                    }
-                                                </style>
-                                                <form class="form-horizontal" method="post" action="edit_project">
-                                                    {% csrf_token %}
-                                                    <input type="hidden" name="project_id" value="{{ project.project_id }}">
-                                                    <input class="btn btn-primary" name="editproject" type="submit" value="Edit Project">
-                                                </form>
-                                                <form class="form-horizontal" method="post" action="edit_project">
-                                                    {% csrf_token %}
-                                                    <input type="hidden" name="project_id" value="{{ project.project_id }}">
-                                                    <input class="btn btn-default" name="deleteproject" type="submit" value="Delete Project" style="background-color: red;">
-                                                </form>
-                                            </div>                              
-                                        </tr>
-                                    </table>
-                                    <br> 
-                                    <style>
-                                        table {
-                                            width: 100%;
-                                        }
-                                    </style>                                                                                                           
-                                    <table>
-                                        <div style="text-align: center;">
-                                            <span style="font-size: 1.17em;"><b>Project ID:</b> <span style="color: blue;">{{ project.project_id }}</span></span>
-                                            <span style="font-size: 1.17em; margin-left: 20px;"><b>Project Name:</b> <span style="color: blue;">{{ project.project_name }}</span></span>
-                                        </div>                                        
-                                        <h3><b>PROJECT CONCEPT & PRESENTATION</b></h3>
-                                        <div>
-                                            <h4 style="display: inline;"><b>{{ project.project_name }}: </b></h4> <h4 style="color: blue; display: inline;"><b>PROJECT CONCEPT & PRESENTATION/ Sketches</b></h4>
-                                        </div>                                                                                 
-                                        <tr>
-                                            <th><strong>Site Plan</strong></th>
-                                            <th><strong>2D sketch</strong></th>
-                                            <th><strong>Hand Sketch</strong></th>
-                                            <th><strong>3D Sketch</strong></th>
-                                        </tr>
-                                        <tr>
-                                            <td>{% if project.ssite_plan %} <a href="{{ project.ssite_plan.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.sketch_2d %} <a href="{{ project.sketch_2d.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.hand_sketch %} <a href="{{ project.hand_sketch.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.sketch_2d %} <a href="{{ project.sketch_2d.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                        </tr>  
-                                    </table>
-                                    <table>
-                                        <br>
-                                        <div>
-                                            <h4 style="display: inline;"><b>{{ project.project_name }}: </b></h4> <h4 style="color: blue; display: inline;"><b>PROJECT CONCEPT & PRESENTATION/ Mood Board</b></h4>
-                                        </div>
-                                        <tr>
-                                            <th><strong>Ceiling Design Inspiration</strong></th>
-                                            <th><strong>Wall Design Inspiration</strong></th>
-                                            <th><strong>Flooring Inspiration</strong></th>
-                                            <th><strong>Lighting Inspiration</strong></th>
-                                            <th><strong>Exterior Inspiration</strong></th>
-                                            <th><strong>Garden</strong></th>
-                                        </tr>
-                                        <tr>
-                                            <td>{% if project.ceiling_design_inspiration %} <a href="{{ project.ceiling_design_inspiration.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.wall_design_inspiration %} <a href="{{ project.wall_design_inspiration.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.flooring_inspiration %} <a href="{{ project.flooring_inspiration.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.lighting_inspiration %} <a href="{{ project.lighting_inspiration.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.exterior_inspiration %} <a href="{{ project.exterior_inspiration.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.garden %} <a href="{{ project.garden.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                        </tr>  
-                                    </table>
-                                    <table>
-                                        <br>
-                                        <div>
-                                            <h4 style="display: inline;"><b>{{ project.project_name }}: </b></h4> <h4 style="color: blue; display: inline;"><b>PROJECT CONCEPT & PRESENTATION/ Scope Of Work</b></h4>
-                                        </div>
-                                        <tr>
-                                            <th><strong>Scope Of Work</strong></th>
-                                        </tr>
-                                        <tr>
-                                            <td>{{project.scope_of_work}}</td>
-                                        </tr>  
-                                    </table>
+                                </style>
+                                <form class="form-horizontal" method="post" action="edit_project">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="project_id" value="{{ project.project_id }}">
+                                    <input class="btn btn-primary" name="editproject" type="submit" value="Add Project Details">
+                                </form>
+                                <button id="reportButton{{ project.project_id }}" class="btn btn-default" name="projectreport" type="button" value="Project Report" style="background-color: orange;" onclick="toggleReport('{{ project.project_id }}', this)">Project Report</button>
+                                <form class="form-horizontal" method="post" action="edit_project">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="project_id" value="{{ project.project_id }}">
+                                    <input class="btn btn-default" name="deleteproject" type="submit" value="Delete Project" style="background-color: red;">
+                                </form> 
+                                <div id="report{{ project.project_id }}" style="display: none;">                                                                                                           
+                                   <table>
+                                    <div style="display: flex; flex-direction: column; align-items: center;">
+                                    <div style="display: flex;">
+                                        <span style="font-size: 1.17em; margin-right: 10px;"><b>Project ID:</b> <span style="color: blue;">{{ project.project_id }}</span></span>
+                                        <span style="font-size: 1.17em; margin-right: 10px;"><b>Project Name:</b> <span style="color: blue;">{{ project.project_name }}</span></span>
+                                    </div><br>
+                                    <div style="display: flex;">  
+                                        <span style="font-size: 1.17em; margin-right: 10px;"><b>Start Date:</b> <span style="color: blue;">{{ project.start_date }}</span></span>
+                                        <span style="font-size: 1.17em; margin-right: 10px;"><b>Estimated End Date:</b> <span style="color: blue;">{{ project.end_date }}</span></span><br>
+                                    </div><br>
+                                    <div style="display: flex;">   
+                                        <span style="font-size: 1.17em;"><b>Comments:</b> <span style="color: blue;">{{ project.comments }}</span></span>
+                                    </div>
+                                </div> <br>                                                                                  
+                                       <h3><b>PROJECT CONCEPT & PRESENTATION</b></h3>
+                                       <div>
+                                           <h4 style="display: inline;"><b>{{ project.project_name }}: </b></h4> <h4 style="color: blue; display: inline;"><b>PROJECT CONCEPT & PRESENTATION/ Sketches</b></h4>
+                                       </div>
+                                                                                                                       
+                                       <tr>
+                                           <th><strong>Site Plan</strong></th>
+                                           <th><strong>2D sketch</strong></th>
+                                           <th><strong>Hand Sketch</strong></th>
+                                           <th><strong>3D Sketch</strong></th>
+                                       </tr>
+                                       <tr>
+                                           <td>{% if project.ssite_plan %} <a href="{{ project.ssite_plan.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.sketch_2d %} <a href="{{ project.sketch_2d.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.hand_sketch %} <a href="{{ project.hand_sketch.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.sketch_2d %} <a href="{{ project.sketch_2d.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                       </tr>  
+                                   </table>
+                                   <table>
+                                       <br>
+                                       <div>
+                                           <h4 style="display: inline;"><b>{{ project.project_name }}: </b></h4> <h4 style="color: blue; display: inline;"><b>PROJECT CONCEPT & PRESENTATION/ Mood Board</b></h4>
+                                       </div>
+                                       <tr>
+                                           <th><strong>Ceiling Design Inspiration</strong></th>
+                                           <th><strong>Wall Design Inspiration</strong></th>
+                                           <th><strong>Flooring Inspiration</strong></th>
+                                           <th><strong>Lighting Inspiration</strong></th>
+                                           <th><strong>Exterior Inspiration</strong></th>
+                                           <th><strong>Garden</strong></th>
+                                       </tr>
+                                       <tr>
+                                           <td>{% if project.ceiling_design_inspiration %} <a href="{{ project.ceiling_design_inspiration.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.wall_design_inspiration %} <a href="{{ project.wall_design_inspiration.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.flooring_inspiration %} <a href="{{ project.flooring_inspiration.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.lighting_inspiration %} <a href="{{ project.lighting_inspiration.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.exterior_inspiration %} <a href="{{ project.exterior_inspiration.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.garden %} <a href="{{ project.garden.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                       </tr>  
+                                   </table>
+                                   <table>
+                                       <br>
+                                       <div>
+                                           <h4 style="display: inline;"><b>{{ project.project_name }}: </b></h4> <h4 style="color: blue; display: inline;"><b>PROJECT CONCEPT & PRESENTATION/ Scope Of Work</b></h4>
+                                       </div>
+                                       <tr>
+                                           <th><strong>Scope Of Work</strong></th>
+                                       </tr>
+                                       <tr>
+                                           <td>{{project.scope_of_work}}</td>
+                                       </tr>  
+                                   </table>
 
-                                    <table>
-                                        <br>
-                                        <h3><b>PROJECT DESIGN</b></h3>
-                                        <div>
-                                            <h4 style="display: inline;"><b>{{ project.project_name }}: </b></h4> <h4 style="color: blue; display: inline;"><b>PROJECT DESIGN/ Architecture</b></h4>
-                                        </div>
-                                        <tr>
-                                            <th><strong>SITE PLAN</strong></th>
-                                            <th><strong>MASTER PLAN</strong></th>
-                                            <th><strong>2D FLOOR PLAN</strong></th>
-                                            <th><strong>ELEVATIONS</strong></th>
-                                            <th><strong>SECTION</strong></th>
-                                            <th><strong>DETAIL DRAWING</strong></th>
-                                            <th><strong>3D ILLUSTRATIONS</strong></th>
-                                            <!-- Add more headers for Hand Sketch, and 3D Sketch -->
-                                        </tr>
-                                        <tr>
-                                            <td>{% if project.site_plan %} <a href="{{ project.site_plan.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.master_plan %} <a href="{{ project.master_plan.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.floor_plan_2d %} <a href="{{ project.floor_plan_2d.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.elevations %} <a href="{{ project.elevations.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.section %} <a href="{{ project.section.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.detail_drawing %} <a href="{{ project.detail_drawing.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.illustrations_3d %} <a href="{{ project.illustrations_3d.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <!-- Add more fields for Hand Sketch, and 3D Sketch -->
-                                        </tr>
-                                    </table>                                    
-                                    <table>
-                                        <br>
-                                        <div>
-                                            <h4 style="display: inline;"><b>{{ project.project_name }}: </b></h4> <h4 style="color: blue; display: inline;"><b>PROJECT DESIGN/ Civil Works</b></h4>
-                                        </div>
-                                        <tr>
-                                            <th><strong>EARTHWORKS SURVEY</strong></th>
-                                            <th><strong>GEO-TECH</strong></th>
-                                            <th><strong>ROADS</strong></th>
-                                            <th><strong>HYDROLIC SYSTEM</strong></th>
-                                            <th><strong>STRUCTURE</strong></th>
-                                            <th><strong>DETAILING</strong></th>
-                                            <!-- Add more headers for Hand Sketch, and 3D Sketch -->
-                                        </tr>
-                                        <tr>
-                                            <td>{% if project.earthworks_survey %} <a href="{{ project.earthworks_survey.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.geo_tech %} <a href="{{ project.geo_tech.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.roads %} <a href="{{ project.roads.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.hydolic_system %} <a href="{{ project.hydolic_system.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.structure %} <a href="{{ project.structure.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.detailing %} <a href="{{ project.detailing.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <!-- Add more fields for Hand Sketch, and 3D Sketch -->
-                                        </tr>
-                                    </table>                                   
-                                    <table>
-                                        <br>
-                                        <div>
-                                            <h4 style="display: inline;"><b>{{ project.project_name }}: </b></h4> <h4 style="color: blue; display: inline;"><b>PROJECT DESIGN/ MEP</b></h4>
-                                        </div>
-                                        <tr>
-                                            <th><strong>WATER SYSTEM</strong></th>
-                                            <th><strong>ELECTRIC</strong></th>
-                                            <th><strong>ELV SYSTEM</strong></th>
-                                            <th><strong>HVAC</strong></th>
-                                            <th><strong>ELEVATION SYSTEM</strong></th>
-                                            <th><strong>SYSTEM SAFETY</strong></th>
-                                            <!-- Add more headers for Hand Sketch, and 3D Sketch -->
-                                        </tr>
-                                        <tr>
-                                            <td>{% if project.water_system %} <a href="{{ project.water_system.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.electric %} <a href="{{ project.electric.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.elv_system %} <a href="{{ project.elv_system.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.hvac %} <a href="{{ project.hvac.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.elevation_system %} <a href="{{ project.elevation_system.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.system_safety %} <a href="{{ project.system_safety.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <!-- Add more fields for Hand Sketch, and 3D Sketch -->
-                                        </tr>
-                                    </table>                                    
-                                    <table>
-                                        <br>
-                                        <div>
-                                            <h4 style="display: inline;"><b>{{ project.project_name }}: </b></h4> <h4 style="color: blue; display: inline;"><b>PROJECT DESIGN/ Interior Design</b></h4>
-                                        </div>
-                                        <tr>
-                                            <th><strong>INTERIOR DESIGN</strong></th>
-                                            <!-- Add more headers for Hand Sketch, and 3D Sketch -->
-                                        </tr>
-                                        <tr>
-                                            <td>{% if project.interior_design %} <a href="{{ project.interior_design.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <!-- Add more fields for Hand Sketch, and 3D Sketch -->
-                                        </tr>
-                                    </table>                                    
-                                    <table>
-                                        <br>
-                                        <div>
-                                            <h4 style="display: inline;"><b>{{ project.project_name }}: </b></h4> <h4 style="color: blue; display: inline;"><b>PROJECT DESIGN/ Soft & Hard Scaping</b></h4>
-                                        </div>
-                                        <tr>
-                                            <th><strong>SOFT & HARD SCAPING</strong></th>
-                                            <!-- Add more headers for Hand Sketch, and 3D Sketch -->
-                                        </tr>
-                                        <tr>
-                                            <td>{% if project.soft_hard_scaping %} <a href="{{ project.soft_hard_scaping.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                        </tr>  
-                                    </table>
-                                    <table>
-                                        <br>
-                                        <h3><b>PROJECT BILLING</b></h3>
-                                        <div>
-                                            <h4 style="display: inline;"><b>{{ project.project_name }}: </b></h4> <h4 style="color: blue; display: inline;"><b>PROJECT BILLING/ Project Quotation</b></h4>
-                                        </div>
-                                        <tr>
-                                            <th><strong>BILL OF QUANTITIES</strong></th>
-                                            <th><strong>QUOTATION SUMMARY</strong></th>
-                                            <th><strong>CLIENT REVIEW</strong></th>
-                                            <th><strong>FINAL</strong></th>
-                                            <!-- Add more headers for Hand Sketch, and 3D Sketch -->
-                                        </tr>
-                                        <tr>
-                                            <td>{% if project.bill_of_quantities %} <a href="{{ project.bill_of_quantities.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.quotation_summary %} <a href="{{ project.quotation_summary.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.client_review %} <a href="{{ project.client_review.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.final %} <a href="{{ project.final.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <!-- Add more fields for Hand Sketch, and 3D Sketch -->
-                                        </tr>
-                                    </table>
-                                    <table>
-                                        <br>
-                                        <div>
-                                            <h4 style="display: inline;"><b>{{ project.project_name }}: </b></h4> <h4 style="color: blue; display: inline;"><b>PROJECT BILLING/ Project Contract</b></h4>
-                                        </div>
-                                        <tr>
-                                            <th><strong>CONTRACT</strong></th>
-                                            <th><strong>NOTARY</strong></th>
-                                            <th><strong>PROJECT PAYMENT PLAN</strong></th>
-                                            <th><strong>PROJECT INVOICES</strong></th>
-                                            <th><strong>ADDITIONALS</strong></th>
-                                            <!-- Add more headers for Hand Sketch, and 3D Sketch -->
-                                        </tr>
-                                        <tr>
-                                            <td>{% if project.contract %} <a href="{{ project.contract.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.notary %} <a href="{{ project.notary.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.project_payment_plan %} <a href="{{ project.project_payment_plan.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.project_invoices %} <a href="{{ project.project_invoices.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.additionals %} <a href="{{ project.additionals.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <!-- Add more fields for Hand Sketch, and 3D Sketch -->
-                                        </tr>
-                                    </table>
-                                    <table>
-                                        <br>
-                                        <h3><b>PROCUREMENT HUB</b></h3>
-                                        <div>
-                                            <h4 style="display: inline;"><b>{{ project.project_name }}: </b></h4> <h4 style="color: blue; display: inline;"><b>PROCUREMENT HUB/ Purchases</b></h4>
-                                        </div>
-                                        <tr>
-                                            <th><strong>PURCHASE ORDER</strong></th>
-                                            <th><strong>INVOICE</strong></th>
-                                            <th><strong>RECEIPT</strong></th>
-                                            <th><strong>PURCHASE SUMMARY</strong></th>
-                                            <!-- Add more headers for Hand Sketch, and 3D Sketch -->
-                                        </tr>
-                                        <tr>
-                                            <td>{% if project.purchase_order %} <a href="{{ project.purchase_order.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.invoice %} <a href="{{ project.invoice.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.receipt %} <a href="{{ project.receipt.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.purchase_summary %} <a href="{{ project.purchase_summary.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <!-- Add more fields for Hand Sketch, and 3D Sketch -->
-                                        </tr>
-                                    </table>
-                                    <table>
-                                        <br>
-                                        <div>
-                                            <h4 style="display: inline;"><b>{{ project.project_name }}: </b></h4> <h4 style="color: blue; display: inline;"><b>PROCUREMENT HUB/ Suppliers</b></h4>
-                                        </div>
-                                        <tr>
-                                            <th><strong>SUPPLIER SELECTION</strong></th>
-                                            <th><strong>SUPPLIER CLASSIFICATION</strong></th>
-                                            <th><strong>PARTNERSHIPS & ALLIANCES</strong></th>
-                                            <th><strong>OTHER</strong></th>
-                                            <th><strong>CONTACT INFORMATION</strong></th>
-                                            <!-- Add more headers for Hand Sketch, and 3D Sketch -->
-                                        </tr>
-                                        <tr>
-                                            <td>{% if project.supplier_selection %} <a href="{{ project.supplier_selection.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.supplier_classification %} <a href="{{ project.supplier_classification.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.partenerships_and_alliances %} <a href="{{ project.partenerships_and_alliances.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.other %} <a href="{{ project.other.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.contact_information %} <a href="{{ project.contact_information.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <!-- Add more fields for Hand Sketch, and 3D Sketch -->
-                                        </tr>
-                                    </table>
-                                    <table>
-                                        <br>
-                                        <div>
-                                            <h4 style="display: inline;"><b>{{ project.project_name }}: </b></h4> <h4 style="color: blue; display: inline;"><b>PROCUREMENT HUB/ Project Inventory</b></h4>
-                                        </div>
-                                        <tr>
-                                            <th><strong>EQUIPMENT</strong></th>
-                                            <th><strong>TOOLS</strong></th>
-                                            <th><strong>OTHER MATERIAL</strong></th>
-                                            <!-- Add more headers for Hand Sketch, and 3D Sketch -->
-                                        </tr>
-                                        <tr>
-                                            <td>{{ project.equipment }}</td>
-                                            <td>{{ project.tools }}</td>
-                                            <td>{{ project.other_material }}</td>
-                                            <!-- Add more fields for Hand Sketch, and 3D Sketch -->
-                                        </tr>
-                                    </table>
-                                    <table>
-                                        <br>
-                                        <div>
-                                            <h4 style="display: inline;"><b>{{ project.project_name }}: </b></h4> <h4 style="color: blue; display: inline;"><b>PROCUREMENT HUB/ Market Price List</b></h4>
-                                        </div>
-                                        <tr>
-                                            <th><strong>RAW MATERIAL</strong></th>
-                                            <th><strong>CONSTRUCTION MATERIAL</strong></th>
-                                            <th><strong>INTERIOR FINISHES</strong></th>
-                                            <th><strong>EXTERIOR FINISHES</strong></th>
-                                            <th><strong>LANDSCAPING MATERIAL</strong></th>
-                                            <th><strong>PRICE COMPARISON</strong></th>
-                                            <!-- Add more headers for Hand Sketch, and 3D Sketch -->
-                                        </tr>
-                                        <tr>
-                                            <td>{{ project.raw_material }}</td>
-                                            <td>{{ project.construction_material }}</td>
-                                            <td>{% if project.interior_finishes %} <a href="{{ project.interior_finishes.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.exterior_finishes %} <a href="{{ project.exterior_finishes.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{{ project.landscaping_material }}</td>
-                                            <td>{{ project.price_comparison}} </td>
-                                            <!-- Add more fields for Hand Sketch, and 3D Sketch -->
-                                        </tr>
-                                    </table>
-                                    <table>
-                                        <br>
-                                        <h3><b>PROJECT BUDGET</b></h3>
-                                        <div>
-                                            <h4 style="display: inline;"><b>{{ project.project_name }}: </b></h4> <h4 style="color: blue; display: inline;"><b>PROJECT BUDGET/ Project Cashflow</b></h4>
-                                        </div>
-                                        <tr>
-                                            <th><strong>DAILY CASHFLOW</strong></th>
-                                            <th><strong>WEEKLY CASHFLOW</strong></th>
-                                            <th><strong>MONTHLY CASHFLOW</strong></th>
-                                            <th><strong>ANNUAL CASHFLOW</strong></th>
-                                            <th><strong>INDIRECT COSTS</strong></th>
-                                            <th><strong>CASHFLOW REPORT</strong></th>
-                                            <!-- Add more headers for Hand Sketch, and 3D Sketch -->
-                                        </tr>
-                                        <tr>
-                                            <td>{% if project.daily_cashflow %} <a href="{{ project.daily_cashflow.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.weekly_cashflow %} <a href="{{ project.weekly_cashflow.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.monthly_cashflow %} <a href="{{ project.monthly_cashflow.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.annual_cashflow %} <a href="{{ project.annual_cashflow.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.indirect_costs %} <a href="{{ project.indirect_costs.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.cashflow_report %} <a href="{{ project.cashflow_report.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <!-- Add more fields for Hand Sketch, and 3D Sketch -->
-                                        </tr>
-                                    </table>
-                                    <table>
-                                        <br>
-                                        <div>
-                                            <h4 style="display: inline;"><b>{{ project.project_name }}: </b></h4> <h4 style="color: blue; display: inline;"><b>PROJECT BUDGET/ Project Inventory</b></h4>
-                                        </div>
-                                        <tr>
-                                            <th><strong>PURCHASE ORDER</strong></th>
-                                            <th><strong>INVOICE</strong></th>
-                                            <th><strong>RECEIPT</strong></th>
-                                            <th><strong>SUPPLIER</strong></th>
-                                            <th><strong>ACCOUNT PAYABLE</strong></th>
-                                            <!-- Add more headers for Hand Sketch, and 3D Sketch -->
-                                        </tr>
-                                        <tr>
-                                            <td>{% if project.ppurchase_order %} <a href="{{ project.ppurchase_order.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.iinvoice %} <a href="{{ project.iinvoice.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.rreceipt %} <a href="{{ project.rreceipt.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.supplier %} <a href="{{ project.supplier.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <td>{% if project.account_payable %} <a href="{{ project.account_payable.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                            <!-- Add more fields for Hand Sketch, and 3D Sketch -->
-                                        </tr>
-                                    </table>
-                                    
-                                    <br>
-                                    <table>
-                                        <tr>
-                                            <div style="text-align: right;">
-                                                <style>
-                                                    .form-horizontal {
-                                                        display: inline-block;
-                                                    }
-                                                </style>
-                                                <form class="form-horizontal" method="post" action="edit_project">
-                                                    {% csrf_token %}
-                                                    <input type="hidden" name="project_id" value="{{ project.project_id }}">
-                                                    <input class="btn btn-primary" name="editproject" type="submit" value="Edit Project">
-                                                </form>
-                                                <form class="form-horizontal" method="post" action="edit_project">
-                                                    {% csrf_token %}
-                                                    <input type="hidden" name="project_id" value="{{ project.project_id }}">
-                                                    <input class="btn btn-default" name="deleteproject" type="submit" value="Delete Project" style="background-color: red;">
-                                                </form>
-                                            </div>                              
-                                        </tr>
-                                    </table>
-                                
-                            </td>                                    
-                            </td>
-                        </tr>
-                        {% endfor %} 
-                </table>    
-                <div class="form-group">
-                    <div class="col-lg-offset-2 col-lg-10">
-                      {% for message in messages %}
-                          <h3 style="color: green;"> {{message}} </h3>
-                          {% endfor %}
-                    </div>
-                  </div>
-                  <strong>{{ message }}</strong>
-              </div>
-          </section>
-          
-          </div>
-        </div>
-      </section>
-   </section>
-        <!-- page end-->
+                                   <table>
+                                       <br>
+                                       <h3><b>PROJECT DESIGN</b></h3>
+                                       <div>
+                                           <h4 style="display: inline;"><b>{{ project.project_name }}: </b></h4> <h4 style="color: blue; display: inline;"><b>PROJECT DESIGN/ Architecture</b></h4>
+                                       </div>
+                                       <tr>
+                                           <th><strong>SITE PLAN</strong></th>
+                                           <th><strong>MASTER PLAN</strong></th>
+                                           <th><strong>2D FLOOR PLAN</strong></th>
+                                           <th><strong>ELEVATIONS</strong></th>
+                                           <th><strong>SECTION</strong></th>
+                                           <th><strong>DETAIL DRAWING</strong></th>
+                                           <th><strong>3D ILLUSTRATIONS</strong></th>
+                                       </tr>
+                                       <tr>
+                                           <td>{% if project.site_plan %} <a href="{{ project.site_plan.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.master_plan %} <a href="{{ project.master_plan.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.floor_plan_2d %} <a href="{{ project.floor_plan_2d.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.elevations %} <a href="{{ project.elevations.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.section %} <a href="{{ project.section.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.detail_drawing %} <a href="{{ project.detail_drawing.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.illustrations_3d %} <a href="{{ project.illustrations_3d.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                       </tr>
+                                   </table>                                    
+                                   <table>
+                                       <br>
+                                       <div>
+                                           <h4 style="display: inline;"><b>{{ project.project_name }}: </b></h4> <h4 style="color: blue; display: inline;"><b>PROJECT DESIGN/ Civil Works</b></h4>
+                                       </div>
+                                       <tr>
+                                           <th><strong>EARTHWORKS SURVEY</strong></th>
+                                           <th><strong>GEO-TECH</strong></th>
+                                           <th><strong>ROADS</strong></th>
+                                           <th><strong>HYDROLIC SYSTEM</strong></th>
+                                           <th><strong>STRUCTURE</strong></th>
+                                           <th><strong>DETAILING</strong></th>
+                                       </tr>
+                                       <tr>
+                                           <td>{% if project.earthworks_survey %} <a href="{{ project.earthworks_survey.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.geo_tech %} <a href="{{ project.geo_tech.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.roads %} <a href="{{ project.roads.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.hydolic_system %} <a href="{{ project.hydolic_system.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.structure %} <a href="{{ project.structure.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.detailing %} <a href="{{ project.detailing.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                       </tr>
+                                   </table>                                   
+                                   <table>
+                                       <br>
+                                       <div>
+                                           <h4 style="display: inline;"><b>{{ project.project_name }}: </b></h4> <h4 style="color: blue; display: inline;"><b>PROJECT DESIGN/ MEP</b></h4>
+                                       </div>
+                                       <tr>
+                                           <th><strong>WATER SYSTEM</strong></th>
+                                           <th><strong>ELECTRIC</strong></th>
+                                           <th><strong>ELV SYSTEM</strong></th>
+                                           <th><strong>HVAC</strong></th>
+                                           <th><strong>ELEVATION SYSTEM</strong></th>
+                                           <th><strong>SYSTEM SAFETY</strong></th>
+                                       </tr>
+                                       <tr>
+                                           <td>{% if project.water_system %} <a href="{{ project.water_system.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.electric %} <a href="{{ project.electric.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.elv_system %} <a href="{{ project.elv_system.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.hvac %} <a href="{{ project.hvac.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.elevation_system %} <a href="{{ project.elevation_system.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.system_safety %} <a href="{{ project.system_safety.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                       </tr>
+                                   </table>                                    
+                                   <table>
+                                       <br>
+                                       <div>
+                                           <h4 style="display: inline;"><b>{{ project.project_name }}: </b></h4> <h4 style="color: blue; display: inline;"><b>PROJECT DESIGN/ Interior Design</b></h4>
+                                       </div>
+                                       <tr>
+                                           <th><strong>INTERIOR DESIGN</strong></th>
+                                       </tr>
+                                       <tr>
+                                           <td>{% if project.interior_design %} <a href="{{ project.interior_design.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                       </tr>
+                                   </table>                                    
+                                   <table>
+                                       <br>
+                                       <div>
+                                           <h4 style="display: inline;"><b>{{ project.project_name }}: </b></h4> <h4 style="color: blue; display: inline;"><b>PROJECT DESIGN/ Soft & Hard Scaping</b></h4>
+                                       </div>
+                                       <tr>
+                                           <th><strong>SOFT & HARD SCAPING</strong></th>
+                                       </tr>
+                                       <tr>
+                                           <td>{% if project.soft_hard_scaping %} <a href="{{ project.soft_hard_scaping.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                       </tr>  
+                                   </table>
+                                   <table>
+                                       <h3><b>PROJECT BILLING</b></h3>
+                                       <div>
+                                           <h4 style="display: inline;"><b>{{ project.project_name }}: </b></h4> <h4 style="color: blue; display: inline;"><b>PROJECT BILLING/ Project Quotation</b></h4>
+                                       </div>
+                                       <tr>
+                                           <th><strong>BILL OF QUANTITIES</strong></th>
+                                           <th><strong>QUOTATION SUMMARY</strong></th>
+                                           <th><strong>CLIENT REVIEW</strong></th>
+                                           <th><strong>FINAL</strong></th>
+                                       </tr>
+                                       <tr>
+                                           <td>{% if project.bill_of_quantities %} <a href="{{ project.bill_of_quantities.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.quotation_summary %} <a href="{{ project.quotation_summary.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.client_review %} <a href="{{ project.client_review.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.final %} <a href="{{ project.final.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                       </tr>
+                                   </table>
+                                   <table>
+                                       <br>
+                                       <div>
+                                           <h4 style="display: inline;"><b>{{ project.project_name }}: </b></h4> <h4 style="color: blue; display: inline;"><b>PROJECT BILLING/ Project Contract</b></h4>
+                                       </div>
+                                       <tr>
+                                           <th><strong>CONTRACT</strong></th>
+                                           <th><strong>NOTARY</strong></th>
+                                           <th><strong>PROJECT PAYMENT PLAN</strong></th>
+                                           <th><strong>PROJECT INVOICES</strong></th>
+                                           <th><strong>ADDITIONALS</strong></th>
+                                       </tr>
+                                       <tr>
+                                           <td>{% if project.contract %} <a href="{{ project.contract.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.notary %} <a href="{{ project.notary.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.project_payment_plan %} <a href="{{ project.project_payment_plan.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.project_invoices %} <a href="{{ project.project_invoices.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.additionals %} <a href="{{ project.additionals.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                       </tr>
+                                   </table>
+                                   <table>
+                                       <h3><b>PROCUREMENT HUB</b></h3>
+                                       <div>
+                                           <h4 style="display: inline;"><b>{{ project.project_name }}: </b></h4> <h4 style="color: blue; display: inline;"><b>PROCUREMENT HUB/ Purchases</b></h4>
+                                       </div>
+                                       <tr>
+                                           <th><strong>PURCHASE ORDER</strong></th>
+                                           <th><strong>INVOICE</strong></th>
+                                           <th><strong>RECEIPT</strong></th>
+                                           <th><strong>PURCHASE SUMMARY</strong></th>
+                                       </tr>
+                                       <tr>
+                                           <td>{% if project.purchase_order %} <a href="{{ project.purchase_order.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.invoice %} <a href="{{ project.invoice.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.receipt %} <a href="{{ project.receipt.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.purchase_summary %} <a href="{{ project.purchase_summary.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                       </tr>
+                                   </table>
+                                   <table>
+                                       <br>
+                                       <div>
+                                           <h4 style="display: inline;"><b>{{ project.project_name }}: </b></h4> <h4 style="color: blue; display: inline;"><b>PROCUREMENT HUB/ Suppliers</b></h4>
+                                       </div>
+                                       <tr>
+                                           <th><strong>SUPPLIER SELECTION</strong></th>
+                                           <th><strong>SUPPLIER CLASSIFICATION</strong></th>
+                                           <th><strong>PARTNERSHIPS & ALLIANCES</strong></th>
+                                           <th><strong>OTHER</strong></th>
+                                           <th><strong>CONTACT INFORMATION</strong></th>
+                                       </tr>
+                                       <tr>
+                                           <td>{% if project.supplier_selection %} <a href="{{ project.supplier_selection.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.supplier_classification %} <a href="{{ project.supplier_classification.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.partenerships_and_alliances %} <a href="{{ project.partenerships_and_alliances.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.other %} <a href="{{ project.other.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.contact_information %} <a href="{{ project.contact_information.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                       </tr>
+                                   </table>
+                                   <table>
+                                       <br>
+                                       <div>
+                                           <h4 style="display: inline;"><b>{{ project.project_name }}: </b></h4> <h4 style="color: blue; display: inline;"><b>PROCUREMENT HUB/ Project Inventory</b></h4>
+                                       </div>
+                                       <tr>
+                                           <th><strong>EQUIPMENT</strong></th>
+                                           <th><strong>TOOLS</strong></th>
+                                           <th><strong>OTHER MATERIAL</strong></th>
+                                       </tr>
+                                       <tr>
+                                           <td>{{ project.equipment }}</td>
+                                           <td>{{ project.tools }}</td>
+                                           <td>{{ project.other_material }}</td>
+                                       </tr>
+                                   </table>
+                                   <table>
+                                       <br>
+                                       <div>
+                                           <h4 style="display: inline;"><b>{{ project.project_name }}: </b></h4> <h4 style="color: blue; display: inline;"><b>PROCUREMENT HUB/ Market Price List</b></h4>
+                                       </div>
+                                       <tr>
+                                           <th><strong>RAW MATERIAL</strong></th>
+                                           <th><strong>CONSTRUCTION MATERIAL</strong></th>
+                                           <th><strong>INTERIOR FINISHES</strong></th>
+                                           <th><strong>EXTERIOR FINISHES</strong></th>
+                                           <th><strong>LANDSCAPING MATERIAL</strong></th>
+                                           <th><strong>PRICE COMPARISON</strong></th>
+                                       <tr>
+                                           <td>{{ project.raw_material }}</td>
+                                           <td>{{ project.construction_material }}</td>
+                                           <td>{% if project.interior_finishes %} <a href="{{ project.interior_finishes.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.exterior_finishes %} <a href="{{ project.exterior_finishes.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{{ project.landscaping_material }}</td>
+                                           <td>{{ project.price_comparison}} </td>
+                                       </tr>
+                                   </table>
+                                   <table>
+                                       <br>
+                                       <h3><b>PROJECT BUDGET</b></h3>
+                                       <div>
+                                           <h4 style="display: inline;"><b>{{ project.project_name }}: </b></h4> <h4 style="color: blue; display: inline;"><b>PROJECT BUDGET/ Project Cashflow</b></h4>
+                                       </div>
+                                       <tr>
+                                           <th><strong>DAILY CASHFLOW</strong></th>
+                                           <th><strong>WEEKLY CASHFLOW</strong></th>
+                                           <th><strong>MONTHLY CASHFLOW</strong></th>
+                                           <th><strong>ANNUAL CASHFLOW</strong></th>
+                                           <th><strong>INDIRECT COSTS</strong></th>
+                                           <th><strong>CASHFLOW REPORT</strong></th>
+                                       </tr>
+                                       <tr>
+                                           <td>{% if project.daily_cashflow %} <a href="{{ project.daily_cashflow.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.weekly_cashflow %} <a href="{{ project.weekly_cashflow.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.monthly_cashflow %} <a href="{{ project.monthly_cashflow.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.annual_cashflow %} <a href="{{ project.annual_cashflow.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.indirect_costs %} <a href="{{ project.indirect_costs.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.cashflow_report %} <a href="{{ project.cashflow_report.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                       </tr>
+                                   </table>
+                                   <table>
+                                       <br>
+                                       <div>
+                                           <h4 style="display: inline;"><b>{{ project.project_name }}: </b></h4> <h4 style="color: blue; display: inline;"><b>PROJECT BUDGET/ Project Inventory</b></h4>
+                                       </div>
+                                       <tr>
+                                           <th><strong>PURCHASE ORDER</strong></th>
+                                           <th><strong>INVOICE</strong></th>
+                                           <th><strong>RECEIPT</strong></th>
+                                           <th><strong>SUPPLIER</strong></th>
+                                           <th><strong>ACCOUNT PAYABLE</strong></th>
+                                       </tr>
+                                       <tr>
+                                           <td>{% if project.ppurchase_order %} <a href="{{ project.ppurchase_order.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.iinvoice %} <a href="{{ project.iinvoice.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.rreceipt %} <a href="{{ project.rreceipt.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.supplier %} <a href="{{ project.supplier.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>{% if project.account_payable %} <a href="{{ project.account_payable.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                     
+                                       </tr>
+                                   </table>
+                                </div>                          
+                           </td>                                    
+                           </td>
+                       </tr>
+                       {% endfor %} 
+               </table>    
+               <div class="form-group">
+                <div class="col-lg-offset-2 col-lg-10">
+                    {% for message in messages %}
+                        <h3 style="color: green;"> {{message}} </h3>
+            
+                        <form class="form-horizontal" method="post" action="view_project" id="ProjectCustomFilter">
+                            {% csrf_token %}                       
+                            <li style="background-color:maroon; border: none; color: white; padding: 7px 16px; text-align: center; text-decoration: none; display: inline-block; font-size: 14px; margin-left: auto; border-radius: 12px;"><a class="" name="view_project" onclick="document.getElementById('ProjectCustomFilter').submit();">View</a></li>                         
+                        </form>
+                    {% endfor %}
+                </div>
+            </div>
+            <strong>{{ message }}</strong>                       
+             </div>
+         </section>
+         
+         </div>
+       </div>
+     </section>
+  </section>
 </body>
- {% endblock content %}
+{% endblock content %}

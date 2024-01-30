@@ -57,6 +57,9 @@ def add_project(request):
         project_category = request.POST.get('project_category', False)
         project_id = request.POST.get('project_id')
         project_name = request.POST.get('project_name')
+        start_date = request.POST.get('start_date') 
+        end_date = request.POST.get('end_date') 
+        comments = request.POST.get('comments')
         ssite_plan = request.FILES.get('ssite_plan')
         sketch_2d = request.FILES.get('sketch_2d')
         hand_sketch = request.FILES.get('hand_sketch')
@@ -127,16 +130,16 @@ def add_project(request):
         rreceipt = request.FILES.get('rreceipt')
         supplier = request.FILES.get('supplier')
         account_payable = request.FILES.get('account_payable')
-        # Check if a project with the same name already exists
         if Project.objects.filter(project_id=project_id).exists():
             messages.info(request, 'A project with this id already exists.')
             return render(request, 'admin/addproject.html', {'username': adminhome.username, 'image': adminhome.adminimage})
-
-        # Create a new project instance and save it to the database
         new_project = Project(
             project_category=project_category,
             project_id=project_id,
             project_name=project_name,
+            start_date=start_date, 
+            end_date=end_date,  
+            comments=comments,
             ssite_plan=ssite_plan,
             sketch_2d=sketch_2d,
             hand_sketch=hand_sketch,
@@ -177,8 +180,6 @@ def add_project(request):
             notary=notary,
             project_payment_plan=project_payment_plan,
             invoice_number=invoice_number,
-            #project_invoices=project_invoices,
-            #invoice_amount=invoice_amount,
             additionals=additionals,
             purchase_order=purchase_order,
             invoice=invoice,
@@ -213,6 +214,7 @@ def add_project(request):
         new_project.save()
         messages.info(request, 'New project added, view details!')
         return render(request, 'admin/view project.html',{'username':adminhome.username,'image':adminhome.adminimage})
+    
 @login_required(login_url='home')
 @staff_member_required(login_url='home')
 def editproject(request):
@@ -230,8 +232,7 @@ def edit_project(request):
                 ssite_plan = os.path.basename(project.ssite_plan.name) if project.ssite_plan else "No File"                
                 sketch_2d = os.path.basename(project.sketch_2d.name) if project.sketch_2d else "No File"
                 hand_sketch = os.path.basename(project.hand_sketch.name) if project.hand_sketch else "No File"                
-                sketch_3d = os.path.basename(project.sketch_3d.name) if project.sketch_3d else "No File"
-                # More fetch operations...                
+                sketch_3d = os.path.basename(project.sketch_3d.name) if project.sketch_3d else "No File"                
                 ceiling_design_inspiration = os.path.basename(project.ceiling_design_inspiration.name) if project.ceiling_design_inspiration else "No File"
                 wall_design_inspiration = os.path.basename(project.wall_design_inspiration.name) if project.wall_design_inspiration else "No File"                
                 flooring_inspiration = os.path.basename(project.flooring_inspiration.name) if project.flooring_inspiration else "No File"
@@ -289,9 +290,7 @@ def edit_project(request):
                 rreceipt = os.path.basename(project.rreceipt.name) if project.rreceipt else "No File"
                 supplier = os.path.basename(project.supplier.name) if project.supplier else "No File"
                 account_payable = os.path.basename(project.account_payable.name) if project.account_payable else "No File" 
-                # More fetch operations...
-                
-                return render(request, 'admin/edit projectdetails.html', {'project_id': project.project_id,'project_name': project.project_name, 'project_category': project.project_category, 'ssite_plan': ssite_plan, 'sketch_2d': sketch_2d, 'hand_sketch': hand_sketch, 'sketch_3d': sketch_3d, 'ceiling_design_inspiration': ceiling_design_inspiration, 'wall_design_inspiration': wall_design_inspiration, 'flooring_inspiration': flooring_inspiration, 'lighting_inspiration': lighting_inspiration, 'exterior_inspiration': exterior_inspiration, 'garden': garden, 'site_plan': site_plan, 'master_plan': master_plan, 'floor_plan_2d': floor_plan_2d, 'elevations': elevations, 'section': section, 'detail_drawing': detail_drawing, 'illustrations_3d': illustrations_3d, 'earthworks_survey': earthworks_survey, 'geo_tech': geo_tech, 'roads': roads, 'hydolic_system': hydolic_system, 'structure': structure, 'detailing': detailing, 'water_system': water_system, 'electric': electric, 'elv_system': elv_system, 'hvac': hvac, 'elevation_system': elevation_system, 'system_safety': system_safety, 'interior_design': interior_design, 'soft_hard_scaping': soft_hard_scaping, 'bill_of_quantities': bill_of_quantities, 'quotation_summary': quotation_summary, 'client_review': client_review, 'final': final, 'contract': contract, 'notary': notary, 'project_payment_plan': project_payment_plan, 'additionals': additionals, 'purchase_order': purchase_order, 'invoice': invoice, 'receipt': receipt, 'purchase_summary': purchase_summary, 'supplier_selection': supplier_selection, 'supplier_classification': supplier_classification, 'partnerships_and_alliances': partnerships_and_alliances, 'other': other, 'contact_information': contact_information, 'interior_finishes': interior_finishes, 'exterior_finishes': exterior_finishes, 'daily_cashflow': daily_cashflow, 'weekly_cashflow': weekly_cashflow, 'monthly_cashflow': monthly_cashflow, 'annual_cashflow': annual_cashflow, 'indirect_costs': indirect_costs, 'cashflow_report': cashflow_report, 'ppurchase_order': ppurchase_order, 'iinvoice':iinvoice, 'rreceipt': rreceipt, 'supplier': supplier, 'account_payable': account_payable, 'username': adminhome.username, 'image': adminhome.adminimage})
+                return render(request, 'admin/edit projectdetails.html', {'project_id': project.project_id,'project_name': project.project_name, 'start_date': project.start_date, 'end_date': project.end_date, 'comments': project.comments, 'project_category': project.project_category, 'ssite_plan': ssite_plan, 'sketch_2d': sketch_2d, 'hand_sketch': hand_sketch, 'sketch_3d': sketch_3d, 'ceiling_design_inspiration': ceiling_design_inspiration, 'wall_design_inspiration': wall_design_inspiration, 'flooring_inspiration': flooring_inspiration, 'lighting_inspiration': lighting_inspiration, 'exterior_inspiration': exterior_inspiration, 'garden': garden, 'site_plan': site_plan, 'master_plan': master_plan, 'floor_plan_2d': floor_plan_2d, 'elevations': elevations, 'section': section, 'detail_drawing': detail_drawing, 'illustrations_3d': illustrations_3d, 'earthworks_survey': earthworks_survey, 'geo_tech': geo_tech, 'roads': roads, 'hydolic_system': hydolic_system, 'structure': structure, 'detailing': detailing, 'water_system': water_system, 'electric': electric, 'elv_system': elv_system, 'hvac': hvac, 'elevation_system': elevation_system, 'system_safety': system_safety, 'interior_design': interior_design, 'soft_hard_scaping': soft_hard_scaping, 'bill_of_quantities': bill_of_quantities, 'quotation_summary': quotation_summary, 'client_review': client_review, 'final': final, 'contract': contract, 'notary': notary, 'project_payment_plan': project_payment_plan, 'additionals': additionals, 'purchase_order': purchase_order, 'invoice': invoice, 'receipt': receipt, 'purchase_summary': purchase_summary, 'supplier_selection': supplier_selection, 'supplier_classification': supplier_classification, 'partnerships_and_alliances': partnerships_and_alliances, 'other': other, 'contact_information': contact_information, 'interior_finishes': interior_finishes, 'exterior_finishes': exterior_finishes, 'daily_cashflow': daily_cashflow, 'weekly_cashflow': weekly_cashflow, 'monthly_cashflow': monthly_cashflow, 'annual_cashflow': annual_cashflow, 'indirect_costs': indirect_costs, 'cashflow_report': cashflow_report, 'ppurchase_order': ppurchase_order, 'iinvoice':iinvoice, 'rreceipt': rreceipt, 'supplier': supplier, 'account_payable': account_payable, 'username': adminhome.username, 'image': adminhome.adminimage})
                 #return render(request, 'admin/edit projectdetails.html', {'project_id': project.project_id,'project_name': project.project_name, 'project_category': project.project_category, 'ssite_plan': project.ssite_plan, 'sketch_2d': project.sketch_2d, 'hand_sketch': project.hand_sketch, 'sketch_2d': project.sketch_3d, 'ceiling_design_inspiration': project.ceiling_design_inspiration, 'wall_design_inspiration': project.wall_design_inspiration, 'flooring_inspiration': project.flooring_inspiration, 'lighting_inspiration': project.lighting_inspiration, 'exterior_inspiration': project.exterior_inspiration, 'garden': project.garden, 'scope_of_work': project.scope_of_work, 'site_plan': project.site_plan, 'master_plan': project.master_plan, '2d_floor_plan': project.floor_plan_2d, 'elevations': project.elevations, 'section': project.section, 'detail_drawing': project.detail_drawing, '3d_illustrations': project.illustrations_3d, 'earthworks_survey': project.earthworks_survey, 'geo-tech': project.geo_tech, 'roads': project.roads, 'hydolic_system': project.hydolic_system, 'structure': project.structure, 'detailing': project.detailing, 'water_system': project.water_system, 'electric': project.electric, 'elv_system': project.elv_system, 'hvac': project.hvac, 'elevation_system': project.elevation_system, 'system_safety': project.system_safety, 'interior_design': project.interior_design, 'soft_hard_scaping': project.soft_hard_scaping, 'bill_of_quantities': project.bill_of_quantities, 'quotation_summary': project.quotation_summary, 'client_review': project.client_review, 'final': project.final, 'contract': project.contract, 'notary': project.notary, 'project_payment_plan': project.project_payment_plan, 'invoice_number': project.invoice_number, 'additionals': project.additionals, 'purchase_order': project.purchase_order, 'invoice': project.invoice, 'receipt': project.receipt, 'purchase_summary': project.purchase_summary, 'supplier_selection': project.supplier_selection, 'supplier_classification': project.supplier_classification, 'partenerships_and_alliances': project.partnerships_and_alliances, 'other': project.other, 'contact_information': project.contact_information, 'construction_material': project.construction_material, 'equipment': project.equipment, 'tools': project.tools, 'other_material': project.other_material, 'raw_material': project.raw_material, 'interior_finishes': project.interior_finishes, 'exterior_finishes': project.exterior_finishes, 'landscaping_material': project.landscaping_material, 'price_comparison': project.price_comparison, 'daily_cashflow': project.daily_cashflow, 'weekly_cashflow': project.weekly_cashflow, 'annual_cashflow': project.annual_cashflow, 'monthly_cashflow': project.monthly_cashflow, 'indirect_costs': project.indirect_costs, 'cashflow_report': project.cashflow_report, 'username': adminhome.username, 'image': adminhome.adminimage})
             else:
                 messages.info(request,'Project not found')
@@ -315,6 +314,9 @@ def editprojectdetails(request):
     if request.method == 'POST':
         project_id = request.POST['project_id']
         project_name = request.POST['project_name']
+        start_date = request.POST['start_date'] 
+        end_date = request.POST['end_date'] 
+        comments = request.POST['comments']
         project_category = request.POST.get('project_category', False)
         scope_of_work = request.POST['scope_of_work']
         invoice_number = request.POST.get('invoice_number')
@@ -329,6 +331,9 @@ def editprojectdetails(request):
         eproject.project_id = project_id
         eproject.project_category = project_category
         eproject.project_name = project_name
+        eproject.start_date = start_date
+        eproject.end_date = end_date
+        eproject.comments = comments
         eproject.scope_of_work = scope_of_work
         eproject.invoice_number = invoice_number
         eproject.construction_material = construction_material

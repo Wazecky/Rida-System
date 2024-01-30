@@ -69,15 +69,15 @@
           <div class="container my-4">
             <div class="row mx-auto">
                 <div class="card col-auto mx-auto my-4 text-center" style="width: 25rem; box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.15);">
-                    <img src="{% static 'images/user.png' %}" class="card-img-top mt-2" height="200" width="200" alt="Real Estate">
+                    <img src="{% static 'images/realestate.png' %}" class="card-img-top mt-2" height="200" width="200" alt="Real Estate">
                     <div class="card-body">
-                        <h5 class="card-title">REAL ESTATE</h5>
-                        <button onclick="location.href='/EC_Admin/addproject'" class="btn btn-primary btn-block">Add Project</button>
+                      <!--  <h5 class="card-title">REAL ESTATE</h5>-->
+                       <!-- <button onclick="location.href='/EC_Admin/addproject'" class="btn btn-primary btn-block">Add Project</button>-->
                         <div class="panel-body">
                           <form class="form-horizontal" method="post" action="view_project" id="ProjectCustomFilter">
                               {% csrf_token %}
                               <div class="form-group">
-                                <button class="btn btn-primary btn-block" name="view_project" type="submit">View Projects</button>
+                                <button class="btn btn-primary btn-block" name="view_project" type="submit">REAL ESTATE</button>
                               </div>
                           </form>
                       </div>
@@ -86,18 +86,41 @@
                 </div>
 
                 <div class="card col-auto mx-auto my-4 text-center" style="width: 25rem; box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.15);">
-                    <img src="{% static 'images/candidate.png' %}" class="card-img-top mt-2" height="200" width="200" alt="Image not found">
+                  <img src="{% static 'images/innovation.png' %}" class="card-img-top mt-2" height="200" width="200" alt="Image not found">
+                  <div class="card-body">
+                    <div class="panel-body">
+                     <!-- <h5 class="card-title">AFFILIATES</h5>-->
+                      <a href="/EC_Admin/not_ready" class="btn btn-primary btn-block">INNOVATION</a>
+                    <!-- <a href="/EC_Admin/not_ready" class="btn btn-primary btn-block">View</a>-->
+                    </div>
+                  </div>
+              </div>
+
+              <div class="card col-auto mx-auto my-4 text-center" style="width: 25rem; box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.15);">
+                <img src="{% static 'images/development.png' %}" class="card-img-top mt-2" height="200" width="200" alt="Image not found">
+                <div class="card-body">
+                  <div class="panel-body">
+                   <!-- <h5 class="card-title">AFFILIATES</h5>-->
+                    <a href="/EC_Admin/not_ready" class="btn btn-primary btn-block">DEVELOPMENT</a>
+                  <!-- <a href="/EC_Admin/not_ready" class="btn btn-primary btn-block">View</a>-->
+                </div>
+                </div>
+            </div>
+
+                <div class="card col-auto mx-auto my-4 text-center" style="width: 25rem; box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.15);">
+                    <img src="{% static 'images/affiliate.png' %}" class="card-img-top mt-2" height="200" width="200" alt="Image not found">
                     <div class="card-body">
-                        <h5 class="card-title">AFFILIATES</h5>
-                        <a href="/EC_Admin/not_ready" class="btn btn-primary btn-block">Add Affiliate</a>
-                        <a href="/EC_Admin/not_ready" class="btn btn-primary btn-block">View</a>
+                      <div class="panel-body">
+                       <!-- <h5 class="card-title">AFFILIATES</h5>-->
+                        <a href="/EC_Admin/not_ready" class="btn btn-primary btn-block">AFFILIATES</a>
+                      <!-- <a href="/EC_Admin/not_ready" class="btn btn-primary btn-block">View</a>-->
+                    </div>
                     </div>
                 </div>
 
-                <div class="card col-auto mx-auto my-4 text-center" style="width: 25rem; box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.15);">
-                    <img src="{% static 'images/election.png' %}" class="card-img-top mt-2" height="200" width="200" alt="Image not found">
+                <div class="card col-auto mx-auto my-4 text-center" style="width: 15rem; box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.15);">
+                    <img src="{% static 'images/todolist.png' %}" class="card-img-top mt-2" height="70" width="200" alt="Image not found">
                     <div class="card-body">
-                        <h5 class="card-title">TODO LIST</h5>
                         <a href="/EC_Admin/todo_list" class="btn btn-primary btn-block">ToDo List</a>
                     </div>
                 </div>

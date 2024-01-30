@@ -3,9 +3,6 @@
  {% load static %}
  {% block content %}
 <body>
-    <!--header start-->
-
-    <!--main content start-->
     <section id="main-content" style=" margin-right:110px;">
       <section class="wrapper">
         <div class="row">
@@ -54,74 +51,158 @@
                     <div class="col-sm-6">
                         <label><b>PROJECT NAME</b></label>
                         <input placeholder="Enter Name" type="text" required name="project_name" class="form-control round-input" oninput="this.setCustomValidity('')"
-                            oninvalid="this.setCustomValidity('Enter Project Name')" style="width:50%;">
+                            oninvalid="this.setCustomValidity('Enter Project Name')" style="width:70%;">
                     </div>
-                </div>                           
-                  <!-- Project Concept & Presentation -->
-                  <div class="form-group">
-                    <button id="concept" class="collapsible toc-item"><h4><b>PROJECT CONCEPT & PRESENTATION</b></h4></button>
+                </div>                
+              <div class="form-group row">
+                  <div class="col-sm-6">
+                      <label><b>START DATE</b></label>
+                      <input placeholder="Enter Start Date" type="date" name="start_date" class="form-control round-input" style="width:50%;">
+                  </div>
+                  <div class="col-sm-6">
+                      <label><b>ESTIMATED END DATE</b></label>
+                      <input placeholder="Enter End Date" type="date" name="end_date" class="form-control round-input" style="width:50%;">
+                  </div>
+              </div>
+              <div class="form-group row">
+                  <div class="col-sm-12">
+                      <label><b>COMMENTS</b></label>
+                      <textarea placeholder="Enter Comments" name="comments" class="form-control round-input" style="width:100%;"></textarea>
+                  </div>
+              </div>              
+                <style>
+                    table {
+                        border-collapse: collapse;
+                        width: 100%;
+                        border: 3px solid #444;
+                    }
+                    /* Style the table headers */
+                    th {
+                        background-color: #86e96d;
+                        color: white;
+                        text-align: center;
+                        padding: 12px;
+                        border: 2px solid #444;
+                    }
+                        /* Style the table cells */
+                    td {
+                        border: 2px solid #444;
+                        padding: 8px;
+                        color: #333;
+                    }
+                        /* Add a different background color to every other row */
+                    tr:nth-child(even) {
+                        background-color: #f2f2f2;
+                    }
+
+                    /* Add a hover effect to the rows */
+                    tr:hover {
+                        background-color: #ddd;
+                    }
+                /* Style for outer buttons */
+                    .collapsible.outer {
+                        background-color: #008CBA; /* Non-active color */
+                        color: white; /* Text color */
+                    }
+                    
+                    .collapsible.outer.active {
+                        background-color: #4CAF50; /* Active color */
+                        color: white;
+                    }
+                    
+                    /* Style for inner buttons */
+                    .collapsible.inner {
+                        background-color: #f44336; /* Non-active color */
+                        color: white; /* Text color */
+                    }
+                    
+                    .collapsible.inner.active {
+                        background-color: #e91e63; /* Active color */
+                        color: white;
+                    }
+                </style>
+                  <div class="form-group" style="display: none;">
+                    <div style="display: flex; flex-direction: row;">
+                    <div style="display: flex; flex-direction: row;">
+                    <button id="concept" class="collapsible toc-item outer"><h4><b>PROJECT CONCEPT & PRESENTATION</b></h4></button>
                     <div class="content">
-                      <button type="button" class="collapsible"><h5><b>Sketches</b></h5></button>
+                        <div style="display: flex; flex-direction: column;">
+                        <div style="display: flex; flex-direction: row;">
+                      <button type="button" class="collapsible inner"><h5><b>Sketches</b></h5></button>
                       <div class="content">
                         <h4 style="margin-left: 20px;"><b>PROJECT CONCEPT & PRESENTATION/ Sketches</b></h4>
-                          <table>
-                              <tr>
-                                  <th><b>SITE PLAN</b></th>
-                                  <th><b>2D SKETCH</b></th>
-                                  <th><b>HAND SKETCH</b></th>
-                                  <th><b>3D SKETCH</b></th>
-                                  <!-- Add more headers for Hand Sketch, and 3D Sketch -->
-                              </tr>
-                              <tr>
-                                  <td><input type="file" name="ssite_plan" class="form-control round-input"></td>
-                                  <td><input type="file" name="sketch_2d" class="form-control round-input"></td>
-                                  <td><input type="file" name="hand_sketch" class="form-control round-input"></td>
-                                  <td><input type="file" name="sketch_2d" class="form-control round-input"></td>
-                                  <!-- Add more fields for Hand Sketch, and 3D Sketch -->
-                              </tr>
-                          </table>
+                        <table>
+                            <tr>
+                                <th><b>SITE PLAN</b></th>
+                                <th><b>2D SKETCH</b></th>
+                            </tr>
+                            <tr>
+                                <td><input type="file" name="site_plan"></td>
+                                <td><input type="file" name="sketch_2d" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>HAND SKETCH</b></th>
+                                <th><b>3D SKETCH</b></th>
+                            </tr>
+                            <tr>
+                                <td><input type="file" name="hand_sketch" class="form-control round-input"></td>
+                                <td><input type="file" name="sketch_3d" class="form-control round-input"></td>
+                            </tr>
+                        </table>                        
                       </div>
-                      <!-- Add more fields for Mood Board -->
-                      <button type="button" class="collapsible"><h5><b>MOOD BOARD</b></h5></button>
+                        </div>
+                        <div style="display: flex; flex-direction: row;">
+                      <button type="button" class="collapsible inner"><h5><b>MOOD BOARD</b></h5></button>
                       <div class="content">
                         <h4 style="margin-left: 20px;"><b>PROJECT CONCEPT & PRESENTATION/ Mood Board</b></h4>
-                          <table>
-                              <tr>
-                                  <th><b>CEILING DESIGN INSPIRATION</b></th>
-                                  <th><b>WALL DESIGN INSPIRATION</b></th>
-                                  <th><b>FLOORING INSPIRATION</b></th>
-                                  <th><b>LIGHTING INSPIRATION</b></th>
-                                  <th><b>EXTERIOR INSPIRATION</b></th>
-                                  <th><b>GARDEN</b></th>
-                                  <!-- Add more headers for Hand Sketch, and 3D Sketch -->
-                              </tr>
-                              <tr>
-                                  <td><input type="file" name="ceiling_design_inspiration" class="form-control round-input"></td>
-                                  <td><input type="file" name="wall_design_inspiration" class="form-control round-input"></td>
-                                  <td><input type="file" name="flooring_inspiration" class="form-control round-input"></td>
-                                  <td><input type="file" name="lighting_inspiration" class="form-control round-input"></td>
-                                  <td><input type="file" name="exterior_inspiration" class="form-control round-input"></td>
-                                  <td><input type="file" name="garden" class="form-control round-input"></td>
-                                  <!-- Add more fields for Hand Sketch, and 3D Sketch -->
-                              </tr>
-                          </table>
+                        <table>
+                            <tr>
+                                <th><b>CEILING DESIGN INSPIRATION</b></th>
+                                <th><b>WALL DESIGN INSPIRATION</b></th>
+                                <th><b>FLOORING INSPIRATION</b></th>
+                            </tr>
+                            <tr>
+                                <td><input type="file" name="ceiling_design_inspiration" class="form-control round-input"></td>
+                                <td><input type="file" name="wall_design_inspiration" class="form-control round-input"></td>
+                                <td><input type="file" name="flooring_inspiration" class="form-control round-input"></td>
+                            </tr>
+                            <tr>
+                                <th><b>LIGHTING INSPIRATION</b></th>
+                                <th><b>EXTERIOR INSPIRATION</b></th>
+                                <th><b>GARDEN</b></th>
+                            </tr>
+                            <tr>
+                                <td><input type="file" name="lighting_inspiration" class="form-control round-input"></td>
+                                <td><input type="file" name="exterior_inspiration" class="form-control round-input"></td>
+                                <td><input type="file" name="garden" class="form-control round-input"></td>
+                            </tr>
+                        </table>                        
                       </div>
+                        </div>
                       <!-- Scope of Work -->
-                      <button type="button" class="collapsible"><h5><b>SCOPE of WORK</b></h5></button>
+                      <div style="display: flex; flex-direction: row;">
+                      <button type="button" class="collapsible inner"><h5><b>SCOPE of WORK</b></h5></button>
                       <div class="content">
                         <h4 style="margin-left: 20px;"><b>PROJECT CONCEPT & PRESENTATION/ Scope Of Work</b></h4>
-                          <div class="form-group">
-                              <label class="col-sm-2 control-label"><b>Describe The Scope Of Work</b></label>
-                              <div class="col-sm-10">
-                                  <textarea name="scope_of_work" class="form-control round-input" style="width:80%;"></textarea>
-                              </div>
-                          </div>
+                        <table>
+                            <tr>
+                                <th><b>Scope Of Work</b></th>
+                            </tr>
+                            <tr>
+                                <td><textarea name="scope_of_work" class="form-control round-input" style="width:80%;"></textarea></td>
+                            </tr>
+                        </table>                        
                       </div>
-                    </div>  
-                      <br><br>
-                      <button id="design" class="collapsible toc-item"><h4><b>PROJECT DESIGN</b></h4></button>
+                      </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div style="display: flex; flex-direction: row;">
+                      <button id="design" class="collapsible toc-item outer"><h4><b>PROJECT DESIGN</b></h4></button>
                       <div>
-                      <button type="button" class="collapsible"><h5><b>ARCHITECTURE</b></h5></button>
+                        <div style="display: flex; flex-direction: column;">
+                        <div style="display: flex; flex-direction: row;">
+                      <button type="button" class="collapsible inner"><h5><b>ARCHITECTURE</b></h5></button>
                       <div class="content">
                         <h4 style="margin-left: 20px;"><b>PROJECT DESIGN/ Architecture</b></h4>
                           <table>
@@ -147,7 +228,9 @@
                               </tr>
                           </table>
                       </div>
-                      <button type="button" class="collapsible"><h5><b>CIVIL WORKS</b></h5></button>
+                        </div>
+                        <div style="display: flex; flex-direction: row;">
+                      <button type="button" class="collapsible inner"><h5><b>CIVIL WORKS</b></h5></button>
                       <div class="content">
                         <h4 style="margin-left: 20px;"><b>PROJECT DESIGN/ Civil Works</b></h4>
                           <table>
@@ -171,7 +254,9 @@
                               </tr>
                           </table>
                       </div>
-                      <button type="button" class="collapsible"><h5><b>MEP</b></h5></button>
+                        </div>
+                        <div style="display: flex; flex-direction: row;">
+                      <button type="button" class="collapsible inner"><h5><b>MEP</b></h5></button>
                       <div class="content">
                         <h4 style="margin-left: 20px;"><b>PROJECT DESIGN/ MEP</b></h4>
                           <table>
@@ -195,7 +280,9 @@
                               </tr>
                           </table>
                       </div>
-                      <button type="button" class="collapsible"><h5><b>INTERIOR DESIGN</b></h5></button>
+                        </div>
+                        <div style="display: flex; flex-direction: row;">
+                      <button type="button" class="collapsible inner"><h5><b>INTERIOR DESIGN</b></h5></button>
                       <div class="content">
                         <h4 style="margin-left: 20px;"><b>PROJECT DESIGN/ Interior Design</b></h4>
                           <table>
@@ -205,7 +292,9 @@
                               </tr>
                           </table>
                       </div>
-                      <button type="button" class="collapsible"><h5><b>SOFT & HARD SCAPING</b></h5></button>
+                        </div>
+                        <div style="display: flex; flex-direction: row;">
+                      <button type="button" class="collapsible inner"><h5><b>SOFT & HARD SCAPING</b></h5></button>
                       <div class="content">
                         <h4 style="margin-left: 20px;"><b>PROJECT DESIGN/ Soft & Hard Scaping</b></h4>
                           <table>
@@ -215,11 +304,16 @@
                               </tr>
                           </table>
                       </div>
+                        </div>
+                    </div>
                       </div>
-                      <br><br>
-                      <button id="billing" class="collapsible toc-item"><h4><b>PROJECT BILLING</b></h4></button>
+                      </div>
+                      <div style="display: flex; flex-direction: row;">
+                      <button id="billing" class="collapsible toc-item outer"><h4><b>PROJECT BILLING</b></h4></button>
                       <div>
-                      <button type="button" class="collapsible"><h5><b>PROJECT QUOTATION</b></h5></button>
+                        <div style="display: flex; flex-direction: column;">
+                        <div style="display: flex; flex-direction: row;">
+                      <button type="button" class="collapsible inner"><h5><b>PROJECT QUOTATION</b></h5></button>
                       <div class="content">
                         <h4 style="margin-left: 20px;"><b>PROJECT BILLING/ Project Quotation</b></h4>
                           <table>
@@ -239,7 +333,9 @@
                               </tr>
                           </table>
                       </div>
-                      <button type="button" class="collapsible"><h5><b>PROJECT CONTRACT</b></h5></button>
+                        </div>
+                        <div style="display: flex; flex-direction: row;">
+                      <button type="button" class="collapsible inner"><h5><b>PROJECT CONTRACT</b></h5></button>
                       <div class="content">
                         <h4 style="margin-left: 20px;"><b>PROJECT BILLING/ Project Contract</b></h4>
                           <table>
@@ -259,11 +355,16 @@
                               </tr>
                           </table>
                       </div>
+                        </div>
+                        </div>
                       </div>
-                      <br><br>
-                      <button id="hub" class="collapsible toc-item"><h4><b>PROCUREMENT HUB</b></h4></button>
+                      </div>
+                      <div style="display: flex; flex-direction: row;">
+                      <button id="hub" class="collapsible toc-item outer"><h4><b>PROCUREMENT HUB</b></h4></button>
                       <div>
-                      <button type="button" class="collapsible"><h5><b>PURCHASES</b></h5></button>
+                        <div style="display: flex; flex-direction: column;">
+                        <div style="display: flex; flex-direction: row;">
+                      <button type="button" class="collapsible inner"><h5><b>PURCHASES</b></h5></button>
                       <div class="content">
                         <h4 style="margin-left: 20px;"><b>PROCUREMENT HUB/ Purchases</b></h4>
                           <table>
@@ -283,7 +384,9 @@
                               </tr>
                           </table>
                       </div>
-                      <button type="button" class="collapsible"><h5><b>SUPPLIERS</b></h5></button>
+                        </div>
+                        <div style="display: flex; flex-direction: row">
+                      <button type="button" class="collapsible inner"><h5><b>SUPPLIERS</b></h5></button>
                       <div class="content">
                         <h4 style="margin-left: 20px;"><b>PROCUREMENT HUB/ Suppliers</b></h4>
                           <table>
@@ -305,7 +408,9 @@
                               </tr>
                           </table>
                       </div>
-                      <button type="button" class="collapsible"><h5><b>PROJECT INVENTORY</b></h5></button>
+                        </div>
+                        <div style="display: flex; flex-direction: row;">
+                      <button type="button" class="collapsible inner"><h5><b>PROJECT INVENTORY</b></h5></button>
                       <div class="content">
                         <h4 style="margin-left: 20px;"><b>PROCUREMENT HUB/ Project Inventory</b></h4>
                           <table>
@@ -321,7 +426,9 @@
                               </tr>
                           </table>
                       </div>
-                      <button type="button" class="collapsible"><h5><b>MARKET PRICE LIST</b></h5></button>
+                        </div>
+                        <div style="display: flex; flex-direction: row;">
+                      <button type="button" class="collapsible inner"><h5><b>MARKET PRICE LIST</b></h5></button>
                       <div class="content">
                         <h4 style="margin-left: 20px;"><b>PROCUREMENT HUB/ Market Price List</b></h4>
                           <table>
@@ -343,11 +450,16 @@
                               </tr>
                           </table>
                       </div>
+                        </div>
+                    </div>
                       </div>
-                      <br><br>
-                      <button id="budget"  class="collapsible toc-item"><h4><b>PROJECT BUDGET</b></h4></button>
+                      </div>
+                      <div style="display: flex; flex-direction: row;">
+                      <button id="budget"  class="collapsible toc-item outer"><h4><b>PROJECT BUDGET</b></h4></button>
                       <div>
-                      <button type="button" class="collapsible"><h5><b>PROJECT CASHFLOW</b></h5></button>
+                        <div style="display: flex; flex-direction: column;">
+                        <div style="display: flex; flex-direction: row;">
+                      <button type="button" class="collapsible inner"><h5><b>PROJECT CASHFLOW</b></h5></button>
                       <div class="content">
                         <h4 style="margin-left: 20px;"><b>PROJECT BUDGET/ Project Cashflow</b></h4>
                           <table>
@@ -358,7 +470,6 @@
                                   <th><b>ANNUAL CASHFLOW</b></th>
                                   <th><b>INDIRECT COSTS</b></th>
                                   <th><b>CASHFLOW REPORT</b></th>
-                                  <!-- Add more headers for Hand Sketch, and 3D Sketch -->
                               </tr>
                               <tr>
                                   <td><input type="file" name="daily_cashflow" class="form-control round-input"></td>
@@ -367,11 +478,12 @@
                                   <td><input type="file" name="annual_cashflow" class="form-control round-input"></td>
                                   <td><input type="file" name="indirect_costs" class="form-control round-input"></td>
                                   <td><input type="file" name="cashflow_report" class="form-control round-input"></td>
-                                  <!-- Add more fields for Hand Sketch, and 3D Sketch -->
                               </tr>
                           </table>
                       </div>
-                      <button type="button" class="collapsible"><h5><b>PROJECT INVENTORY</b></h5></button>
+                        </div>
+                        <div style="display: flex; flex-direction: row;">
+                      <button type="button" class="collapsible inner"><h5><b>PROJECT INVENTORY</b></h5></button>
                       <div class="content">
                         <h4 style="margin-left: 20px;"><b>PROJECT BUDGET/ Project Inventory</b></h4>
                           <table>
@@ -381,7 +493,6 @@
                                   <th><b>RECEIPT</b></th>
                                   <th><b>SUPPLIER</b></th>
                                   <th><b>ACCOUNT PAYABLE</b></th>
-                                  <!-- Add more headers for Hand Sketch, and 3D Sketch -->
                               </tr>
                               <tr>
                                   <td><input type="file" name="ppurchase_order" class="form-control round-input"></td>
@@ -389,67 +500,75 @@
                                   <td><input type="file" name="rreceipt" class="form-control round-input"></td>
                                   <td><input type="file" name="supplier" class="form-control round-input"></td>
                                   <td><input type="file" name="account_payable" class="form-control round-input"></td>
-                                  <!-- Add more fields for Hand Sketch, and 3D Sketch -->
                               </tr>
                           </table>
                       </div>
-                      </div>
-                      <br><br><br>
-                      <div class="form-group">
-                        <div class="col-lg-offset-2 col-lg-10">
-                            <button id="submitProject" class="btn btn-primary" type="submit">Submit Project</button>
-                            <button class="btn btn-default" type="reset">Reset</button>
                         </div>
                     </div>
+                      </div>
+                      </div>
                   </div>
-              </form>
-              <!-- Table of Contents -->       
-                    <script>
-                        var coll = document.getElementsByClassName("collapsible");
-                        var tocItems = document.getElementsByClassName("toc-item");
-                        var tocList = document.getElementById("toc_list");
-
-                        for (var i = 0; i < coll.length; i++) {
-                            var content = coll[i].nextElementSibling;
-                            content.style.display = "none";
-
-                            // Add click event listener
-                            coll[i].addEventListener("click", function() {
-                                this.classList.toggle("active");
-                                var content = this.nextElementSibling;
-                                if (content.style.display === "block") {
-                                    content.style.display = "none";
-                                } else {
-                                    content.style.display = "block";
-                                }
-                            });
-                        }
-
-                        for (var i = 0; i < tocItems.length; i++) {
-                            // Add item to table of contents
-                            var li = document.createElement("li");
-                            var a = document.createElement("a");
-                            a.textContent = tocItems[i].textContent;
-                            a.href = "#" + tocItems[i].id;
-                            li.appendChild(a);
-                            tocList.appendChild(li);
-                        } 
-                        // Flag to track whether the form should be submitted
-                        var shouldSubmit = false;
-
-                        // Add click event listener to the 'Update Project' button
-                        document.querySelector('button[type="submit"]').addEventListener('click', function() {
-                            shouldSubmit = true;
-                        });
-                        document.querySelectorAll('button').forEach(button => {
-                            // Exclude the "Submit Project" button
-                            if (button.id !== 'submitProject') {
-                                button.addEventListener('click', function(event) {
-                                    event.preventDefault();
-                                });
+                      <br><br><br>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-lg-offset-2 col-lg-10">
+                        <button id="submitProject" class="btn btn-primary" type="submit">Add Project</button>
+                        <button class="btn btn-default" type="reset">Reset</button>
+                    </div>
+                </div>
+              </form>      
+              <script>
+                var collOuter = document.getElementsByClassName("outer");
+                var collInner = document.getElementsByClassName("inner");
+                var tocItems = document.getElementsByClassName("toc-item");
+                var tocList = document.getElementById("toc_list");
+            
+                function addCollapsibleFunctionality(coll) {
+                    for (var i = 0; i < coll.length; i++) {
+                        var content = coll[i].nextElementSibling;
+                        content.style.display = "none";
+            
+                        // Add click event listener
+                        coll[i].addEventListener("click", function() {
+                            this.classList.toggle("active");
+                            var content = this.nextElementSibling;
+                            if (content.style.display === "block") {
+                                content.style.display = "none";
+                            } else {
+                                content.style.display = "block";
                             }
-                        });                        
-                    </script>
+            
+                            // Hide all other buttons
+                            for (var j = 0; j < coll.length; j++) {
+                                if (coll[j] !== this && this.classList.contains("active")) {
+                                    coll[j].style.display = "none";
+                                } else {
+                                    coll[j].style.display = "block";
+                                }
+                            }
+                        });
+                    }
+                }
+            
+                addCollapsibleFunctionality(collOuter);
+                addCollapsibleFunctionality(collInner);
+                // Flag to track whether the form should be submitted
+                var shouldSubmit = false;
+            
+                // Add click event listener to the 'Update Project' button
+                document.querySelector('button[type="submit"]').addEventListener('click', function() {
+                    shouldSubmit = true;
+                });
+                document.querySelectorAll('button').forEach(button => {
+                    // Exclude the "Submit Project" button
+                    if (button.id !== 'submitProject') {
+                        button.addEventListener('click', function(event) {
+                            event.preventDefault();
+                        });
+                    }
+                });                        
+            </script>
+                                              
               </div>
             </section>
             </div>
