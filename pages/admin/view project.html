@@ -8,13 +8,13 @@
        <div class="row">
     
          <div class="col-lg-12">
-           <h3 class="page-header"><i class="fa fa-file-text-o"></i>RIDA DASHBOARD</h3>
+           <h3 style="color: #893f45;" class="page-header"><i style="color: #893f45;" class="fa fa-file-text-o"></i>RIDA DASHBOARD</h3>
          </div>    
        </div> 
                <div class="row">
          <div class="col-lg-12">
            <section class="panel">
-             <header class="panel-heading">
+             <header style="color: #893f45;" class="panel-heading">
                  List of Projects 2024
              </header>            
              <div class="table-responsive">
@@ -39,65 +39,16 @@
                        border-bottom: none;
                    }                                                      
                </style>
-        <script>
-            function toggleDetails(id, button) {
-                var projectButtons = document.getElementsByClassName('project-btn');
-                var element = document.getElementById(id);
-                if (element.style.display === "none") {
-                    for (var i = 0; i < projectButtons.length; i++) {
-                        projectButtons[i].style.display = "none";
-                    }
-                    button.style.display = "block";
-                    element.style.display = "table-row";
-                    button.style.backgroundColor = "aqua";
-                } else {
-                    element.style.display = "none";
-                    button.style.backgroundColor = "olive";
-                    for (var i = 0; i < projectButtons.length; i++) {
-                        projectButtons[i].style.display = "block";
-                    }
-                }
-                window.scrollTo(0,document.body.scrollHeight);
-            }
-        
-            function toggleReport(id, button) {
-                var element = document.getElementById('report' + id);
-                if (element.style.display === "none") {
-                    element.style.display = "block";
-                    button.style.backgroundColor = "aqua";
-                } else {
-                    element.style.display = "none";
-                    button.style.backgroundColor = "olive";
-                }
-            }
-            function searchFunction() {
-                var input, filter, container, buttons, button, i, txtValue;
-                input = document.getElementById("searchInput");
-                filter = input.value.toUpperCase();
-                container = document.getElementsByClassName("grid-container")[0];
-                buttons = container.getElementsByClassName("project-btn");
-            
-                for (i = 0; i < buttons.length; i++) {
-                    button = buttons[i];
-                    txtValue = button.id; // change this line
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        buttons[i].style.display = "";
-                    } else {
-                        buttons[i].style.display = "none";
-                    }
-                }
-            }                                  
-        </script>
         <div style="display: flex; justify-content: flex-end;">
             <ul>
                 <li style="margin-top: 10px;">
-                    <input type="text" id="searchInput" onkeyup="searchFunction()" placeholder="Search projects..." style="padding: 5px; border-radius: 5px; border: 2px solid maroon;">
+                    <input type="text" id="searchInput" onkeyup="searchFunction()" placeholder="Search projects..." style="padding: 5px; border-radius: 5px; border: 2px solid #893f45">
                 </li>
             </ul>            
             <form method="post" action="/EC_Admin/addproject">
                 {% csrf_token %}
                 <ul>
-                    <li style="margin-right: 80px; margin-top: 10px;"><input type="submit" value="Create New Project" style="background-color:maroon; border: none; color: white; padding: 7px 16px; text-align: center; text-decoration: none; display: inline-block; font-size: 14px; margin-left: auto; border-radius: 12px;"></li>
+                    <li style="margin-right: 80px; margin-top: 10px;"><input type="submit" value="Create New Project" style="background-color: #893f45; border: none; color: white; padding: 7px 16px; text-align: center; text-decoration: none; display: inline-block; font-size: 14px; margin-left: auto; border-radius: 12px;"></li>
                 </ul>
             </form>
         </div>                    
@@ -113,7 +64,7 @@
                 
                 /* Style the table headers */
                 th {
-                    background-color: #76d7c4;
+                    background-color: #893f45;
                     color: white;
                     text-align: center;
                     padding: 12px;
@@ -138,7 +89,7 @@
                 {% if not projects %}
                 {% else %}
                     {% for project in projects %}
-                    <button id="button{{ project.project_id }}-{{ project.project_name }}" class="btn btn-default project-btn" style="background-color: olive; width: 200px; height: 100px;" type="button" onclick="toggleDetails('{{ project.project_id }}', this)"> 
+                    <button id="button{{ project.project_id }}-{{ project.project_name }}" class="btn btn-default project-btn" style="background-color: #20B2AA; width: 200px; height: 100px;" type="button" onclick="toggleDetails('{{ project.project_id }}', this)"> 
                         <span style="font-size: larger; color: white;">{{ project.project_name }}</span> <br><br> 
                         <span style="color: black; font-size: small;">({{ project.start_date }} - {{ project.end_date }})</span>
                     </button>
@@ -158,9 +109,9 @@
                                 <form class="form-horizontal" method="post" action="edit_project">
                                     {% csrf_token %}
                                     <input type="hidden" name="project_id" value="{{ project.project_id }}">
-                                    <input class="btn btn-primary" name="editproject" type="submit" value="Add Project Details">
+                                    <input style="background-color: #893f45;" class="btn btn-primary" name="editproject" type="submit" value="Add Project Details">
                                 </form>
-                                <button id="reportButton{{ project.project_id }}" class="btn btn-default" name="projectreport" type="button" value="Project Report" style="background-color: orange;" onclick="toggleReport('{{ project.project_id }}', this)">Project Report</button>
+                                <button id="reportButton{{ project.project_id }}" class="btn btn-default" name="projectreport" type="button" value="Project Report" style="background-color: #20B2AA;" onclick="openReport('{{ project.project_id }}', this)">Project Report</button>
                                 <form class="form-horizontal" method="post" action="edit_project">
                                     {% csrf_token %}
                                     <input type="hidden" name="project_id" value="{{ project.project_id }}">
@@ -493,11 +444,11 @@
                <div class="form-group">
                 <div class="col-lg-offset-2 col-lg-10">
                     {% for message in messages %}
-                        <h3 style="color: green;"> {{message}} </h3>
+                        <h3 style="color: #893f45;"> {{message}} </h3>
             
                         <form class="form-horizontal" method="post" action="view_project" id="ProjectCustomFilter">
                             {% csrf_token %}                       
-                            <li style="background-color:maroon; border: none; color: white; padding: 7px 16px; text-align: center; text-decoration: none; display: inline-block; font-size: 14px; margin-left: auto; border-radius: 12px;"><a class="" name="view_project" onclick="document.getElementById('ProjectCustomFilter').submit();">View</a></li>                         
+                            <li style="background-color: #893f45; border: none; color: white; padding: 7px 16px; text-align: center; text-decoration: none; display: inline-block; font-size: 14px; margin-left: auto; border-radius: 12px;"><a class="" name="view_project" onclick="document.getElementById('ProjectCustomFilter').submit();">View</a></li>                         
                         </form>
                     {% endfor %}
                 </div>
@@ -510,5 +461,49 @@
        </div>
      </section>
   </section>
+  <script>
+    function toggleDetails(id, button) {
+        var projectButtons = document.getElementsByClassName('project-btn');
+        var element = document.getElementById(id);
+        if (element.style.display === "none") {
+            for (var i = 0; i < projectButtons.length; i++) {
+                projectButtons[i].style.display = "none";
+            }
+            button.style.display = "block";
+            element.style.display = "table-row";
+            button.style.backgroundColor = "silver";
+        } else {
+            element.style.display = "none";
+            button.style.backgroundColor = "teal";
+            for (var i = 0; i < projectButtons.length; i++) {
+                projectButtons[i].style.display = "block";
+            }
+        }
+        window.scrollTo(0,document.body.scrollHeight);
+    }
+    function openReport(id, button) {
+        var myWindow = window.open("", "MsgWindow", "width=700,height=700");
+        var element = document.getElementById('report' + id);
+        myWindow.document.write(element.innerHTML);
+    }
+    
+    function searchFunction() {
+        var input, filter, container, buttons, button, i, txtValue;
+        input = document.getElementById("searchInput");
+        filter = input.value.toUpperCase();
+        container = document.getElementsByClassName("grid-container")[0];
+        buttons = container.getElementsByClassName("project-btn");
+    
+        for (i = 0; i < buttons.length; i++) {
+            button = buttons[i];
+            txtValue = button.id; // change this line
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                buttons[i].style.display = "";
+            } else {
+                buttons[i].style.display = "none";
+            }
+        }
+    }                                  
+</script>
 </body>
 {% endblock content %}

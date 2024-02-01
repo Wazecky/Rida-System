@@ -337,43 +337,218 @@ textarea:focus, input:focus {
         }
     </script>
 </head>
-<body style="background-image:url('{% static 'images/section.jpg' %}'); background-size:cover; background-position:center;">
-	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vide/0.5.1/jquery.vide.min.js"></script>
+<div class="overlay">
+<body data-vide-bg="{% static 'videos/rida.mp4' %}" style="background-size:cover; background-position:center;">
+	<div style="display: flex; justify-content: center; align-items: center; background-color: maroon; border: 2px solid teal; border-radius: 10px; width: 440px; height: 50px; position: absolute; top: 40px; left: 50%; transform: translate(-50%, -50%);">
+		<div style="text-align: center;">
+			<h2 id="animated-text" style="color: white;">RIDA MANAGEMENT SYSTEM</h2>
+		</div>
+	</div>						
     <div class="limiter"><div class="container-login100"><div class="wrap-login100 p-t-190 p-b-30">
+		<style>
+			#animated-text {
+				overflow: hidden;
+				border-right: .15em solid white;
+				white-space: nowrap;
+				margin: 0 auto;
+				letter-spacing: .15em;
+				animation: typing 6s steps(40, end), blink-caret .75s step-end infinite, pause 2s;
+				animation-iteration-count: infinite;
+			  }
+			  
+			  @keyframes typing {
+				0% { width: 0; }
+				50%, 100% { width: 100%; }
+			  }
+			  
+			  @keyframes blink-caret {
+				from, to { border-color: transparent }
+				50% { border-color: maroon; }
+			  }
+			  
+			  @keyframes pause {
+				0%, 50% { opacity: 1 }
+				100% { opacity: 0.7 }
+			  }
+			.overlay {
+				background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+			}			
+			@keyframes colorchange {
+				0% {background: #893f45;}
+				25% {background: maroon;}
+				50% {background: purple;}
+				75% {background: teal;}
+				100% {background: #893f45;}
+			}						
+			.card1, .card2 {
+				background-color: #893f45;
+				border: 5px solid teal; /* Add a teal border */
+				border-radius: 15px; /* Rounded corners */
+				padding: 50px;
+				color: white;
+				text-align: center;
+				width: 350px;
+				height: 280px; 
+				position: absolute;
+				top: 50%;
+				transform: translateY(-50%);
+				transition: transform 0.3s;
+			}
+			
+			.card1 {
+				left: 50;
+			}
+			
+			.card2 {
+				right: 50;
+			}
+			
+			.card1:hover, .card2:hover {
+				background-color: #893f45; 
+				transform: translateY(-50%) scale(1.05);
+			}
+			
+			.card1:not(:hover), .card2:not(:hover) {
+				animation: colorchange 2s infinite; 
+			}
+			.admin-button1 {
+				position: absolute;
+				top: 20px;
+				right: 15px;
+			}
+			
+			.admin-button1 button {
+				background-color: teal;
+				border: none;
+				color: white;
+				padding: 15px 32px;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 16px;
+				margin: 4px 2px;
+				cursor: pointer;
+				border-radius: 8px;
+			}
+			
+			.admin-button1 button:hover {
+				background-color: #893f45;
+			}																					
+		</style>
+			<div class="card1">
+				<h1>Mission:</h1>
+				<h4>“To revolutionize the real estate industry through innovative solutions, fostering development and building lasting relationships with our affiliates.”</h4>
+			</div>
+		<button class="collapsible">Click To Proceed</button>
+        <div class="content">
+		<!--	<a>
+				<img src="{% static 'images/logo1.png' %}"  onclick="show()" >
+			</a> -->
+			<div class="oval-background">
 		<form class="login100-form validate-form" method="POST" action="login" onsubmit="validateCaptcha()">
 			{% csrf_token %}
-			<span class="login100-form-title p-t- p-b-40 m-b-10" style="color: white; background-color: black; opacity: 0.9;">
-				RIDA <span style="color: orange">SYSTEM</span>
+			<span class="login100-form-title p-t- p-b-40 m-b-10" style="color: white; opacity: 0.9;">
+				RIDA
 				</span>
 			<input type="hidden" name="loginas" value="admin">
 			<div class="wrap-input100 validate-input m-b-10" data-validate="Username is required">
-				<input name="username" class="input100" required type="text" placeholder="Username">
+				<input style="background-color: silver;" name="username" class="input100" required type="text" placeholder="Username">
 				<span class="focus-input100"></span>
 			</div>
 		
 			<div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
-				<input name="password" class="input100" required type="password" placeholder="Password" id="password">
+				<input style="background-color: silver;"  name="password" class="input100" required type="password" placeholder="Password" id="password">
 				
-				<a style="position: absolute;left: 355px; bottom: 16px;">
+				<a style="position: absolute;left: 230px; bottom: 16px;">
 					<img src="{% static 'images/blind.png' %}"  onclick="show()" >
 				</a>
 			</div>
 		
-			<div class="container-login100-form-btn p-t-10">
-				<input type="submit"  name="login" class="login100-form-btn" value="Login">
-			</div>
-		</form>		
-            <div class="error">
-				<!--
-					<div class="text-center w-full">
-						<a class="txt1" href="forgotpassword">
-							Forgot Password?
-						</a>
-					</div>
-				-->
-                <div> 
-                </div>
-			</div>
+			<style>
+				.collapsible {
+					background-color: teal;
+					color: white;
+					cursor: pointer;
+					padding: 18px;
+					width: auto; 
+					border: none;
+					text-align: center; 
+					outline: none;
+					font-size: 15px;
+					border-radius: 12px; 
+				}				
+				.active, .collapsible:hover {
+					background-color: #555;
+				}
+				
+				.content {
+					padding: 0 18px;
+					display: none;
+					overflow: hidden;
+				}
+				.oval-background {
+					background-color: teal;
+					border-radius: 50%;
+					padding: 20px;
+					width: 300px;
+					height: 290px;
+				}
+				.login10-form-btn {
+					background-color: #893f45;
+					color: white;
+					border: none;
+					padding: 10px 20px;
+					text-align: center;
+					text-decoration: none;
+					display: inline-block;
+					font-size: 16px;
+					transition-duration: 0.4s;
+					cursor: pointer;
+					border-radius: 12px;
+				}
+				
+				.login10-form-btn:hover {
+					background-color: silver;
+					color: black;
+				}
+				h4 {
+					font-family: 'Bell MT';
+					font-size: 18px;
+				  }
+				</style>
+				<script>
+					var coll = document.getElementsByClassName("collapsible");
+					var i;
+					
+					for (i = 0; i < coll.length; i++) {
+						coll[i].addEventListener("click", function() {
+							this.classList.toggle("active");
+							var content = this.nextElementSibling;
+							if (content.style.display === "block") {
+								content.style.display = "none";
+							} else {
+								content.style.display = "block";
+							}
+						});
+					}
+					</script>
+				
+				<div class="container-login100-form-btn p-t-10">
+					<button class="login10-form-btn">Login</button>
+				</div>			
+		</form>
+	</div>
+	</div>
+	<div class="admin-button1">
+        <button onclick="location.href='/admin'">ADD USER</button>
+    </div>
+	<div class="card2">
+		<h1>Vision:</h1>
+		<h4>“To be a global leader in real estate, setting new standards in innovation, development, and affiliate relations.”</h4>
+	</div>
+
 			<div class="login100-form-title p-t- p-b-40 m-b-10">
 			{% for message in messages %}
                 <h3 align="center">{{message}}</h3>
@@ -383,4 +558,5 @@ textarea:focus, input:focus {
         </div>
     </div>
     </body>
+</div>
 </html>

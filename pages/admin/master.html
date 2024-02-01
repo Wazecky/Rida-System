@@ -39,62 +39,30 @@
 </head>
 
 <body>
-  <!-- container section start -->
   <section id="container" class="">
+    <style>
+      .header.dark-bg {
+        background-color: #893f45;
+      }
+      </style>      
     <header class="header dark-bg">
       <div class="toggle-nav">
         <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom">
             <i class="icon_menu"></i></div>
       </div>
-      
-        <!--logo start-->
-        <div style="display: flex; flex-direction: row;">    
+      <div style="display: flex; justify-content: space-between;">   
         <a href="/EC_Admin/adminhome" class="logo">
-            <span style="color: white">RIDA</span>
-        </a>
-        </div>
-      <!--logo end-->
-      <!--<div class="top-nav notification-row">-->
-        <!-- notificatoin dropdown start-->
-        <div style="display: flex; justify-content: space-between;">
-          <ul style="display: flex; clear: both; padding-left: 0;">
-            <li class="active">
-                <a href="{% url 'adminhome' %}">
-                    <span>Home</span>
-                </a>
-            </li>
-            <li class="active">
-                <a href="/EC_Admin/adminprofile">
-                    <span>Profile</span>
-                </a>
-            </li>
-            <li class="active">
-                <a href=" ">
-                    <span>Library</span>
-                </a>
-            </li>
-            <li class="active">
-                <a href=" ">
-                    <span>Tools</span>
-                </a>
-            </li>
-        </ul>  
+         <!--<span style="color: white">RIDA</span>-->
+            <img src="{% static 'images/logo.jpeg' %}" alt="Logo" width="100" height="45" style="margin-bottom: 10px; margin-left: 10px;">
+        </a>  
         <ul class="nav top-menu" style="display: flex; justify-content: flex-end;">
           <li id="alert_notificatoin_bar" class="dropdown" style="margin-left: auto;">  
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
 
                             <i class="icon-bell-l"></i>
                         </a>
-          <!-- <ul class="dropdown-menu extended notification">
-              <div class="notify-arrow notify-arrow-blue"></div>
-              <li>
-                <a href="#">See all notifications</a>
-              </li>
-            </ul>--> 
           </li>
-          <!-- alert notification end-->
-          <!-- user login dropdown start-->
-          <li class="dropdown" style="margin-left: auto;">
+          <li class="dropdown" style="margin-top: 10px; margin-right: 10px;">
               <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="profile-ava">
                                 <img alt="Image not found" height="33" width="33" src="{{image.url}}">
@@ -116,10 +84,7 @@
               </li>
             </ul>
           </li>
-          <!-- user login dropdown end -->
         </ul>
-        <!-- notificatoin dropdown end-->
-      <!--</div>-->
     <style>
         .active a {
             display: inline; /* Keep this as inline */
@@ -139,7 +104,7 @@
         <ul class="sidebar-menu">
           <style>
             #sidebar {
-              background-color: teal;
+              background-color: #20B2AA;
           }
             .active {
                 border-right: 1px solid white;
@@ -149,7 +114,44 @@
                 border-right: none;
             }
         </style>
-          <br>
+        <style>
+          .custom-ul {
+              display: flex;
+              clear: both;
+              padding-left: 0;
+          }
+          .custom-li {
+              border-right: 1px solid white;
+              padding: 0 10px;
+              border-bottom: 1px solid white;
+          }
+          .custom-li:last-child {
+              border-right: none;
+          }
+          .custom-li a {
+              color: white;
+              text-decoration: none;
+          }
+      </style>
+      <br>
+      <div class="custom-ul">
+          <div class="custom-li">
+              <a href="/EC_Admin/adminprofile">
+                  <span>Profile</span>
+              </a>
+          </div>
+          <div class="custom-li">
+              <a href=" ">
+                  <span>Library</span>
+              </a>
+          </div>
+          <div class="custom-li">
+              <a href=" ">
+                  <span>Tools</span>
+              </a>
+          </div>
+      </div>
+                                
           <li class="sub-menu">
             <a href="javascript:;" class="">
                           <i class="icon_document_alt"></i>
@@ -221,7 +223,7 @@
           position: fixed;
           right: 0;
           top: 0;
-          background-color: #800000; /* Change this to your desired color */
+          background-color: maroon;          
           overflow: auto;
       }
       #main-content {

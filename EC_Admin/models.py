@@ -62,14 +62,13 @@ class Project(models.Model):
     notary = models.FileField(upload_to='notaries/', blank=True, null=True)
     project_payment_plan = models.FileField(upload_to='project_payment_plans/', blank=True, null=True)
     invoice_number = models.CharField(max_length=200, blank=True, null=True)
-    #project_invoices = models.FileField(upload_to='project_invoices/',blank=True, null=True)
-    #invoice_amount = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
     additionals = models.FileField(upload_to='additionals/', blank=True, null=True)
     purchase_order = models.FileField(upload_to='purchase_orders/', blank=True, null=True)
     invoice = models.FileField(upload_to='invoices/', blank=True, null=True)
     receipt = models.FileField(upload_to='receipts/', blank=True, null=True)
     purchase_summary = models.FileField(upload_to='purchase_summaries/', blank=True, null=True)
     supplier_selection = models.FileField(upload_to='supplier_selections/', blank=True, null=True)
+    performance_monitoring = models.FileField(upload_to='performance_monitoring/', blank=True, null=True)
     supplier_classification = models.FileField(upload_to='supplier_classifications/', blank=True, null=True)
     partnerships_and_alliances = models.FileField(upload_to='partnerships_and_alliances/', blank=True, null=True)
     other = models.FileField(upload_to='others/', blank=True, null=True)
@@ -195,5 +194,3 @@ class EC_Admins(models.Model):
 
     def __str__(self):
         return self.ecadmin_id
-
-
