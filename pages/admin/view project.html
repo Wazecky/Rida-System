@@ -138,17 +138,41 @@
                                        </div>
                                                                                                                        
                                        <tr>
-                                           <th><strong>Site Plan</strong></th>
-                                           <th><strong>2D sketch</strong></th>
-                                           <th><strong>Hand Sketch</strong></th>
-                                           <th><strong>3D Sketch</strong></th>
-                                       </tr>
-                                       <tr>
-                                           <td>{% if project.ssite_plan %} <a href="{{ project.ssite_plan.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.sketch_2d %} <a href="{{ project.sketch_2d.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.hand_sketch %} <a href="{{ project.hand_sketch.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.sketch_2d %} <a href="{{ project.sketch_2d.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                       </tr>  
+                                        <th><strong>Site Plan</strong></th>
+                                        <th><strong>2D sketch</strong></th>
+                                        <th><strong>Hand Sketch</strong></th>
+                                        <th><strong>3D Sketch</strong></th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            {% for file in project.ssite_plans.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        <td>
+                                            {% for file in project.sketch_2ds.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        <td>
+                                            {% for file in project.hand_sketches.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        <td>
+                                            {% for file in project.sketch_3ds.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                    </tr>                                    
                                    </table>
                                    <table>
                                        <br>
@@ -164,12 +188,48 @@
                                            <th><strong>Garden</strong></th>
                                        </tr>
                                        <tr>
-                                           <td>{% if project.ceiling_design_inspiration %} <a href="{{ project.ceiling_design_inspiration.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.wall_design_inspiration %} <a href="{{ project.wall_design_inspiration.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.flooring_inspiration %} <a href="{{ project.flooring_inspiration.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.lighting_inspiration %} <a href="{{ project.lighting_inspiration.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.exterior_inspiration %} <a href="{{ project.exterior_inspiration.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.garden %} <a href="{{ project.garden.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                        <td>
+                                            {% for file in project.ceiling_design_inspiration.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        <td>
+                                            {% for file in project.wall_design_inspiration.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        <td>
+                                            {% for file in project.flooring_inspiration.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        <td>
+                                            {% for file in project.lighting_inspiration.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        <td>
+                                            {% for file in project.exterior_inspiration.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        <td>
+                                            {% for file in project.garden.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>                                        
                                        </tr>  
                                    </table>
                                    <table>
@@ -201,13 +261,55 @@
                                            <th><strong>3D ILLUSTRATIONS</strong></th>
                                        </tr>
                                        <tr>
-                                           <td>{% if project.site_plan %} <a href="{{ project.site_plan.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.master_plan %} <a href="{{ project.master_plan.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.floor_plan_2d %} <a href="{{ project.floor_plan_2d.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.elevations %} <a href="{{ project.elevations.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.section %} <a href="{{ project.section.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.detail_drawing %} <a href="{{ project.detail_drawing.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.illustrations_3d %} <a href="{{ project.illustrations_3d.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                        <td>
+                                            {% for file in project.site_plan.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        <td>
+                                            {% for file in project.master_plan.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        <td>
+                                            {% for file in project.floor_plan_2d.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        <td>
+                                            {% for file in project.elevations.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        <td>
+                                            {% for file in project.section.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        <td>
+                                            {% for file in project.detail_drawing.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        <td>
+                                            {% for file in project.illustrations_3d.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>                                        
                                        </tr>
                                    </table>                                    
                                    <table>
@@ -224,12 +326,48 @@
                                            <th><strong>DETAILING</strong></th>
                                        </tr>
                                        <tr>
-                                           <td>{% if project.earthworks_survey %} <a href="{{ project.earthworks_survey.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.geo_tech %} <a href="{{ project.geo_tech.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.roads %} <a href="{{ project.roads.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.hydolic_system %} <a href="{{ project.hydolic_system.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.structure %} <a href="{{ project.structure.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.detailing %} <a href="{{ project.detailing.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                        <td>
+                                            {% for file in project.earthworks_survey.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        <td>
+                                            {% for file in project.geo_tech.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        <td>
+                                            {% for file in project.roads.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        <td>
+                                            {% for file in project.hydolic_system.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        <td>
+                                            {% for file in project.structure.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        <td>
+                                            {% for file in project.detailing.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>                                        
                                        </tr>
                                    </table>                                   
                                    <table>
@@ -246,12 +384,48 @@
                                            <th><strong>SYSTEM SAFETY</strong></th>
                                        </tr>
                                        <tr>
-                                           <td>{% if project.water_system %} <a href="{{ project.water_system.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.electric %} <a href="{{ project.electric.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.elv_system %} <a href="{{ project.elv_system.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.hvac %} <a href="{{ project.hvac.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.elevation_system %} <a href="{{ project.elevation_system.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.system_safety %} <a href="{{ project.system_safety.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                        <td>
+                                            {% for file in project.water_system.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        <td>
+                                            {% for file in project.electric.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        <td>
+                                            {% for file in project.elv_system.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        <td>
+                                            {% for file in project.hvac.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        <td>
+                                            {% for file in project.elevation_system.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        <td>
+                                            {% for file in project.system_safety.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>                                        
                                        </tr>
                                    </table>                                    
                                    <table>
@@ -263,7 +437,13 @@
                                            <th><strong>INTERIOR DESIGN</strong></th>
                                        </tr>
                                        <tr>
-                                           <td>{% if project.interior_design %} <a href="{{ project.interior_design.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                        <td>
+                                            {% for file in project.interior_design.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>                                        
                                        </tr>
                                    </table>                                    
                                    <table>
@@ -275,7 +455,13 @@
                                            <th><strong>SOFT & HARD SCAPING</strong></th>
                                        </tr>
                                        <tr>
-                                           <td>{% if project.soft_hard_scaping %} <a href="{{ project.soft_hard_scaping.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                        <td>
+                                            {% for file in project.soft_hard_scaping.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>                                        
                                        </tr>  
                                    </table>
                                    <table>
@@ -290,10 +476,37 @@
                                            <th><strong>FINAL</strong></th>
                                        </tr>
                                        <tr>
-                                           <td>{% if project.bill_of_quantities %} <a href="{{ project.bill_of_quantities.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.quotation_summary %} <a href="{{ project.quotation_summary.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.client_review %} <a href="{{ project.client_review.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.final %} <a href="{{ project.final.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                        <td>
+                                            {% for file in project.bill_of_quantities.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        
+                                        <td>
+                                            {% for file in project.quotation_summary.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        
+                                        <td>
+                                            {% for file in project.client_review.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        
+                                        <td>
+                                            {% for file in project.final.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>                                        
                                        </tr>
                                    </table>
                                    <table>
@@ -309,11 +522,45 @@
                                            <th><strong>ADDITIONALS</strong></th>
                                        </tr>
                                        <tr>
-                                           <td>{% if project.contract %} <a href="{{ project.contract.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.notary %} <a href="{{ project.notary.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.project_payment_plan %} <a href="{{ project.project_payment_plan.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.project_invoices %} <a href="{{ project.project_invoices.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.additionals %} <a href="{{ project.additionals.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                        <td>
+                                            {% for file in project.contract.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        
+                                        <td>
+                                            {% for file in project.notary.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        
+                                        <td>
+                                            {% for file in project.project_payment_plan.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        
+                                        <td>
+                                            {% for file in project.project_invoices.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        
+                                        <td>
+                                            {% for file in project.additionals.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>                                        
                                        </tr>
                                    </table>
                                    <table>
@@ -328,10 +575,37 @@
                                            <th><strong>PURCHASE SUMMARY</strong></th>
                                        </tr>
                                        <tr>
-                                           <td>{% if project.purchase_order %} <a href="{{ project.purchase_order.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.invoice %} <a href="{{ project.invoice.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.receipt %} <a href="{{ project.receipt.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.purchase_summary %} <a href="{{ project.purchase_summary.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                        <td>
+                                            {% for file in project.purchase_order.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        
+                                        <td>
+                                            {% for file in project.invoice.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        
+                                        <td>
+                                            {% for file in project.receipt.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        
+                                        <td>
+                                            {% for file in project.purchase_summary.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>                                        
                                        </tr>
                                    </table>
                                    <table>
@@ -347,11 +621,45 @@
                                            <th><strong>CONTACT INFORMATION</strong></th>
                                        </tr>
                                        <tr>
-                                           <td>{% if project.supplier_selection %} <a href="{{ project.supplier_selection.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.supplier_classification %} <a href="{{ project.supplier_classification.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.partenerships_and_alliances %} <a href="{{ project.partenerships_and_alliances.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.other %} <a href="{{ project.other.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.contact_information %} <a href="{{ project.contact_information.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                        <td>
+                                            {% for file in project.supplier_selection.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        
+                                        <td>
+                                            {% for file in project.supplier_classification.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        
+                                        <td>
+                                            {% for file in project.partnerships_and_alliances.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        
+                                        <td>
+                                            {% for file in project.other.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        
+                                        <td>
+                                            {% for file in project.contract_information.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>                                        
                                        </tr>
                                    </table>
                                    <table>
@@ -385,8 +693,21 @@
                                        <tr>
                                            <td>{{ project.raw_material }}</td>
                                            <td>{{ project.construction_material }}</td>
-                                           <td>{% if project.interior_finishes %} <a href="{{ project.interior_finishes.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.exterior_finishes %} <a href="{{ project.exterior_finishes.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                           <td>
+                                            {% for file in project.interior_finishes.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        
+                                        <td>
+                                            {% for file in project.exterior_finishes.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>                                        
                                            <td>{{ project.landscaping_material }}</td>
                                            <td>{{ project.price_comparison}} </td>
                                        </tr>
@@ -406,12 +727,53 @@
                                            <th><strong>CASHFLOW REPORT</strong></th>
                                        </tr>
                                        <tr>
-                                           <td>{% if project.daily_cashflow %} <a href="{{ project.daily_cashflow.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.weekly_cashflow %} <a href="{{ project.weekly_cashflow.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.monthly_cashflow %} <a href="{{ project.monthly_cashflow.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.annual_cashflow %} <a href="{{ project.annual_cashflow.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.indirect_costs %} <a href="{{ project.indirect_costs.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.cashflow_report %} <a href="{{ project.cashflow_report.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
+                                        <td>
+                                            {% for file in project.daily_cashflow.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        
+                                        <td>
+                                            {% for file in project.weekly_cashflow.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        
+                                        <td>
+                                            {% for file in project.monthly_cashflow.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        
+                                        <td>
+                                            {% for file in project.annual_cashflow.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        
+                                        <td>
+                                            {% for file in project.indirect_costs.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        
+                                        <td>
+                                            {% for file in project.cashflow_report.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>                                        
                                        </tr>
                                    </table>
                                    <table>
@@ -427,12 +789,45 @@
                                            <th><strong>ACCOUNT PAYABLE</strong></th>
                                        </tr>
                                        <tr>
-                                           <td>{% if project.ppurchase_order %} <a href="{{ project.ppurchase_order.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.iinvoice %} <a href="{{ project.iinvoice.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.rreceipt %} <a href="{{ project.rreceipt.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.supplier %} <a href="{{ project.supplier.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                           <td>{% if project.account_payable %} <a href="{{ project.account_payable.url }}" download>Download File</a> {% else %} No File {% endif %}</td>
-                                     
+                                        <td>
+                                            {% for file in project.ppurchase_order.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        
+                                        <td>
+                                            {% for file in project.iinvoice.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        
+                                        <td>
+                                            {% for file in project.rreceipt.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        
+                                        <td>
+                                            {% for file in project.supplier.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>
+                                        
+                                        <td>
+                                            {% for file in project.account_payable.all %}
+                                                <a href="{{ file.file.url }}" download>Download File</a><br>
+                                            {% empty %}
+                                                No File
+                                            {% endfor %}
+                                        </td>                                                                            
                                        </tr>
                                    </table>
                                 </div>                          
@@ -444,7 +839,7 @@
                <div class="form-group">
                 <div class="col-lg-offset-2 col-lg-10">
                     {% for message in messages %}
-                        <h3 style="color: #893f45;"> {{message}} </h3>
+                        <h3 style="color: #893f45;">  {{ message}} </h3>
             
                         <form class="form-horizontal" method="post" action="view_project" id="ProjectCustomFilter">
                             {% csrf_token %}                       
@@ -453,7 +848,7 @@
                     {% endfor %}
                 </div>
             </div>
-            <strong>{{ message }}</strong>                       
+            <strong>{{project.project_name }} {{message }}</strong>                       
              </div>
          </section>
          

@@ -54,9 +54,9 @@
               <li class="eborder-top">
                 <a href="/EC_Admin/adminprofile"><i class="icon_profile"></i>Profile</a>
               </li>
-              <li>
+         <!--     <li>
                 <a href="/EC_Admin/achangepassword"><i class="icon_key_alt"></i> Change password</a>
-              </li>
+              </li>-->
                  <li>
                 <a href="/logout" style="background-color: #EBEBEB; color: black"><i class="arrow_right_alt"></i> Log Out</a>
               </li>
@@ -68,7 +68,7 @@
         <section class="wrapper">
           <div class="container my-4">
             <div class="row mx-auto">
-                <div class="card col-auto mx-auto my-4 text-center" style="width: 25rem; box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.15);">
+                <div class="card col-auto mx-auto my-4 text-center" style="width: 25rem; box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.15); background-color: #20B2AA;">
                     <img src="{% static 'images/realestate.png' %}" class="card-img-top mt-2" height="200" width="200" alt="Real Estate">
                     <div class="card-body">
                       <!--  <h5 class="card-title">REAL ESTATE</h5>-->
@@ -85,7 +85,7 @@
                     </div>
                 </div>
 
-                <div class="card col-auto mx-auto my-4 text-center" style="width: 25rem; box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.15);">
+                <div class="card col-auto mx-auto my-4 text-center" style="width: 25rem; box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.15); background-color: #20B2AA;">
                   <img src="{% static 'images/innovation.png' %}" class="card-img-top mt-2" height="200" width="200" alt="Image not found">
                   <div class="card-body">
                     <div class="panel-body">
@@ -96,7 +96,7 @@
                   </div>
               </div>
 
-              <div class="card col-auto mx-auto my-4 text-center" style="width: 25rem; box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.15);">
+              <div class="card col-auto mx-auto my-4 text-center" style="width: 25rem; box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.15); background-color: #20B2AA;">
                 <img src="{% static 'images/development.png' %}" class="card-img-top mt-2" height="200" width="200" alt="Image not found">
                 <div class="card-body">
                   <div class="panel-body">
@@ -107,7 +107,7 @@
                 </div>
             </div>
 
-                <div class="card col-auto mx-auto my-4 text-center" style="width: 25rem; box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.15);">
+                <div class="card col-auto mx-auto my-4 text-center" style="width: 25rem; box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.15); background-color: #20B2AA;">
                     <img src="{% static 'images/affiliate.png' %}" class="card-img-top mt-2" height="200" width="200" alt="Image not found">
                     <div class="card-body">
                       <div class="panel-body">
@@ -118,43 +118,13 @@
                     </div>
                 </div>
 
-                <div class="card col-auto mx-auto my-4 text-center" style="width: 15rem; box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.15);">
+                <div class="card col-auto mx-auto my-4 text-center" style="width: 15rem; box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.15); background-color: #20B2AA;">
                     <img src="{% static 'images/todolist.png' %}" class="card-img-top mt-2" height="70" width="200" alt="Image not found">
                     <div class="card-body">
                         <a style="background-color: #893f45;" href="/EC_Admin/todo_list" class="btn btn-primary btn-block">ToDo List</a>
                     </div>
                 </div>
             </div>
-
-          <!---  <div class="row mx-auto">
-                <div class="card col-auto mx-auto my-4 text-center" style="width: 25rem; box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.15);">
-                    <img src="{% static 'images/voting.png' %}" class="card-img-top mt-2" height="200" width="200" alt="Image not found">
-                    <div class="card-body">
-                        <h5 class="card-title">VOTING</h5>
-                        <a href="/EC_Admin/voting" class="btn btn-primary btn-block">Polling Booth</a>
-                    </div>
-                </div>
-
-                <div class="card col-auto mx-auto my-4 text-center" style="width: 25rem; box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.15);">
-                    <img src="{% static 'images/result.png' %}" class="card-img-top mt-2" height="200" width="200" alt="Image not found">
-                    <div class="card-body">
-                        <h5 class="card-title">RESULT & REPORT</h5>
-                        <a href="/EC_Admin/generateresult" class="btn btn-primary btn-block">Generate Result</a>
-                        <a href="/EC_Admin/viewresult" class="btn btn-primary btn-block">View Result</a>
-                        <a href="/EC_Admin/generatereport" class="btn btn-primary btn-block">Generate Report</a>
-                        <a href="/EC_Admin/viewreport" class="btn btn-primary btn-block">View Report</a>
-                    </div>
-                </div>
-
-                <div class="card col-auto mx-auto my-4 text-center" style="width: 25rem; box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.15);">
-                    <img src="{% static 'images/complain.png' %}" class="card-img-top mt-2" height="200" width="200" alt="Image not found">
-                    <div class="card-body">
-                        <h5 class="card-title">COMPLAIN</h5>
-                        <a href="/EC_Admin/viewcomplain" class="btn btn-primary btn-block">View Complain</a>
-                        <a href="/EC_Admin/replycomplain" class="btn btn-primary btn-block">Reply Complain</a>
-                    </div>
-                </div>
-            </div>-->
         </div>
         </section>
       </section>

@@ -137,16 +137,16 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <h5><b id="ssite_plan_label"></b></h5>
-                                    <input type="file" name="ssite_plan" class="form-control" value="{{ssite_plan}}">
+                                    <h5><b id="ssite_plans_label"></b></h5>
+                                    <input type="file" name="ssite_plans" class="form-control" value="{{ssite_plans}}" multiple>
                                 </td>
                                 <td>
-                                    <h5><b id="sketch_2d_label"></b></h5>
-                                    <input type="file" name="sketch_2d" class="form-control" value="{{sketch_2d}}">
+                                    <h5><b id="sketch_2ds_label"></b></h5>
+                                    <input type="file" name="sketch_2ds" class="form-control" value="{{sketch_2ds}}" multiple>
                                 </td>
                                 <td>
-                                    <h5><b id="hand_sketch_label"></b></h5>
-                                    <input type="file" name="hand_sketch" class="form-control" value="{{hand_sketch}}">
+                                    <h5><b id="hand_sketches_label"></b></h5>
+                                    <input type="file" name="hand_sketches" class="form-control" value="{{hand_sketches}}" multiple>
                                 </td>
                             </tr>
                             <tr>
@@ -154,8 +154,8 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <h5><b id="sketch_3d_label"></b></h5>
-                                    <input type="file" name="sketch_3d" class="form-control" value="{{sketch_3d}}">
+                                    <h5><b id="sketch_3ds_label"></b></h5>
+                                    <input type="file" name="sketch_3ds" class="form-control" value="{{sketch_3ds}}" multiple>
                                 </td>
                             </tr>
                         </table>
@@ -174,15 +174,15 @@
                             <tr>
                                 <td>
                                     <h5><b id="ceiling_design_inspiration_label"></b></h5>
-                                    <input type="file" name="ceiling_design_inspiration" class="form-control" value="{{ceiling_design_inspiration}}">
+                                    <input type="file" name="ceiling_design_inspiration" class="form-control" value="{{ceiling_design_inspiration}}" multiple>
                                 </td>
                                 <td>
                                     <h5><b id="wall_design_inspiration_label"></b></h5>
-                                    <input type="file" name="wall_design_inspiration" class="form-control" value="{{wall_design_inspiration}}">
+                                    <input type="file" name="wall_design_inspiration" class="form-control" value="{{wall_design_inspiration}}" multiple>
                                 </td>
                                 <td>
                                     <h5><b id="flooring_inspiration_label"></b></h5>
-                                    <input type="file" name="flooring_inspiration" class="form-control" value="{{flooring_inspiration}}">
+                                    <input type="file" name="flooring_inspiration" class="form-control" value="{{flooring_inspiration}}" multiple>
                                 </td>
                             </tr>
                             <tr>
@@ -193,15 +193,15 @@
                             <tr>
                                 <td>
                                     <h5><b id="lighting_inspiration_label"></b></h5>
-                                    <input type="file" name="lighting_inspiration" class="form-control" value="{{lighting_inspiration}}">
+                                    <input type="file" name="lighting_inspiration" class="form-control" value="{{lighting_inspiration}}" multiple>
                                 </td>
                                 <td>
                                     <h5><b id="exterior_inspiration_label"></b></h5>
-                                    <input type="file" name="exterior_inspiration" class="form-control" value="{{exterior_inspiration}}">
+                                    <input type="file" name="exterior_inspiration" class="form-control" value="{{exterior_inspiration}}" multiple>
                                 </td>
                                 <td>
                                     <h5><b id="garden_label"></b></h5>
-                                    <input type="file" name="garden" class="form-control" value="{{garden}}">
+                                    <input type="file" name="garden" class="form-control" value="{{garden}}" multiple>
                                 </td>
                             </tr>
                         </table>                        
@@ -216,7 +216,9 @@
                                 <th><b>Scope Of Work</b></th>
                             </tr>
                             <tr>
-                                <td><textarea class="form-control" name="scope_of_work" style="width:80%;">{{scope_of_work}}</textarea></td>
+                                <td>
+                                    <textarea class="form-control" name="scope_of_work" style="width:80%;">{{scope_of_work}}</textarea>
+                                </td>
                             </tr>
                         </table>                        
                     </div>
@@ -241,15 +243,15 @@
                             <tr>
                                 <td>
                                     <h5><b id="site_plan_label"></b></h5>
-                                    <input type="file" name="site_plan" class="form-control" value="{{site_plan}}">
+                                    <input type="file" name="site_plan" class="form-control" value="{{site_plan}}" multiple>
                                 </td>
                                 <td>
                                     <h5><b id="master_plan_label"></b></h5>
-                                    <input type="file" name="master_plan" class="form-control" value="{{master_plan}}">
+                                    <input type="file" name="master_plan" class="form-control" value="{{master_plan}}" multiple>
                                 </td>
                                 <td>
                                     <h5><b id="floor_plan_2d_label"></b></h5>
-                                    <input type="file" name="2d_floor_plan" class="form-control" value="{{2d_floor_plan}}">
+                                    <input type="file" name="floor_plan_2d" class="form-control" value="{{floor_plan_2d}}" multiple>
                                 </td>
                             </tr>
                             <tr>
@@ -260,15 +262,15 @@
                             <tr>
                                 <td>
                                     <h5><b id="elevations_label"></b></h5>
-                                    <input type="file" name="elevations" class="form-control" value="{{elevations}}">
+                                    <input type="file" name="elevations" class="form-control" value="{{elevations}}" multiple>
                                 </td>
                                 <td>
                                     <h5><b id="section_label"></b></h5>
-                                    <input type="file" name="section" class="form-control" value="{{section}}">
+                                    <input type="file" name="section" class="form-control" value="{{section}}" multiple>
                                 </td>
                                 <td>
                                     <h5><b id="detail_drawing_label"></b></h5>
-                                    <input type="file" name="detail_drawing" class="form-control" value="{{detail_drawing}}">
+                                    <input type="file" name="detail_drawing" class="form-control" value="{{detail_drawing}}" multiple>
                                 </td>
                             </tr>
                             <tr>
@@ -277,7 +279,7 @@
                             <tr>
                                 <td>
                                     <h5><b id="illustrations_3d_label"></b></h5>
-                                    <input type="file" name="3d_illustrations" class="form-control" value="{{3d_illustrations}}">
+                                    <input type="file" name="illustrations_3d" class="form-control" value="{{illustrations_3d}}" multiple>
                                 </td>
                             </tr>
                         </table>                        
@@ -296,15 +298,15 @@
                             <tr>
                                 <td>
                                     <h5><b id="earthworks_survey_label"></b></h5>
-                                    <input type="file" name="earthworks_survey" class="form-control" value="{{earthworks_survey}}">
+                                    <input type="file" name="earthworks_survey" class="form-control" value="{{earthworks_survey}}" multiple>
                                 </td>
                                 <td>
                                     <h5><b id="geo_tech_label"></b></h5>
-                                    <input type="file" name="geo-tech" class="form-control" value="{{geo_tech}}">
+                                    <input type="file" name="geo-tech" class="form-control" value="{{geo_tech}}" multiple>
                                 </td>
                                 <td>
                                     <h5><b id="roads_label"></b></h5>
-                                    <input type="file" name="roads" class="form-control" value="{{roads}}">
+                                    <input type="file" name="roads" class="form-control" value="{{roads}}" multiple>
                                 </td>
                             </tr>
                             <tr>
@@ -315,15 +317,15 @@
                             <tr>
                                 <td>
                                     <h5><b id="hydolic_system_label"></b></h5>
-                                    <input type="file" name="hydolic_system" class="form-control" value="{{hydolic_system}}">
+                                    <input type="file" name="hydolic_system" class="form-control" value="{{hydolic_system}}" multiple>
                                 </td>
                                 <td>
                                     <h5><b id="structure_label"></b></h5>
-                                    <input type="file" name="structure" class="form-control" value="{{structure}}">
+                                    <input type="file" name="structure" class="form-control" value="{{structure}}" multiple>
                                 </td>
                                 <td>
                                     <h5><b id="detailing_label"></b></h5>
-                                    <input type="file" name="detailing" class="form-control" value="{{detailing}}">
+                                    <input type="file" name="detailing" class="form-control" value="{{detailing}}" multiple>
                                 </td>
                             </tr>
                         </table>                        
@@ -342,15 +344,15 @@
                             <tr>
                                 <td>
                                     <h5><b id="water_system_label"></b></h5>
-                                    <input type="file" name="water_system" class="form-control">
+                                    <input type="file" name="water_system" class="form-control" multiple>
                                 </td>
                                 <td>
                                     <h5><b id="electric_label"></b></h5>
-                                    <input type="file" name="electric" class="form-control">
+                                    <input type="file" name="electric" class="form-control" multiple>
                                 </td>
                                 <td>
                                     <h5><b id="elv_system_label"></b></h5>
-                                    <input type="file" name="elv_system" class="form-control">
+                                    <input type="file" name="elv_system" class="form-control" multiple>
                                 </td>
                             </tr>
                             <tr>
@@ -361,15 +363,15 @@
                             <tr>
                                 <td>
                                     <h5><b id="hvac_label"></b></h5>
-                                    <input type="file" name="hvac" class="form-control">
+                                    <input type="file" name="hvac" class="form-control" multiple>
                                 </td>
                                 <td>
                                     <h5><b id="elevation_system_label"></b></h5>
-                                    <input type="file" name="elevation_system" class="form-control">
+                                    <input type="file" name="elevation_system" class="form-control" multiple>
                                 </td>
                                 <td>
                                     <h5><b id="system_safety_label"></b></h5>
-                                    <input type="file" name="system_safety" class="form-control">
+                                    <input type="file" name="system_safety" class="form-control" multiple>
                                 </td>
                             </tr>
                         </table>                        
@@ -383,7 +385,7 @@
                             <tr>
                                 <td>
                                     <h5><b id="interior_design_label"></b></h5>
-                                    <input type="file" name="interior_design" class="form-control">
+                                    <input type="file" name="interior_design" class="form-control" multiple>
                                 </td>
                             </tr>
                         </table>                        
@@ -397,7 +399,7 @@
                             <tr>
                                 <td>
                                     <h5><b id="soft_hard_scaping_label"></b></h5>
-                                    <input type="file" name="soft_hard_scaping" class="form-control">
+                                    <input type="file" name="soft_hard_scaping" class="form-control" multiple>
                                 </td>
                             </tr>
                         </table>                        
@@ -424,15 +426,15 @@
                             <tr>
                                 <td>
                                     <h5><b id="bill_of_quantities_label"></b></h5>
-                                    <input type="file" name="bill_of_quantities" class="form-control">
+                                    <input type="file" name="bill_of_quantities" class="form-control"multiple>
                                 </td>
                                 <td>
                                     <h5><b id="quotation_summary_label"></b></h5>
-                                    <input type="file" name="quotation_summary" class="form-control">
+                                    <input type="file" name="quotation_summary" class="form-control" multiple>
                                 </td>
                                 <td>
                                     <h5><b id="client_review_label"></b></h5>
-                                    <input type="file" name="client_review" class="form-control">
+                                    <input type="file" name="client_review" class="form-control"multiple>
                                 </td>
                             </tr>
                             <tr>
@@ -441,7 +443,7 @@
                             <tr>
                                 <td>
                                     <h5><b id="final_label"></b></h5>
-                                    <input type="file" name="final" class="form-control">
+                                    <input type="file" name="final" class="form-control" multiple>
                                 </td>
                             </tr>
                         </table>                        
@@ -460,15 +462,15 @@
                             <tr>
                                 <td>
                                     <h5><b id="contract_label"></b></h5>
-                                    <input type="file" name="contract" class="form-control">
+                                    <input type="file" name="contract" class="form-control" multiple>
                                 </td>
                                 <td>
                                     <h5><b id="notary_label"></b></h5>
-                                    <input type="file" name="notary" class="form-control">
+                                    <input type="file" name="notary" class="form-control" multiple>
                                 </td>
                                 <td>
                                     <h5><b id="project_payment_plan_label"></b></h5>
-                                    <input type="file" name="project_payment_plan" class="form-control">
+                                    <input type="file" name="project_payment_plan" class="form-control" multiple>
                                 </td>
                             </tr>
                             <tr>
@@ -478,11 +480,11 @@
                             <tr>
                                 <td>
                                     <h5><b id="project_invoices_label"></b></h5>
-                                    <input type="file" name="project_invoices" class="form-control">
+                                    <input type="file" name="project_invoices" class="form-control" multiple>
                                 </td>
                                 <td>
                                     <h5><b id="additionals_label"></b></h5>
-                                    <input type="file" name="additionals" class="form-control">
+                                    <input type="file" name="additionals" class="form-control" multiple>
                                 </td>
                             </tr>
                         </table>                        
@@ -499,6 +501,7 @@
                       <button type="button" class="collapsible inner"><h5><b>PURCHASES</b></h5></button>
                       <div class="content">
                         <h4><b>PROCUREMENT HUB/ Purchases</b></h4>
+                        <p style="color: red; font-size: 20px; font-weight: bold; text-align:center">Please download the templates using the links below, fill them, and then upload!</p>
                         <table>
                             <tr>
                                 <th><b>PURCHASE ORDER</b></th>
@@ -508,19 +511,19 @@
                             <tr>
                                 <td>
                                     <h5><b id="purchase_order_label"></b></h5>
-                                    <a href="path_to_purchase_order_template" download>Download Template</a>
-                                    <input type="file" name="purchase_order" class="form-control">
+                                    <a href="{% static 'files/Purchase Order.xlsx' %}" download>Download Purchase Order Template</a>
+                                    <input type="file" name="purchase_order" class="form-control" multiple>
                                 </td>
                                 <td>
                                     <h5><b id="invoice_label"></b></h5>
-                                    <a href="path_to_invoice_template" download>Download Template</a>
-                                    <input type="file" name="invoice" class="form-control">
+                                    <a href="{% static 'files/invoice.xlsx' %}" download>Download Invoice Template</a>
+                                    <input type="file" name="invoice" class="form-control" multiple>
                                 </td>
                                 <td>
                                     <h5><b id="receipt_label"></b></h5>
-                                    <a href="path_to_receipt_template" download>Download Template</a>
-                                    <input type="file" name="receipt" class="form-control">
-                                </td>
+                                    <a href="{% static 'files/receipt.xlsx' %}" download>Download Receipt Template</a>
+                                    <input type="file" name="receipt" class="form-control" multiple>
+                                </td>                                
                             </tr>                            
                             <tr>
                                 <th><b>PURCHASE SUMMARY</b></th>
@@ -528,7 +531,7 @@
                             <tr>
                                 <td>
                                     <h5><b id="purchase_summary_label"></b></h5>
-                                    <input type="file" name="purchase_summary" class="form-control">
+                                    <input type="file" name="purchase_summary" class="form-control" multiple>
                                 </td>
                             </tr>
                         </table>                        
@@ -547,15 +550,15 @@
                             <tr>
                                 <td>
                                     <h5><b id="supplier_selection_label"></b></h5>
-                                    <input type="file" name="supplier_selection" class="form-control">
+                                    <input type="file" name="supplier_selection" class="form-control" multiple>
                                 </td>
                                 <td>
                                     <h5><b id="performance_monitoring_label"></b></h5>
-                                    <input type="file" name="performance_monitoring" class="form-control">
+                                    <input type="file" name="performance_monitoring" class="form-control" multiple>
                                 </td>
                                 <td>
                                     <h5><b id="supplier_classification_label"></b></h5>
-                                    <input type="file" name="supplier_classification" class="form-control">
+                                    <input type="file" name="supplier_classification" class="form-control" multiple>
                                 </td>
                             </tr>
                             <tr>
@@ -566,15 +569,15 @@
                             <tr>
                                 <td>
                                     <h5><b id="partnerships_and_alliances_label"></b></h5>
-                                    <input type="file" name="partnerships_and_alliances" class="form-control">
+                                    <input type="file" name="partnerships_and_alliances" class="form-control" multiple>
                                 </td>
                                 <td>
                                     <h5><b id="other_label"></b></h5>
-                                    <input type="file" name="other" class="form-control">
+                                    <input type="file" name="other" class="form-control" multiple>
                                 </td>
                                 <td>
                                     <h5><b id="contact_information_label"></b></h5>
-                                    <input type="file" name="contact_information" class="form-control">
+                                    <input type="file" name="contact_information" class="form-control" multiple>
                                 </td>
                             </tr>
                         </table>                        
@@ -619,7 +622,7 @@
                                 <td><textarea name="construction_material" class="form-control">{{construction_material}}</textarea></td>
                                 <td>
                                     <h5><b id="interior_finishes_label"></b></h5>
-                                    <input type="file" name="interior_finishes" class="form-control">
+                                    <input type="file" name="interior_finishes" class="form-control" multiple>
                                 </td>
                             </tr>
                             <tr>
@@ -630,7 +633,7 @@
                             <tr>
                                 <td>
                                     <h5><b id="exterior_finishes_label"></b></h5>
-                                    <input type="file" name="exterior_finishes" class="form-control">
+                                    <input type="file" name="exterior_finishes" class="form-control" multiple>
                                 </td>
                                 <td><textarea name="landscaping_material" class="form-control">{{landscaping_material}}</textarea></td>
                                 <td><textarea name="price_comparison" class="form-control">{{price_comparison}}</textarea></td>
@@ -658,15 +661,15 @@
                             <tr>
                                 <td>
                                     <h5><b id="daily_cashflow_label"></b></h5>
-                                    <input type="file" name="daily_cashflow" class="form-control">
+                                    <input type="file" name="daily_cashflow" class="form-control" multiple>
                                 </td>
                                 <td>
                                     <h5><b id="weekly_cashflow_label"></b></h5>
-                                    <input type="file" name="weekly_cashflow" class="form-control">
+                                    <input type="file" name="weekly_cashflow" class="form-control"multiple>
                                 </td>
                                 <td>
                                     <h5><b id="monthly_cashflow_label"></b></h5>
-                                    <input type="file" name="monthly_cashflow" class="form-control">
+                                    <input type="file" name="monthly_cashflow" class="form-control" multiple>
                                 </td>
                             </tr>
                             <tr>
@@ -677,15 +680,15 @@
                             <tr>
                                 <td>
                                     <h5><b id="annual_cashflow_label"></b></h5>
-                                    <input type="file" name="annual_cashflow" class="form-control">
+                                    <input type="file" name="annual_cashflow" class="form-control" multiple>
                                 </td>
                                 <td>
                                     <h5><b id="indirect_costs_label"></b></h5>
-                                    <input type="file" name="indirect_costs" class="form-control">
+                                    <input type="file" name="indirect_costs" class="form-control" multiple>
                                 </td>
                                 <td>
                                     <h5><b id="cashflow_report_label"></b></h5>
-                                    <input type="file" name="cashflow_report" class="form-control">
+                                    <input type="file" name="cashflow_report" class="form-control" multiple>
                                 </td> 
                             </tr>
                         </table>                        
@@ -695,7 +698,7 @@
                       <button type="button" class="collapsible inner"><h5><b>PROJECT INVENTORY</b></h5></button>
                       <div class="content">
                         <h4><b>PROJECT BUDGET/ Project Inventory</b></h4>
-                        <p style="color: blue; font-size: 20px; font-weight: bold; text-align:center">Please download the templates using the links below, fill them, and then upload them:</p>
+                        <p style="color: red; font-size: 20px; font-weight: bold; text-align:center">Please download the templates using the links below, fill them, and then upload!</p>
                         <table>
                             <tr>
                                 <th><b>PURCHASE ORDER</b></th>
@@ -703,21 +706,21 @@
                                 <th><b>RECEIPT</b></th>
                             </tr>
                             <tr>
-                                <td>
-                                    <h5><b id="purchase_order_label"></b></h5>
-                                    <a href="" download>Download Template</a>
-                                    <input type="file" name="purchase_order" class="form-control">
-                                </td>
-                                <td>
-                                    <h5><b id="invoice_label"></b></h5>
-                                    <a href="" download>Download Template</a>
-                                    <input type="file" name="invoice" class="form-control">
-                                </td>
-                                <td>
-                                    <h5><b id="receipt_label"></b></h5>
-                                    <a href="" download>Download Template</a>
-                                    <input type="file" name="receipt" class="form-control">
-                                </td>
+                                    <td>
+                                        <h5><b id="ppurchase_order_label"></b></h5>
+                                        <a href="{% static 'files/Purchase Order.xlsx' %}" download>Download Purchase Order Template</a>
+                                        <input type="file" name="purchase_order" class="form-control" multiple>
+                                    </td>
+                                    <td>
+                                        <h5><b id="iinvoice_label"></b></h5>
+                                        <a href="{% static 'files/invoice.xlsx' %}" download>Download Invoice Template</a>
+                                        <input type="file" name="invoice" class="form-control" multiple>
+                                    </td>
+                                    <td>
+                                        <h5><b id="rreceipt_label"></b></h5>
+                                        <a href="{% static 'files/receipt.xlsx' %}" download>Download Receipt Template</a>
+                                        <input type="file" name="receipt" class="form-control" multiple>
+                                    </td>
                             </tr>                            
                                 <th><b>SUPPLIER</b></th>
                                 <th><b>ACCOUNT PAYABLE</b></th>
@@ -725,11 +728,11 @@
                             <tr>
                                 <td>
                                     <h5><b id="supplier_label"></b></h5>
-                                    <input type="file" name="supplier" class="form-control">
+                                    <input type="file" name="supplier" class="form-control" multiple>
                                 </td>
                                 <td>
                                     <h5><b id="account_payable_label"></b></h5>
-                                    <input type="file" name="account_payable" class="form-control">
+                                    <input type="file" name="account_payable" class="form-control" multiple>
                                 </td> 
                             </tr>
                         </table>                        
@@ -829,10 +832,10 @@
         </script>                
         <script>
                 var files = {
-                    ssite_plan: "{{ssite_plan}}",
-                    sketch_2d: "{{sketch_2d}}",
-                    hand_sketch: "{{hand_sketch}}",
-                    sketch_3d: "{{sketch_3d}}",
+                    ssite_plans: "{{ssite_plans}}",
+                    sketch_2ds: "{{sketch_2ds}}",
+                    hand_sketches: "{{hand_sketches}}",
+                    sketch_3ds: "{{sketch_3ds}}",
                     ceiling_design_inspiration: "{{ceiling_design_inspiration}}",
                     wall_design_inspiration: "{{wall_design_inspiration}}",
                     flooring_inspiration: "{{flooring_inspiration}}",

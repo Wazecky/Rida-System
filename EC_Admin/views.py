@@ -9,7 +9,7 @@ from .models import EC_Admins
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 import itertools
-from .models import Project, Brand1, Brand2, Brand3, Brand4, Task
+from .models import Project, Brand1, Brand2, Brand3, Brand4, Task, File
 
 
 # Create your views here.
@@ -60,77 +60,6 @@ def add_project(request):
         start_date = request.POST.get('start_date') 
         end_date = request.POST.get('end_date') 
         comments = request.POST.get('comments')
-        ssite_plan = request.FILES.get('ssite_plan')
-        sketch_2d = request.FILES.get('sketch_2d')
-        hand_sketch = request.FILES.get('hand_sketch')
-        sketch_3d = request.FILES.get('sketch_3d')
-        ceiling_design_inspiration = request.FILES.get('ceiling_design_inspiration')
-        wall_design_inspiration = request.FILES.get('wall_design_inspiration')
-        flooring_inspiration = request.FILES.get('flooring_inspiration')
-        lighting_inspiration = request.FILES.get('lighting_inspiration')
-        exterior_inspiration = request.FILES.get('exterior_inspiration')
-        garden = request.FILES.get('garden')
-        scope_of_work = request.POST.get('scope_of_work')
-        site_plan = request.FILES.get('site_plan')
-        master_plan = request.FILES.get('master_plan')
-        floor_plan_2d = request.FILES.get('floor_plan_2d')
-        elevations = request.FILES.get('elevations')
-        section = request.FILES.get('section')
-        detail_drawing = request.FILES.get('detail_drawing')
-        illustrations_3d = request.FILES.get('illustrations_3d')
-        earthworks_survey = request.FILES.get('earthworks_survey')
-        geo_tech = request.FILES.get('geo-tech')
-        roads = request.FILES.get('roads')
-        hydolic_system = request.FILES.get('hydolic_system')
-        structure = request.FILES.get('structure')
-        detailing = request.FILES.get('detailing')
-        water_system = request.FILES.get('water_system')
-        electric = request.FILES.get('electric')
-        elv_system = request.FILES.get('elv_system')
-        hvac = request.FILES.get('hvac')
-        elevation_system = request.FILES.get('elevation_system')
-        system_safety = request.FILES.get('system_safety')
-        interior_design = request.FILES.get('interior_design')
-        soft_hard_scaping = request.FILES.get('soft_hard_scaping')
-        bill_of_quantities = request.FILES.get('bill_of_quantities')
-        quotation_summary = request.FILES.get('quotation_summary')
-        client_review = request.FILES.get('client_review')
-        final = request.FILES.get('final')
-        contract = request.FILES.get('contract')
-        notary = request.FILES.get('notary')
-        project_payment_plan = request.FILES.get('project_payment_plan')
-        invoice_number = request.POST.get('invoice_number')
-        additionals = request.FILES.get('additionals')
-        purchase_order = request.FILES.get('purchase_order')
-        invoice = request.FILES.get('invoice')
-        receipt = request.FILES.get('receipt')
-        purchase_summary = request.FILES.get('purchase_summary')
-        supplier_selection = request.FILES.get('supplier_selection')
-        performance_monitoring = request.FILES.get('performance_monitoring')
-        supplier_classification = request.FILES.get('supplier_classification')
-        partnerships_and_alliances = request.FILES.get('partenerships_and_alliances')
-        other = request.FILES.get('other')
-        contact_information = request.FILES.get('contact_information')
-        construction_material = request.POST.get('construction_material')
-        equipment = request.POST.get('equipment')
-        tools = request.POST.get('tools')
-        other_material = request.POST.get('other_material')
-        raw_material = request.POST.get('raw_material')
-        interior_finishes = request.FILES.get('interior_finishes')
-        exterior_finishes = request.FILES.get('exterior_finishes')
-        landscaping_material = request.POST.get('landscaping_material')
-        price_comparison = request.POST.get('price_comparison')
-        daily_cashflow = request.FILES.get('daily_cashflow')
-        weekly_cashflow = request.FILES.get('weekly_cashflow')
-        monthly_cashflow = request.FILES.get('monthly_cashflow')
-        annual_cashflow = request.FILES.get('annual_cashflow')
-        indirect_costs = request.FILES.get('indirect_costs')
-        cashflow_report = request.FILES.get('cashflow_report')
-        ppurchase_order = request.FILES.get('ppurchase_order')
-        iinvoice = request.FILES.get('iinvoice')
-        rreceipt = request.FILES.get('rreceipt')
-        supplier = request.FILES.get('supplier')
-        account_payable = request.FILES.get('account_payable')
         if Project.objects.filter(project_id=project_id).exists():
             messages.info(request, 'A project with this id already exists.')
             return render(request, 'admin/addproject.html', {'username': adminhome.username, 'image': adminhome.adminimage})
@@ -141,77 +70,6 @@ def add_project(request):
             start_date=start_date, 
             end_date=end_date,  
             comments=comments,
-            ssite_plan=ssite_plan,
-            sketch_2d=sketch_2d,
-            hand_sketch=hand_sketch,
-            sketch_3d=sketch_3d,
-            ceiling_design_inspiration=ceiling_design_inspiration,
-            wall_design_inspiration=wall_design_inspiration,
-            flooring_inspiration=flooring_inspiration,
-            lighting_inspiration=lighting_inspiration,
-            exterior_inspiration=exterior_inspiration,
-            garden=garden,
-            scope_of_work=scope_of_work,
-            site_plan=site_plan,
-            master_plan=master_plan,
-            floor_plan_2d=floor_plan_2d,
-            elevations=elevations,
-            section=section,
-            detail_drawing=detail_drawing,
-            illustrations_3d=illustrations_3d,
-            earthworks_survey=earthworks_survey,
-            geo_tech=geo_tech,
-            roads=roads,
-            hydolic_system=hydolic_system,
-            structure=structure,
-            detailing=detailing,
-            water_system=water_system,
-            electric=electric,
-            elv_system=elv_system,
-            hvac=hvac,
-            elevation_system=elevation_system,
-            system_safety=system_safety,
-            interior_design=interior_design,
-            soft_hard_scaping=soft_hard_scaping,
-            bill_of_quantities=bill_of_quantities,
-            quotation_summary=quotation_summary,
-            client_review=client_review,
-            final=final,
-            contract=contract,
-            notary=notary,
-            project_payment_plan=project_payment_plan,
-            invoice_number=invoice_number,
-            additionals=additionals,
-            purchase_order=purchase_order,
-            invoice=invoice,
-            receipt=receipt,
-            purchase_summary=purchase_summary,
-            supplier_selection=supplier_selection,
-            performance_monitoring = performance_monitoring,
-            supplier_classification=supplier_classification,
-            partnerships_and_alliances=partnerships_and_alliances,
-            other=other,
-            contact_information=contact_information,
-            construction_material=construction_material,
-            equipment=equipment,
-            tools=tools,
-            other_material=other_material,
-            raw_material=raw_material,
-            interior_finishes=interior_finishes,
-            exterior_finishes=exterior_finishes,
-            landscaping_material=landscaping_material,
-            price_comparison=price_comparison,
-            daily_cashflow=daily_cashflow,
-            weekly_cashflow=weekly_cashflow,
-            monthly_cashflow=monthly_cashflow,
-            annual_cashflow=annual_cashflow,
-            indirect_costs=indirect_costs,
-            cashflow_report=cashflow_report,
-            ppurchase_order=ppurchase_order, 
-            iinvoice=iinvoice,
-            rreceipt=rreceipt,
-            supplier=supplier,
-            account_payable=account_payable,
         )
         new_project.save()
         messages.info(request, 'New project added, view details!')
@@ -231,69 +89,70 @@ def edit_project(request):
             project_id = request.POST['project_id']
             if Project.objects.filter(project_id=project_id):
                 project = Project.objects.get(project_id=project_id)
-                ssite_plan = os.path.basename(project.ssite_plan.name) if project.ssite_plan else "No File"                
-                sketch_2d = os.path.basename(project.sketch_2d.name) if project.sketch_2d else "No File"
-                hand_sketch = os.path.basename(project.hand_sketch.name) if project.hand_sketch else "No File"                
-                sketch_3d = os.path.basename(project.sketch_3d.name) if project.sketch_3d else "No File"                
-                ceiling_design_inspiration = os.path.basename(project.ceiling_design_inspiration.name) if project.ceiling_design_inspiration else "No File"
-                wall_design_inspiration = os.path.basename(project.wall_design_inspiration.name) if project.wall_design_inspiration else "No File"                
-                flooring_inspiration = os.path.basename(project.flooring_inspiration.name) if project.flooring_inspiration else "No File"
-                lighting_inspiration = os.path.basename(project.lighting_inspiration.name) if project.lighting_inspiration else "No File"                
-                exterior_inspiration = os.path.basename(project.exterior_inspiration.name) if project.exterior_inspiration else "No File"
-                garden = os.path.basename(project.garden.name) if project.garden else "No File"                
-                site_plan = os.path.basename(project.site_plan.name) if project.site_plan else "No File"
-                master_plan = os.path.basename(project.master_plan.name) if project.master_plan else "No File"                
-                floor_plan_2d = os.path.basename(project.floor_plan_2d.name) if project.floor_plan_2d else "No File"
-                elevations = os.path.basename(project.elevations.name) if project.elevations else "No File"                
-                section = os.path.basename(project.section.name) if project.section else "No File"
-                detail_drawing = os.path.basename(project.detail_drawing.name) if project.detail_drawing else "No File"               
-                illustrations_3d = os.path.basename(project.illustrations_3d.name) if project.illustrations_3d else "No File"
-                earthworks_survey = os.path.basename(project.earthworks_survey.name) if project.earthworks_survey else "No File"                
-                geo_tech = os.path.basename(project.geo_tech.name) if project.geo_tech else "No File"
-                roads = os.path.basename(project.roads.name) if project.roads else "No File"                
-                hydolic_system = os.path.basename(project.hydolic_system.name) if project.hydolic_system else "No File"
-                structure = os.path.basename(project.structure.name) if project.structure else "No File"                
-                detailing = os.path.basename(project.detailing.name) if project.detailing else "No File"
-                water_system = os.path.basename(project.water_system.name) if project.water_system else "No File"                
-                electric = os.path.basename(project.electric.name) if project.electric else "No File"
-                elv_system = os.path.basename(project.elv_system.name) if project.elv_system else "No File"                
-                hvac = os.path.basename(project.hvac.name) if project.hvac else "No File"
-                elevation_system = os.path.basename(project.elevation_system.name) if project.elevation_system else "No File"                
-                system_safety = os.path.basename(project.system_safety.name) if project.system_safety else "No File"
-                interior_design = os.path.basename(project.interior_design.name) if project.interior_design else "No File"                
-                soft_hard_scaping = os.path.basename(project.soft_hard_scaping.name) if project.soft_hard_scaping else "No File"
-                bill_of_quantities = os.path.basename(project.bill_of_quantities.name) if project.bill_of_quantities else "No File"                
-                quotation_summary = os.path.basename(project.quotation_summary.name) if project.quotation_summary else "No File"
-                client_review = os.path.basename(project.client_review.name) if project.client_review else "No File"                
-                final = os.path.basename(project.final.name) if project.final else "No File"
-                contract = os.path.basename(project.contract.name) if project.contract else "No File"                
-                notary = os.path.basename(project.notary.name) if project.notary else "No File"
-                project_payment_plan = os.path.basename(project.project_payment_plan.name) if project.project_payment_plan else "No File"                
-                additionals = os.path.basename(project.additionals.name) if project.additionals else "No File"
-                purchase_order = os.path.basename(project.purchase_order.name) if project.purchase_order else "No File"                
-                invoice = os.path.basename(project.invoice.name) if project.invoice else "No File"
-                receipt = os.path.basename(project.receipt.name) if project.receipt else "No File"                
-                purchase_summary = os.path.basename(project.purchase_summary.name) if project.purchase_summary else "No File"
-                supplier_selection = os.path.basename(project.supplier_selection.name) if project.supplier_selection else "No File"
-                performance_monitoring = os.path.basename(project.performance_monitoring.name) if project.performance_monitoring else "No File"               
-                supplier_classification = os.path.basename(project.supplier_classification.name) if project.supplier_classification else "No File"
-                partnerships_and_alliances = os.path.basename(project.partnerships_and_alliances.name) if project.partnerships_and_alliances else "No File"                
-                other = os.path.basename(project.other.name) if project.other else "No File"
-                contact_information = os.path.basename(project.contact_information.name) if project.contact_information else "No File"                
-                interior_finishes = os.path.basename(project.interior_finishes.name) if project.interior_finishes else "No File"
-                exterior_finishes = os.path.basename(project.exterior_finishes.name) if project.exterior_finishes else "No File"                
-                daily_cashflow = os.path.basename(project.daily_cashflow.name) if project.daily_cashflow else "No File"
-                weekly_cashflow = os.path.basename(project.weekly_cashflow.name) if project.weekly_cashflow else "No File"                
-                monthly_cashflow = os.path.basename(project.monthly_cashflow.name) if project.monthly_cashflow else "No File"
-                annual_cashflow = os.path.basename(project.annual_cashflow.name) if project.annual_cashflow else "No File"                
-                indirect_costs = os.path.basename(project.indirect_costs.name) if project.indirect_costs else "No File"
-                cashflow_report = os.path.basename(project.cashflow_report.name) if project.cashflow_report else "No File"                
-                ppurchase_order = os.path.basename(project.ppurchase_order.name) if project.ppurchase_order else "No File"
-                iinvoice = os.path.basename(project.iinvoice.name) if project.iinvoice else "No File"                
-                rreceipt = os.path.basename(project.rreceipt.name) if project.rreceipt else "No File"
-                supplier = os.path.basename(project.supplier.name) if project.supplier else "No File"
-                account_payable = os.path.basename(project.account_payable.name) if project.account_payable else "No File" 
-                return render(request, 'admin/edit projectdetails.html', {'project_id': project.project_id,'project_name': project.project_name, 'start_date': project.start_date, 'end_date': project.end_date, 'comments': project.comments, 'project_category': project.project_category, 'ssite_plan': ssite_plan, 'sketch_2d': sketch_2d, 'hand_sketch': hand_sketch, 'sketch_3d': sketch_3d, 'ceiling_design_inspiration': ceiling_design_inspiration, 'wall_design_inspiration': wall_design_inspiration, 'flooring_inspiration': flooring_inspiration, 'lighting_inspiration': lighting_inspiration, 'exterior_inspiration': exterior_inspiration, 'garden': garden, 'site_plan': site_plan, 'master_plan': master_plan, 'floor_plan_2d': floor_plan_2d, 'elevations': elevations, 'section': section, 'detail_drawing': detail_drawing, 'illustrations_3d': illustrations_3d, 'earthworks_survey': earthworks_survey, 'geo_tech': geo_tech, 'roads': roads, 'hydolic_system': hydolic_system, 'structure': structure, 'detailing': detailing, 'water_system': water_system, 'electric': electric, 'elv_system': elv_system, 'hvac': hvac, 'elevation_system': elevation_system, 'system_safety': system_safety, 'interior_design': interior_design, 'soft_hard_scaping': soft_hard_scaping, 'bill_of_quantities': bill_of_quantities, 'quotation_summary': quotation_summary, 'client_review': client_review, 'final': final, 'contract': contract, 'notary': notary, 'project_payment_plan': project_payment_plan, 'additionals': additionals, 'purchase_order': purchase_order, 'invoice': invoice, 'receipt': receipt, 'purchase_summary': purchase_summary, 'supplier_selection': supplier_selection, 'performance_monitoring': performance_monitoring, 'supplier_classification': supplier_classification, 'partnerships_and_alliances': partnerships_and_alliances, 'other': other, 'contact_information': contact_information, 'interior_finishes': interior_finishes, 'exterior_finishes': exterior_finishes, 'daily_cashflow': daily_cashflow, 'weekly_cashflow': weekly_cashflow, 'monthly_cashflow': monthly_cashflow, 'annual_cashflow': annual_cashflow, 'indirect_costs': indirect_costs, 'cashflow_report': cashflow_report, 'ppurchase_order': ppurchase_order, 'iinvoice':iinvoice, 'rreceipt': rreceipt, 'supplier': supplier, 'account_payable': account_payable, 'username': adminhome.username, 'image': adminhome.adminimage})
+                ssite_plans = [os.path.basename(file.file.name) for file in project.ssite_plans.all()] if project.ssite_plans.exists() else ["No File"]
+                sketch_2ds = [os.path.basename(file.file.name) for file in project.sketch_2ds.all()] if project.sketch_2ds.exists() else ["No File"]
+                hand_sketches = [os.path.basename(file.file.name) for file in project.hand_sketches.all()] if project.hand_sketches.exists() else ["No File"]
+                sketch_3ds = [os.path.basename(file.file.name) for file in project.sketch_3ds.all()] if project.sketch_3ds.exists() else ["No File"]               
+                ceiling_design_inspiration = [os.path.basename(file.file.name) for file in project.ceiling_design_inspiration.all()] if project.ceiling_design_inspiration.exists() else ["No File"]
+                wall_design_inspiration = [os.path.basename(file.file.name) for file in project.wall_design_inspiration.all()] if project.wall_design_inspiration.exists() else ["No File"]
+                flooring_inspiration = [os.path.basename(file.file.name) for file in project.flooring_inspiration.all()] if project.flooring_inspiration.exists() else ["No File"]
+                lighting_inspiration = [os.path.basename(file.file.name) for file in project.lighting_inspiration.all()] if project.lighting_inspiration.exists() else ["No File"]
+                exterior_inspiration = [os.path.basename(file.file.name) for file in project.exterior_inspiration.all()] if project.exterior_inspiration.exists() else ["No File"]
+                garden = [os.path.basename(file.file.name) for file in project.garden.all()] if project.garden.exists() else ["No File"]
+                site_plan = [os.path.basename(file.file.name) for file in project.site_plan.all()] if project.site_plan.exists() else ["No File"]
+                master_plan = [os.path.basename(file.file.name) for file in project.master_plan.all()] if project.master_plan.exists() else ["No File"]
+                floor_plan_2d = [os.path.basename(file.file.name) for file in project.floor_plan_2d.all()] if project.floor_plan_2d.exists() else ["No File"]
+                elevations = [os.path.basename(file.file.name) for file in project.elevations.all()] if project.elevations.exists() else ["No File"]
+                section = [os.path.basename(file.file.name) for file in project.section.all()] if project.section.exists() else ["No File"]
+                detail_drawing = [os.path.basename(file.file.name) for file in project.detail_drawing.all()] if project.detail_drawing.exists() else ["No File"]
+                illustrations_3d = [os.path.basename(file.file.name) for file in project.illustrations_3d.all()] if project.illustrations_3d.exists() else ["No File"]
+                earthworks_survey = [os.path.basename(file.file.name) for file in project.earthworks_survey.all()] if project.earthworks_survey.exists() else ["No File"]
+                geo_tech = [os.path.basename(file.file.name) for file in project.geo_tech.all()] if project.geo_tech.exists() else ["No File"]
+                roads = [os.path.basename(file.file.name) for file in project.roads.all()] if project.roads.exists() else ["No File"]
+                hydolic_system = [os.path.basename(file.file.name) for file in project.hydolic_system.all()] if project.hydolic_system.exists() else ["No File"]
+                structure = [os.path.basename(file.file.name) for file in project.structure.all()] if project.structure.exists() else ["No File"]
+                detailing = [os.path.basename(file.file.name) for file in project.detailing.all()] if project.detailing.exists() else ["No File"]
+                water_system = [os.path.basename(file.file.name) for file in project.water_system.all()] if project.water_system.exists() else ["No File"]
+                electric = [os.path.basename(file.file.name) for file in project.electric.all()] if project.electric.exists() else ["No File"]
+                elv_system = [os.path.basename(file.file.name) for file in project.elv_system.all()] if project.elv_system.exists() else ["No File"]
+                hvac = [os.path.basename(file.file.name) for file in project.hvac.all()] if project.hvac.exists() else ["No File"]
+                elevation_system = [os.path.basename(file.file.name) for file in project.elevation_system.all()] if project.elevation_system.exists() else ["No File"]
+                system_safety = [os.path.basename(file.file.name) for file in project.system_safety.all()] if project.system_safety.exists() else ["No File"]
+                interior_design = [os.path.basename(file.file.name) for file in project.interior_design.all()] if project.interior_design.exists() else ["No File"]                
+                soft_hard_scaping = [os.path.basename(file.file.name) for file in project.soft_hard_scaping.all()] if project.soft_hard_scaping.exists() else ["No File"]
+                bill_of_quantities = [os.path.basename(file.file.name) for file in project.bill_of_quantities.all()] if project.bill_of_quantities.exists() else ["No File"]
+                quotation_summary = [os.path.basename(file.file.name) for file in project.quotation_summary.all()] if project.quotation_summary.exists() else ["No File"]
+                client_review = [os.path.basename(file.file.name) for file in project.client_review.all()] if project.client_review.exists() else ["No File"]
+                final = [os.path.basename(file.file.name) for file in project.final.all()] if project.final.exists() else ["No File"]
+                contract = [os.path.basename(file.file.name) for file in project.contract.all()] if project.contract.exists() else ["No File"]
+                notary = [os.path.basename(file.file.name) for file in project.notary.all()] if project.notary.exists() else ["No File"]
+                project_payment_plan = [os.path.basename(file.file.name) for file in project.project_payment_plan.all()] if project.project_payment_plan.exists() else ["No File"]
+                additionals = [os.path.basename(file.file.name) for file in project.additionals.all()] if project.additionals.exists() else ["No File"]
+                purchase_order = [os.path.basename(file.file.name) for file in project.purchase_order.all()] if project.purchase_order.exists() else ["No File"]
+                invoice = [os.path.basename(file.file.name) for file in project.invoice.all()] if project.invoice.exists() else ["No File"]
+                receipt = [os.path.basename(file.file.name) for file in project.receipt.all()] if project.receipt.exists() else ["No File"]
+                purchase_summary = [os.path.basename(file.file.name) for file in project.purchase_summary.all()] if project.purchase_summary.exists() else ["No File"]
+                supplier_selection = [os.path.basename(file.file.name) for file in project.supplier_selection.all()] if project.supplier_selection.exists() else ["No File"]
+                performance_monitoring = [os.path.basename(file.file.name) for file in project.performance_monitoring.all()] if project.performance_monitoring.exists() else ["No File"]
+                supplier_classification = [os.path.basename(file.file.name) for file in project.supplier_classification.all()] if project.supplier_classification.exists() else ["No File"]
+                partnerships_and_alliances = [os.path.basename(file.file.name) for file in project.partnerships_and_alliances.all()] if project.partnerships_and_alliances.exists() else ["No File"]
+                other = [os.path.basename(file.file.name) for file in project.other.all()] if project.other.exists() else ["No File"]
+                contact_information = [os.path.basename(file.file.name) for file in project.contact_information.all()] if project.contact_information.exists() else ["No File"]
+                interior_finishes = [os.path.basename(file.file.name) for file in project.interior_finishes.all()] if project.interior_finishes.exists() else ["No File"]
+                exterior_finishes = [os.path.basename(file.file.name) for file in project.exterior_finishes.all()] if project.exterior_finishes.exists() else ["No File"]
+                daily_cashflow = [os.path.basename(file.file.name) for file in project.daily_cashflow.all()] if project.daily_cashflow.exists() else ["No File"]
+                weekly_cashflow = [os.path.basename(file.file.name) for file in project.weekly_cashflow.all()] if project.weekly_cashflow.exists() else ["No File"]
+                monthly_cashflow = [os.path.basename(file.file.name) for file in project.monthly_cashflow.all()] if project.monthly_cashflow.exists() else ["No File"]
+                annual_cashflow = [os.path.basename(file.file.name) for file in project.annual_cashflow.all()] if project.annual_cashflow.exists() else ["No File"]
+                indirect_costs = [os.path.basename(file.file.name) for file in project.indirect_costs.all()] if project.indirect_costs.exists() else ["No File"]
+                cashflow_report = [os.path.basename(file.file.name) for file in project.cashflow_report.all()] if project.cashflow_report.exists() else ["No File"]
+                ppurchase_order = [os.path.basename(file.file.name) for file in project.ppurchase_order.all()] if project.ppurchase_order.exists() else ["No File"]
+                iinvoice = [os.path.basename(file.file.name) for file in project.iinvoice.all()] if project.iinvoice.exists() else ["No File"]
+                rreceipt = [os.path.basename(file.file.name) for file in project.rreceipt.all()] if project.rreceipt.exists() else ["No File"]
+                supplier = [os.path.basename(file.file.name) for file in project.supplier.all()] if project.supplier.exists() else ["No File"]
+                account_payable = [os.path.basename(file.file.name) for file in project.account_payable.all()] if project.account_payable.exists() else ["No File"]
+
+                return render(request, 'admin/edit projectdetails.html', {'project_id': project.project_id,'project_name': project.project_name, 'start_date': project.start_date, 'end_date': project.end_date, 'comments': project.comments, 'project_category': project.project_category, 'ssite_plans': ssite_plans, 'sketch_2ds': sketch_2ds, 'hand_sketches': hand_sketches, 'sketch_3ds': sketch_3ds, 'ceiling_design_inspiration': ceiling_design_inspiration, 'wall_design_inspiration': wall_design_inspiration, 'flooring_inspiration': flooring_inspiration, 'lighting_inspiration': lighting_inspiration, 'exterior_inspiration': exterior_inspiration, 'garden': garden, 'site_plan': site_plan, 'master_plan': master_plan, 'floor_plan_2d': floor_plan_2d, 'elevations': elevations, 'section': section, 'detail_drawing': detail_drawing, 'illustrations_3d': illustrations_3d, 'earthworks_survey': earthworks_survey, 'geo_tech': geo_tech, 'roads': roads, 'hydolic_system': hydolic_system, 'structure': structure, 'detailing': detailing, 'water_system': water_system, 'electric': electric, 'elv_system': elv_system, 'hvac': hvac, 'elevation_system': elevation_system, 'system_safety': system_safety, 'interior_design': interior_design, 'soft_hard_scaping': soft_hard_scaping, 'bill_of_quantities': bill_of_quantities, 'quotation_summary': quotation_summary, 'client_review': client_review, 'final': final, 'contract': contract, 'notary': notary, 'project_payment_plan': project_payment_plan, 'additionals': additionals, 'purchase_order': purchase_order, 'invoice': invoice, 'receipt': receipt, 'purchase_summary': purchase_summary, 'supplier_selection': supplier_selection, 'performance_monitoring': performance_monitoring, 'supplier_classification': supplier_classification, 'partnerships_and_alliances': partnerships_and_alliances, 'other': other, 'contact_information': contact_information, 'interior_finishes': interior_finishes, 'exterior_finishes': exterior_finishes, 'daily_cashflow': daily_cashflow, 'weekly_cashflow': weekly_cashflow, 'monthly_cashflow': monthly_cashflow, 'annual_cashflow': annual_cashflow, 'indirect_costs': indirect_costs, 'cashflow_report': cashflow_report, 'ppurchase_order': ppurchase_order, 'iinvoice':iinvoice, 'rreceipt': rreceipt, 'supplier': supplier, 'account_payable': account_payable, 'username': adminhome.username, 'image': adminhome.adminimage})
                 #return render(request, 'admin/edit projectdetails.html', {'project_id': project.project_id,'project_name': project.project_name, 'project_category': project.project_category, 'ssite_plan': project.ssite_plan, 'sketch_2d': project.sketch_2d, 'hand_sketch': project.hand_sketch, 'sketch_2d': project.sketch_3d, 'ceiling_design_inspiration': project.ceiling_design_inspiration, 'wall_design_inspiration': project.wall_design_inspiration, 'flooring_inspiration': project.flooring_inspiration, 'lighting_inspiration': project.lighting_inspiration, 'exterior_inspiration': project.exterior_inspiration, 'garden': project.garden, 'scope_of_work': project.scope_of_work, 'site_plan': project.site_plan, 'master_plan': project.master_plan, '2d_floor_plan': project.floor_plan_2d, 'elevations': project.elevations, 'section': project.section, 'detail_drawing': project.detail_drawing, '3d_illustrations': project.illustrations_3d, 'earthworks_survey': project.earthworks_survey, 'geo-tech': project.geo_tech, 'roads': project.roads, 'hydolic_system': project.hydolic_system, 'structure': project.structure, 'detailing': project.detailing, 'water_system': project.water_system, 'electric': project.electric, 'elv_system': project.elv_system, 'hvac': project.hvac, 'elevation_system': project.elevation_system, 'system_safety': project.system_safety, 'interior_design': project.interior_design, 'soft_hard_scaping': project.soft_hard_scaping, 'bill_of_quantities': project.bill_of_quantities, 'quotation_summary': project.quotation_summary, 'client_review': project.client_review, 'final': project.final, 'contract': project.contract, 'notary': project.notary, 'project_payment_plan': project.project_payment_plan, 'invoice_number': project.invoice_number, 'additionals': project.additionals, 'purchase_order': project.purchase_order, 'invoice': project.invoice, 'receipt': project.receipt, 'purchase_summary': project.purchase_summary, 'supplier_selection': project.supplier_selection, 'supplier_classification': project.supplier_classification, 'partenerships_and_alliances': project.partnerships_and_alliances, 'other': project.other, 'contact_information': project.contact_information, 'construction_material': project.construction_material, 'equipment': project.equipment, 'tools': project.tools, 'other_material': project.other_material, 'raw_material': project.raw_material, 'interior_finishes': project.interior_finishes, 'exterior_finishes': project.exterior_finishes, 'landscaping_material': project.landscaping_material, 'price_comparison': project.price_comparison, 'daily_cashflow': project.daily_cashflow, 'weekly_cashflow': project.weekly_cashflow, 'annual_cashflow': project.annual_cashflow, 'monthly_cashflow': project.monthly_cashflow, 'indirect_costs': project.indirect_costs, 'cashflow_report': project.cashflow_report, 'username': adminhome.username, 'image': adminhome.adminimage})
             else:
                 messages.info(request,'Project not found')
@@ -322,7 +181,6 @@ def editprojectdetails(request):
         comments = request.POST['comments']
         project_category = request.POST.get('project_category', False)
         scope_of_work = request.POST['scope_of_work']
-        invoice_number = request.POST.get('invoice_number')
         construction_material = request.POST['construction_material']
         equipment = request.POST['equipment']
         tools = request.POST['tools']
@@ -338,145 +196,22 @@ def editprojectdetails(request):
         eproject.end_date = end_date
         eproject.comments = comments
         eproject.scope_of_work = scope_of_work
-        eproject.invoice_number = invoice_number
         eproject.construction_material = construction_material
         eproject.equipment = equipment
         eproject.tools = tools
         eproject.other_material = other_material
         eproject.raw_material = raw_material
         eproject.landscaping_material = landscaping_material
-        eproject.price_comparison = price_comparison
-        if 'ssite_plan' in request.FILES:
-            eproject.ssite_plan = request.FILES['ssite_plan']
-        if 'sketch_2d' in request.FILES:
-            eproject.sketch_2d = request.FILES['sketch_2d']
-        if 'hand_sketch' in request.FILES:
-            eproject.hand_sketch = request.FILES['hand_sketch']
-        if 'sketch_2d' in request.FILES:
-            eproject.sketch_3d = request.FILES['sketch_2d']    
-        if 'ceiling_design_inspiration' in request.FILES:
-            eproject.ceiling_design_inspiration = request.FILES['ceiling_design_inspiration']
-        if 'wall_design_inspiration' in request.FILES:
-            eproject.wall_design_inspiration = request.FILES['wall_design_inspiration']
-        if 'flooring_inspiration' in request.FILES:
-            eproject.flooring_inspiration = request.FILES['flooring_inspiration']
-        if 'lighting_inspiration' in request.FILES:
-            eproject.lighting_inspiration = request.FILES['lighting_inspiration']
-        if 'exterior_inspiration' in request.FILES:
-            eproject.exterior_inspiration = request.FILES['exterior_inspiration']
-        if 'garden' in request.FILES:
-            eproject.garden = request.FILES['garden']
-        if 'scope_of_work' in request.FILES:
-            eproject.scope_of_work = request.FILES['scope_of_work']
-        if 'site_plan' in request.FILES:
-            eproject.site_plan = request.FILES['site_plan']
-        if 'master_plan' in request.FILES:
-            eproject.master_plan = request.FILES['master_plan']
-        if 'floor_plan_2d' in request.FILES:
-            eproject.floor_plan_2d = request.FILES['floor_plan_2d']
-        if 'elevations' in request.FILES:
-            eproject.elevations = request.FILES['elevations']
-        if 'section' in request.FILES:
-            eproject.section = request.FILES['section']
-        if 'detail_drawing' in request.FILES:
-            eproject.detail_drawing = request.FILES['detail_drawing']
-        if 'illustrations_3d' in request.FILES:
-            eproject.illustrations_3d = request.FILES['illustrations_3d']
-        if 'earthworks_survey' in request.FILES:
-            eproject.earthworks_survey = request.FILES['earthworks_survey']
-        if 'geo_tech' in request.FILES:
-            eproject.geo_tech = request.FILES['geo_tech']
-        if 'roads' in request.FILES:
-            eproject.roads = request.FILES['roads']
-        if 'hydolic_system' in request.FILES:
-            eproject.hydolic_system = request.FILES['hydolic_system']
-        if 'structure' in request.FILES:
-            eproject.structure = request.FILES['structure']
-        if 'detailing' in request.FILES:
-            eproject.detailing = request.FILES['detailing']
-        if 'water_system' in request.FILES:
-            eproject.water_system = request.FILES['water_system']
-        if 'electric' in request.FILES:
-            eproject.electric = request.FILES['electric']
-        if 'elv_system' in request.FILES:
-            eproject.elv_system = request.FILES['elv_system']
-        if 'hvac' in request.FILES:
-            eproject.hvac = request.FILES['hvac']
-        if 'elevation_system' in request.FILES:
-            eproject.elevation_system = request.FILES['elevation_system']
-        if 'system_safety' in request.FILES:
-            eproject.system_safety = request.FILES['system_safety']
-        if 'interior_design' in request.FILES:
-            eproject.interior_design = request.FILES['interior_design']
-        if 'soft_hard_scaping' in request.FILES:
-            eproject.soft_hard_scaping = request.FILES['soft_hard_scaping']
-        if 'bill_of_quantities' in request.FILES:
-            eproject.bill_of_quantities = request.FILES['bill_of_quantities']
-        if 'quotation_summary' in request.FILES:
-            eproject.quotation_summary = request.FILES['quotation_summary']
-        if 'client_review' in request.FILES:
-            eproject.client_review = request.FILES['client_review']
-        if 'final' in request.FILES:
-            eproject.final = request.FILES['final']
-        if 'contract' in request.FILES:
-            eproject.contract = request.FILES['contract']
-        if 'notary' in request.FILES:
-            eproject.notary = request.FILES['notary']
-        if 'project_payment_plan' in request.FILES:
-            eproject.project_payment_plan = request.FILES['project_payment_plan']
-        if 'invoice_number' in request.FILES:
-            eproject.invoice_number = request.FILES['invoice_number']
-        if 'additionals' in request.FILES:
-            eproject.additionals = request.FILES['additionals']
-        if 'purchase_order' in request.FILES:
-            eproject.purchase_order = request.FILES['purchase_order']
-        if 'invoice' in request.FILES:
-            eproject.invoice = request.FILES['invoice']
-        if 'receipt' in request.FILES:
-            eproject.receipt = request.FILES['receipt']
-        if 'purchase_summary' in request.FILES:
-            eproject.purchase_summary = request.FILES['purchase_summary']
-        if 'supplier_selection' in request.FILES:
-            eproject.supplier_selection = request.FILES['supplier_selection']
-        if 'perfomance_monitoring' in request.FILES:
-            eproject.perfomance_monitoring = request.FILES['perfomance_monitoring']    
-        if 'supplier_classification' in request.FILES:
-            eproject.supplier_classification = request.FILES['supplier_classification']
-        if 'partnerships_and_alliances' in request.FILES:
-            eproject.partnerships_and_alliances = request.FILES['partnerships_and_alliances']
-        if 'other' in request.FILES:
-            eproject.other = request.FILES['other']
-        if 'contact_information' in request.FILES:
-            eproject.contact_information = request.FILES['contact_information']
-        if 'interior_finishes' in request.FILES:
-            eproject.interior_finishes = request.FILES['interior_finishes']
-        if 'exterior_finishes' in request.FILES:
-            eproject.exterior_finishes = request.FILES['exterior_finishes']
-        if 'daily_cashflow' in request.FILES:
-            eproject.daily_cashflow = request.FILES['daily_cashflow']
-        if 'weekly_cashflow' in request.FILES:
-            eproject.weekly_cashflow = request.FILES['weekly_cashflow']
-        if 'monthly_cashflow' in request.FILES:
-            eproject.monthly_cashflow = request.FILES['monthly_cashflow']
-        if 'annual_cashflow' in request.FILES:
-            eproject.annual_cashflow = request.FILES['annual_cashflow']
-        if 'indirect_costs' in request.FILES:
-            eproject.indirect_costs = request.FILES['indirect_costs']
-        if 'cashflow_report' in request.FILES:
-            eproject.cashflow_report = request.FILES['cashflow_report']
-        if 'ppurchase_order' in request.FILES:
-            eproject.ppurchase_order = request.FILES['ppurchase_order']
-        if 'iinvoice' in request.FILES:
-            eproject.iinvoice = request.FILES['iinvoice']
-        if 'rreceipt' in request.FILES:
-            eproject.rreceipt = request.FILES['rreceipt']
-        if 'supplier' in request.FILES:
-            eproject.supplier = request.FILES['supplier']
-        if 'account_payable' in request.FILES:
-            eproject.account_payable = request.FILES['account_payable']                    
-                        
+        eproject.price_comparison = price_comparison 
+        file_fields = ['ssite_plans','sketch_2ds','hand_sketches','sketch_3ds','ceiling_design_inspiration', 'wall_design_inspiration', 'flooring_inspiration', 'lighting_inspiration', 'exterior_inspiration', 'garden', 'scope_of_work', 'site_plan', 'master_plan', 'floor_plan_2d', 'elevations', 'section', 'detail_drawing', 'illustrations_3d', 'earthworks_survey', 'geo_tech', 'roads', 'hydolic_system', 'structure', 'detailing', 'water_system', 'electric', 'elv_system', 'hvac', 'elevation_system', 'system_safety', 'interior_design', 'soft_hard_scaping', 'bill_of_quantities', 'quotation_summary', 'client_review', 'final', 'contract', 'notary', 'project_payment_plan', 'invoice_number', 'additionals', 'purchase_order', 'invoice', 'receipt', 'purchase_summary', 'supplier_selection', 'perfomance_monitoring', 'supplier_classification', 'partnerships_and_alliances', 'other', 'contact_information', 'interior_finishes', 'exterior_finishes', 'daily_cashflow', 'weekly_cashflow', 'monthly_cashflow', 'annual_cashflow', 'indirect_costs', 'cashflow_report', 'ppurchase_order', 'iinvoice', 'rreceipt', 'supplier', 'account_payable']
+        for field in file_fields:
+            if field in request.FILES:
+                for file in request.FILES.getlist(field):
+                    file_instance = File(file=file)
+                    file_instance.save()
+                    getattr(eproject, field).add(file_instance)                       
         eproject.save()
-        messages.info(request, 'Project details updated, View New Details')
+        messages.info(request, 'Details updated, View New Details')
         return render(request, 'admin/view project.html',{'username':adminhome.username,'image':adminhome.adminimage})
 
 @login_required(login_url='home')
